@@ -5,20 +5,31 @@ using UnityEngine;
 public class CommandList : MonoBehaviour
 {
 
-    private List<Command> commandList = new List<Command>();
+    //private List<Command> commandList = new List<Command>();
+
+    private List<string> commandStr = new List<string>();
 
 
-    // Start is called before the first frame update
-    void Start()
+    public void push(string commandName)
     {
-        
+        commandStr.Add(commandName);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void pop()
     {
-        
+        commandStr.RemoveAt(commandStr.Count - 1);
     }
 
+    public void run()
+    {
+
+    }
+
+
+
+    public void printList()
+    {
+        Debug.Log(string.Join(",",commandStr));
+    }
 
 }
