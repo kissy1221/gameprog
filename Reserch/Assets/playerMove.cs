@@ -19,37 +19,10 @@ public class playerMove : MonoBehaviour
     }
     void Update()
     {
-        /*
-            //“ü—Í
-           float commandX  = Input.GetAxisRaw("Horizontal");
-           float commandY = Input.GetAxisRaw("Vertical");
-            //        if (move != Vector2.zero && Vector3.Distance(transform.position, targetPos) < 0.5f)
 
-            if (commandX == 1) right();
-            else if (commandX == -1) left();
-            else move.x = 0;
+        input();
 
-            if (commandY == 1) up();
-            else if (commandY == -1) down();
-            else move.y = 0;
-
-            */
-
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            commandList.push("left");
-        }
-        
-        if(Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            commandList.push("right");
-        }
-        if(Input.GetKeyDown(KeyCode.Delete))
-        {
-            commandList.pop();
-        }
-
-        commandList.printList();
+        //commandList.printList();
 
         if (move != Vector2.zero && transform.position == targetPos)
         {
@@ -57,10 +30,50 @@ public class playerMove : MonoBehaviour
         }
 
         Move(targetPos);
+
+        move.x = 0;
+        move.y = 0;
     }
     private void Move(Vector3 targetPosition)
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+    }
+
+    private void input()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            commandList.push("left");
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            commandList.push("right");
+        }
+
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            commandList.push("up");
+        }
+        if(Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            commandList.push("down");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            commandList.pop();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            commandList.run();
+        }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            commandList.printList();
+        }
     }
 
     public void left()
