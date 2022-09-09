@@ -15,17 +15,43 @@ public class playerMove : MonoBehaviour
     }
     void Update()
     {
+
+        //“ü—Í
         move.x = Input.GetAxisRaw("Horizontal");
         move.y = Input.GetAxisRaw("Vertical");
         //        if (move != Vector2.zero && Vector3.Distance(transform.position, targetPos) < 0.5f)
+
+
         if (move != Vector2.zero && transform.position == targetPos)
         {
             targetPos += new Vector3(move.x * distance, move.y * distance, 0);
         }
+
+        Debug.Log(targetPos);
         Move(targetPos);
     }
     private void Move(Vector3 targetPosition)
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+    }
+
+    public void left()
+    {
+        move.x = -1;
+    }
+
+    public void right()
+    {
+        move.x = 1;
+    }
+
+    public void up()
+    {
+
+    }
+
+    public void down()
+    {
+
     }
 }
