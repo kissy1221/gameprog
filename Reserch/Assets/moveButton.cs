@@ -50,4 +50,9 @@ public class moveButton : MonoBehaviour
     {
         playerScript.commandList.switchRun(true);
     }
+
+    public void DeleteButtonOnClick()
+    {
+        playerScript.commandList.pop();
+    }
 }
