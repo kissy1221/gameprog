@@ -9,8 +9,10 @@ public class CommandList : MonoBehaviour
 
     private List<string> commandStr = new List<string>();
 
-    public GameObject player;
+    public GameObject player;   //プレイヤーオブジェクト
     private playerMove playerScript;
+
+    private bool running = false;
 
     public CommandList()
     {
@@ -19,6 +21,10 @@ public class CommandList : MonoBehaviour
 
     }
 
+    public void switchRun(bool enabled)
+    {
+        running = enabled;
+    }
 
     public void push(string commandName)
     {
@@ -33,20 +39,24 @@ public class CommandList : MonoBehaviour
 
     public void run()
     {
-        while(commandStr.Count>0)
+        if(commandStr.Count>0 && running==true)
         {
 
             //処理//
             if (commandStr[0] == "up")
                 playerScript.up();
             if (commandStr[0] == "left")
-                playerScript.down();
+                playerScript.left();
             if (commandStr[0] == "right")
                 playerScript.right();
             if (commandStr[0] == "down")
                 playerScript.down();
             ///////
             commandStr.RemoveAt(0);
+
+            if (commandStr.Count <= 0)
+                switchRun(false);
+
         }
 
     }
@@ -62,7 +72,7 @@ public class CommandList : MonoBehaviour
 
     public void printList()
     {
-        Debug.Log(string.Join(",",commandStr));
+        Debug.Log("入力:"+string.Join("→",commandStr));
     }
 
 }

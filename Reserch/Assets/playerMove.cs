@@ -7,7 +7,11 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float speed;
     private float distance;
     private Vector2 move;
-    private Vector3 targetPos;
+    private Vector3 targetPos; //ˆÚ“®–Ú“I’n
+
+    private bool movement = false;//ˆÚ“®’†‚©
+
+    public bool moveEnabled=true;
 
     private CommandList commandList;
     private void Start()
@@ -19,10 +23,11 @@ public class playerMove : MonoBehaviour
     }
     void Update()
     {
+        if(movement==false)
+            input();
 
-        input();
-
-        //commandList.printList();
+        if (movement == false) 
+            commandList.run();
 
         if (move != Vector2.zero && transform.position == targetPos)
         {
@@ -36,7 +41,17 @@ public class playerMove : MonoBehaviour
     }
     private void Move(Vector3 targetPosition)
     {
+        movement = true;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+
+        if (transform.position == targetPosition)
+        {
+            movement = false;
+        }
+
+        Debug.Log("ˆÚ“®:" + movement);
+
+
     }
 
     private void input()
@@ -67,13 +82,16 @@ public class playerMove : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            commandList.run();
+            commandList.switchRun(true);
         }
 
         if(Input.GetKeyDown(KeyCode.P))
         {
             commandList.printList();
         }
+
+
+        //commandList.printList();
     }
 
     public void left()
@@ -95,4 +113,5 @@ public class playerMove : MonoBehaviour
     {
         move.y = -1;
     }
+
 }
