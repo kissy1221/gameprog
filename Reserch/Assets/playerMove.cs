@@ -13,7 +13,7 @@ public class playerMove : MonoBehaviour
 
     public bool moveEnabled=true;
 
-    private CommandList commandList;
+    public CommandList commandList;
     private void Start()
     {
         distance = 1.26f;
@@ -49,7 +49,7 @@ public class playerMove : MonoBehaviour
             movement = false;
         }
 
-        Debug.Log("ˆÚ“®:" + movement);
+        //Debug.Log("ˆÚ“®:" + movement);
 
 
     }
@@ -89,9 +89,6 @@ public class playerMove : MonoBehaviour
         {
             commandList.printList();
         }
-
-
-        //commandList.printList();
     }
 
     public void left()
