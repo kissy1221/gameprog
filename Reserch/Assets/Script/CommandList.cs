@@ -5,20 +5,23 @@ using UnityEngine;
 public class CommandList : MonoBehaviour
 {
 
-    //private List<Command> commandList = new List<Command>();
-
     private List<string> commandStr = new List<string>();
 
     public GameObject player;   //プレイヤーオブジェクト
     private playerMove playerScript;
 
     private bool running = false;
+    public bool update=false;
 
     public CommandList()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerMove>();
+    }
 
+    public List<string> returnList()
+    {
+        return commandStr;
     }
 
     public void switchRun(bool enabled)
@@ -34,12 +37,15 @@ public class CommandList : MonoBehaviour
     public void push(string commandName)
     {
         commandStr.Add(commandName);
+
+        update = true;
     }
 
     public void pop()
     {
         if(commandStr.Count>0)
             commandStr.RemoveAt(commandStr.Count - 1);
+        update = true;
     }
 
     public void run()
@@ -58,13 +64,19 @@ public class CommandList : MonoBehaviour
                 playerScript.down();
             ///////
             commandStr.RemoveAt(0);
+            update = true;
 
             if (commandStr.Count <= 0)
+            {
                 switchRun(false);
+            }
+                
 
         }
 
     }
+
+    
 
     public void removeHead()
     {
