@@ -26,6 +26,11 @@ public class CommandList : MonoBehaviour
         running = enabled;
     }
 
+    public bool isRunning()
+    {
+        return running;
+    }
+
     public void push(string commandName)
     {
         commandStr.Add(commandName);
