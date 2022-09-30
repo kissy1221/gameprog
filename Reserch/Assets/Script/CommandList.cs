@@ -13,10 +13,14 @@ public class CommandList : MonoBehaviour
     private bool running = false; //コマンド実行中か
     public bool update=false;
 
-    public CommandList()
+    public CommandList(string CharacterTag)
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<playerMove>();
+        if(CharacterTag=="Player")
+        {
+            player = GameObject.FindGameObjectWithTag(CharacterTag);
+            playerScript = player.GetComponent<playerMove>();
+        }
+
     }
 
     public List<string> returnList()
@@ -70,7 +74,6 @@ public class CommandList : MonoBehaviour
             {
                 switchRun(false);
             }
-                
 
         }
 

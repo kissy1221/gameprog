@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class playerMove : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    private float speed=5;
     private float distance;
     private Vector2 move;
     private Vector3 targetPos; //移動目的地
 
-    private bool movement = false;//移動中か
+    private bool movement = false;//アクション（移動・攻撃）中か
 
-    public bool moveEnabled=true;
 
     public CommandList commandList;
     private void Start()
@@ -19,7 +18,7 @@ public class playerMove : MonoBehaviour
         distance = 1.26f;
         targetPos = transform.position;
 
-        commandList = new CommandList();
+        commandList = new CommandList("Player");　//実行後、コマンドリストのインスタンスを作成
     }
     void Update()
     {
@@ -36,8 +35,7 @@ public class playerMove : MonoBehaviour
 
         Move(targetPos);
 
-        move.x = 0;
-        move.y = 0;
+        move = Vector2.zero;
     }
     private void Move(Vector3 targetPosition)
     {
