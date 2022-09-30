@@ -23,10 +23,10 @@ public class playerMove : MonoBehaviour
     }
     void Update()
     {
-        if(movement==false)
+        if(!commandList.isRunning())
             input();
 
-        if (movement == false) 
+        if (movement == false && commandList.isRunning()) 
             commandList.run();
 
         if (move != Vector2.zero && transform.position == targetPos)
@@ -48,8 +48,6 @@ public class playerMove : MonoBehaviour
         {
             movement = false;
         }
-
-        //Debug.Log("ˆÚ“®:" + movement);
 
 
     }

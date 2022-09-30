@@ -10,7 +10,7 @@ public class CommandList : MonoBehaviour
     public GameObject player;   //プレイヤーオブジェクト
     private playerMove playerScript;
 
-    private bool running = false;
+    private bool running = false; //コマンド実行中か
     public bool update=false;
 
     public CommandList()
@@ -50,7 +50,7 @@ public class CommandList : MonoBehaviour
 
     public void run()
     {
-        if(commandStr.Count>0 && running==true)
+        if(commandStr.Count>0)
         {
 
             //処理//
