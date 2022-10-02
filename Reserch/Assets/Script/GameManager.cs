@@ -6,7 +6,13 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance = null;
-    public bool running;
+
+    private bool running = false;
+
+    [SerializeField] private GameObject commandwin;
+    [SerializeField] private GameObject Player;
+
+    playerMove script;
 
     private void Awake()
     {
@@ -24,13 +30,22 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        script = Player.GetComponent<playerMove>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(running);
-        
+
+    }
+
+    public bool isRunning()
+    {
+        return running;
+    }
+
+    public void switchRun(bool enabled)
+    {
+        running = enabled;
     }
 }

@@ -8,9 +8,9 @@ public class CommandList : MonoBehaviour
     private List<string> commandStr = new List<string>();
 
     public GameObject player;   //プレイヤーオブジェクト
-    private playerMove playerScript;
+    private Character playerScript;
 
-    private bool running = false; //コマンド実行中か・trueだとコマンド実行中
+
     public bool update=false;
 
     public CommandList(string CharacterTag)
@@ -20,22 +20,17 @@ public class CommandList : MonoBehaviour
             player = GameObject.FindGameObjectWithTag(CharacterTag);
             playerScript = player.GetComponent<playerMove>();
         }
+        else if(CharacterTag=="Enemy")
+        {
+            player=GameObject.FindGameObjectWithTag(CharacterTag);
+            playerScript = player.GetComponent<Enemy>();
+        }
 
     }
 
     public List<string> returnList()
     {
         return commandStr;
-    }
-
-    public void switchRun(bool enabled)
-    {
-        running = enabled;
-    }
-
-    public bool isRunning()
-    {
-        return running;
     }
 
     public void push(string commandName)
@@ -70,9 +65,9 @@ public class CommandList : MonoBehaviour
             commandStr.RemoveAt(0);
             update = true;
 
-            if (commandStr.Count <= 0)
+            if (commandStr.Count <= 0 && playerScript.isAction()==false)
             {
-                switchRun(false);
+                GameManager.instance.switchRun(false);
             }
 
         }

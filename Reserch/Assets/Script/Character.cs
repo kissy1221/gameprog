@@ -9,13 +9,14 @@ public class Character : MonoBehaviour
     private Vector2 direction;  //移動方向
     protected Vector3 targetPos; //移動目的地
 
-    protected bool movement = false;//アクション（移動・攻撃）中か
+    private bool movement = false;//アクション（移動・攻撃）中か
 
     public CommandList commandList;
 
     protected void Start()
     {
         targetPos = transform.position;
+        
     }
 
     protected void move()
@@ -24,8 +25,9 @@ public class Character : MonoBehaviour
         if(direction!=Vector2.zero&&transform.position==targetPos)
         {
             targetPos += new Vector3(direction.x * distance, direction.y * distance, 0);
+            
         }
-
+        
         MoveTo(targetPos);
 
         direction = Vector2.zero;
@@ -35,15 +37,21 @@ public class Character : MonoBehaviour
 
     private void MoveTo(Vector3 targetPosition)
     {
-        movement = true;
 
+        movement = true;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+
 
         if (transform.position == targetPosition)
         {
             movement = false;
         }
 
+    }
+
+    public bool isAction()
+    {
+        return movement;
     }
 
     public void left()

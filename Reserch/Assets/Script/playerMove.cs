@@ -7,15 +7,15 @@ public class playerMove : Character
     private void Start()
     {
         base.Start();
+        commandList = new CommandList("Player"); //実行後、コマンドリストのインスタンスを作成
 
-        commandList = new CommandList("Player");　//実行後、コマンドリストのインスタンスを作成
     }
     void Update()
     {
-        if(!commandList.isRunning())
+        if(!GameManager.instance.isRunning())
             input();
 
-        if (movement == false && commandList.isRunning())
+        if (!isAction() && GameManager.instance.isRunning())
         {
             commandList.run();
         }
@@ -52,7 +52,7 @@ public class playerMove : Character
 
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            commandList.switchRun(true);
+            GameManager.instance.switchRun(true);
         }
 
         if(Input.GetKeyDown(KeyCode.P))
