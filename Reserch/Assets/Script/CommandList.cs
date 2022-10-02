@@ -10,7 +10,7 @@ public class CommandList : MonoBehaviour
     public GameObject player;   //プレイヤーオブジェクト
     private playerMove playerScript;
 
-    private bool running = false; //コマンド実行中か
+    private bool running = false; //コマンド実行中か・trueだとコマンド実行中
     public bool update=false;
 
     public CommandList(string CharacterTag)

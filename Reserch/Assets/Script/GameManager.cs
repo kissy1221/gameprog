@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance = null;
+    public bool running;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(running);
         
     }
 }

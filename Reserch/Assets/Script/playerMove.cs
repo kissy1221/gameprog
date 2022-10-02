@@ -2,21 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMove : MonoBehaviour
+public class playerMove : Character
 {
-    private float speed=5;
-    private float distance;
-    private Vector2 move;
-    private Vector3 targetPos; //移動目的地
-
-    private bool movement = false;//アクション（移動・攻撃）中か
-
-
-    public CommandList commandList;
     private void Start()
     {
-        distance = 1.26f;
-        targetPos = transform.position;
+        base.Start();
 
         commandList = new CommandList("Player");　//実行後、コマンドリストのインスタンスを作成
     }
@@ -25,28 +15,12 @@ public class playerMove : MonoBehaviour
         if(!commandList.isRunning())
             input();
 
-        if (movement == false && commandList.isRunning()) 
+        if (movement == false && commandList.isRunning())
+        {
             commandList.run();
-
-        if (move != Vector2.zero && transform.position == targetPos)
-        {
-            targetPos += new Vector3(move.x * distance, move.y * distance, 0);
         }
 
-        Move(targetPos);
-
-        move = Vector2.zero;
-    }
-    private void Move(Vector3 targetPosition)
-    {
-        movement = true;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-
-        if (transform.position == targetPosition)
-        {
-            movement = false;
-        }
-
+        move();
 
     }
 
@@ -85,26 +59,6 @@ public class playerMove : MonoBehaviour
         {
             commandList.printList();
         }
-    }
-
-    public void left()
-    {
-        move.x = -1;
-    }
-
-    public void right()
-    {
-        move.x = 1;
-    }
-
-    public void up()
-    {
-        move.y = 1;
-    }
-
-    public void down()
-    {
-        move.y = -1;
     }
 
 }
