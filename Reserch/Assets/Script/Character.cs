@@ -10,8 +10,9 @@ public class Character : MonoBehaviour
     protected Vector3 targetPos; //移動目的地
 
     public bool movement = false;//アクション（移動・攻撃）中か
+    public CommandList2 commandList=new CommandList2();
 
-    public CommandList commandList;
+    public string charTag=null;
 
     protected void Start()
     {
@@ -23,7 +24,7 @@ public class Character : MonoBehaviour
     {
         if (!isAction() && GameManager.instance.isRunning())
         {
-            commandList.run();
+            run();
         }
 
         move();
@@ -88,5 +89,21 @@ public class Character : MonoBehaviour
     public void finishReqToManager(string charTag)
     {
         GameManager.instance.setFinishReq(charTag, true);
+    }
+
+
+    public void run()
+    {
+        if(commandList.Count>0)
+        {
+            Command com = commandList.getFrom(0);//先頭を取り出す
+            com.excute();
+            commandList.removeHead();
+        }
+
+        if(commandList.Count<=0 && isAction()==false)
+        {
+            finishReqToManager(charTag);
+        }
     }
 }

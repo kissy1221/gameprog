@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CommandIcon : MonoBehaviour
+public class CommandIcon:MonoBehaviour
 {
-    protected List<string> list;
+    protected List<Command> list;
     protected Character characterScript;
 
-
-    //画像
-    public Sprite ImageUp;
-    public Sprite ImageDown;
-    public Sprite ImageLeft;
-    public Sprite ImageRight;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +20,7 @@ public class CommandIcon : MonoBehaviour
     void Update()
     {
 
-        list = characterScript.commandList.returnList();//コマンドリスト取得
+        list = characterScript.commandList.returnList();
         updateCommandListUI();
         
 
@@ -39,7 +33,7 @@ public class CommandIcon : MonoBehaviour
 
             deleteCommandListIcon();
 
-            foreach (string command in list)
+            foreach (Command command in list)
             {
                 Image nullImageHead = null; //CommandImageが表示されていない先頭画像
                 foreach (Transform child in gameObject.transform)
@@ -51,22 +45,8 @@ public class CommandIcon : MonoBehaviour
                     }
                 }
 
-                switch (command)
-                {
-                    case "up":
-                        nullImageHead.sprite = ImageUp;
-                        break;
-                    case "down":
-                        nullImageHead.sprite = ImageDown;
-                        break;
-                    case "left":
-                        nullImageHead.sprite = ImageLeft;
-                        break;
-                    case "right":
-                        nullImageHead.sprite = ImageRight;
-                        break;
+                nullImageHead.sprite = command.Image;
 
-                }
             }
             characterScript.commandList.update = false;
 

@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+
+    public GameObject EnemyObject;
+    public Enemy EnemyScript;
+
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
-        commandList = new CommandList("Enemy"); //実行後、コマンドリストのインスタンスを作成
+        charTag = "Enemy";
         pushCommandListAtRondom();
+
+        EnemyObject = GameObject.FindGameObjectWithTag("Enemy");
+        EnemyScript = EnemyObject.GetComponent<Enemy>();
     }
 
     // Update is called once per frame
@@ -31,17 +38,17 @@ public class Enemy : Character
             switch(RandomNum)
             {
                 case 1:
-                    commandList.push("up");
+                    commandList.add(new Up("Enemy"));
                     break;
                 case 2:
-                    commandList.push("left");
+                    commandList.add(new Left("Enemy"));
                     break;
                 case 3:
-                    commandList.push("right");
+                    commandList.add(new Right("Enemy"));
                     break;
                     
                 case 4:
-                    commandList.push("down");
+                    commandList.add(new Down("Enemy"));
                     break;
             }
         }

@@ -5,30 +5,35 @@ using UnityEngine;
 public class CommandList : MonoBehaviour
 {
 
+    /// <summary>
+    private List<Command> commandList = new List<Command>();
+    /// </summary>
+
     private List<string> commandStr = new List<string>();
 
-    public GameObject player;   //プレイヤーオブジェクト
-    private Character playerScript;
-
-    public string CharTag=null;
+    public GameObject Character;   //プレイヤーオブジェクト
+    private Character CharacterScript;
+    public string CharTag=null; //キャラクターの種別
 
 
     public bool update=false;
 
     public CommandList(string CharacterTag)
     {
+        Debug.Log("コンストラクター");
+
         CharTag = CharacterTag;
         if(CharTag=="Player")
         {
-            player = GameObject.FindGameObjectWithTag(CharacterTag);
-            playerScript = player.GetComponent<playerMove>();
+            Character = GameObject.FindGameObjectWithTag(CharacterTag);
+            CharacterScript = Character.GetComponent<playerMove>();
 
 
         }
         else if(CharTag=="Enemy")
         {
-            player=GameObject.FindGameObjectWithTag(CharacterTag);
-            playerScript = player.GetComponent<Enemy>();
+            Character=GameObject.FindGameObjectWithTag(CharacterTag);
+            CharacterScript = Character.GetComponent<Enemy>();
         }
 
     }
@@ -42,6 +47,12 @@ public class CommandList : MonoBehaviour
     {
         commandStr.Add(commandName);
 
+        update = true;
+    }
+
+    public void push(Command command)
+    {
+        commandList.Add(command);
         update = true;
     }
 
@@ -60,20 +71,20 @@ public class CommandList : MonoBehaviour
             switch(commandStr[0])
             {
                 case "up":
-                    playerScript.up();
-                    playerScript.movement = true;
+                    CharacterScript.up();
+                    CharacterScript.movement = true;
                     break;
                 case "left":
-                    playerScript.left();
-                    playerScript.movement = true;
+                    CharacterScript.left();
+                    CharacterScript.movement = true;
                     break;
                 case "right":
-                    playerScript.right();
-                    playerScript.movement = true;
+                    CharacterScript.right();
+                    CharacterScript.movement = true;
                     break;
                 case "down":
-                    playerScript.down();
-                    playerScript.movement = true;
+                    CharacterScript.down();
+                    CharacterScript.movement = true;
                     break;
             }
 
@@ -84,10 +95,10 @@ public class CommandList : MonoBehaviour
         }
 
         //コマンドリストが空、動いていない時にリクエスト送信
-        if (commandStr.Count <= 0 && playerScript.isAction() == false)
+        if (commandStr.Count <= 0 && CharacterScript.isAction() == false)
         {
             Debug.Log(CharTag + "が終了リクエストを送りました");
-            playerScript.finishReqToManager(CharTag);
+            CharacterScript.finishReqToManager(CharTag);
         }
 
     }

@@ -23,27 +23,27 @@ public class moveButton : MonoBehaviour
 
     public void UpButtonOnClick()
     {
-       // Debug.Log("Up‰Ÿ‚µ‚½");
+        // Debug.Log("Up‰Ÿ‚µ‚½");
 
-        playerScript.commandList.push("up");
+        playerScript.commandList.add(new Up(playerScript.charTag));
     }
 
     public void LeftButtonOnClick()
     {
-       // Debug.Log("Left‰Ÿ‚µ‚½");
-        playerScript.commandList.push("left");
+        // Debug.Log("Left‰Ÿ‚µ‚½");
+        playerScript.commandList.add(new Left(playerScript.charTag));
     }
 
     public void RIghtButtonOnClick()
     {
-       // Debug.Log("Right‰Ÿ‚µ‚½");
-        playerScript.commandList.push("right");
+        // Debug.Log("Right‰Ÿ‚µ‚½");
+        playerScript.commandList.add(new Right(playerScript.charTag));
     }
 
     public void DownButtonOnClick()
     {
         //Debug.Log("Down‰Ÿ‚µ‚½");
-        playerScript.commandList.push("down");
+        playerScript.commandList.add(new Down(playerScript.charTag));
     }
 
     public void RunButtonOnClick()
@@ -53,6 +53,6 @@ public class moveButton : MonoBehaviour
 
     public void DeleteButtonOnClick()
     {
-        playerScript.commandList.pop();
+        playerScript.commandList.removeTail();
     }
 }
