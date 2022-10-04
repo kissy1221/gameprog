@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class CommandIcon : MonoBehaviour
 {
-    private List<string> list;
-    private playerMove playerScript;
+    protected List<string> list;
+    protected Character characterScript;
 
 
     //画像
@@ -18,7 +18,7 @@ public class CommandIcon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<playerMove>();
+        
 
     }
 
@@ -26,15 +26,18 @@ public class CommandIcon : MonoBehaviour
     void Update()
     {
 
-        list = playerScript.commandList.returnList();
+        list = characterScript.commandList.returnList();//コマンドリスト取得
+        updateCommandListUI();
+        
 
-        if (playerScript.commandList.update)
+    }
+
+    private void updateCommandListUI()
+    {
+        if (characterScript.commandList.update)
         {
 
-            foreach(Transform child in gameObject.transform)
-            {
-                child.gameObject.GetComponent<Image>().sprite = null;
-            }
+            deleteCommandListIcon();
 
             foreach (string command in list)
             {
@@ -65,11 +68,17 @@ public class CommandIcon : MonoBehaviour
 
                 }
             }
-            playerScript.commandList.update = false;
+            characterScript.commandList.update = false;
 
         }
+    }
 
-        
-
+    //表示されているコマンドアイコンをすべて削除
+    private void deleteCommandListIcon()
+    {
+        foreach (Transform child in gameObject.transform)
+        {
+            child.gameObject.GetComponent<Image>().sprite = null;
+        }
     }
 }

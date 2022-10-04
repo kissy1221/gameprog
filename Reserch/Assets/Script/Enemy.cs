@@ -20,7 +20,7 @@ public class Enemy : Character
     }
 
     //ランダムでリストにコマンドを入れる
-    private void pushCommandListAtRondom()
+    public void pushCommandListAtRondom()
     {
         int CommandNum=Random.Range(1,8);
 

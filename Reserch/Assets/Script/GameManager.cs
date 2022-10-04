@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance = null;
 
+    //true=>コマンド動作中 , false=>コマンド画面
     private bool running = false;
+    
 
     private bool EnemyFinishReq = false;
     private bool PlayerFinishReq = false;
@@ -53,6 +55,8 @@ public class GameManager : MonoBehaviour
             EnemyFinishReq = false;
             PlayerFinishReq = false;
             commandwin.SetActive(true);
+
+            GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().pushCommandListAtRondom();
         }
 
         if (isRunning())
