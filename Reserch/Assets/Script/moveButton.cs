@@ -48,7 +48,7 @@ public class moveButton : MonoBehaviour
 
     public void RunButtonOnClick()
     {
-        playerScript.commandList.switchRun(true);
+        GameManager.instance.switchRun(true);
     }
 
     public void DeleteButtonOnClick()
