@@ -15,12 +15,7 @@ public class playerMove : Character
         if(!GameManager.instance.isRunning())
             input();
 
-        if (!isAction() && GameManager.instance.isRunning())
-        {
-            commandList.run();
-        }
-
-        move();
+        base.Update();
 
     }
 

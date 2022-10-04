@@ -10,17 +10,22 @@ public class CommandList : MonoBehaviour
     public GameObject player;   //プレイヤーオブジェクト
     private Character playerScript;
 
+    public string CharTag=null;
+
 
     public bool update=false;
 
     public CommandList(string CharacterTag)
     {
-        if(CharacterTag=="Player")
+        CharTag = CharacterTag;
+        if(CharTag=="Player")
         {
             player = GameObject.FindGameObjectWithTag(CharacterTag);
             playerScript = player.GetComponent<playerMove>();
+
+
         }
-        else if(CharacterTag=="Enemy")
+        else if(CharTag=="Enemy")
         {
             player=GameObject.FindGameObjectWithTag(CharacterTag);
             playerScript = player.GetComponent<Enemy>();
@@ -52,24 +57,37 @@ public class CommandList : MonoBehaviour
         if(commandStr.Count>0)
         {
 
-            //処理//
-            if (commandStr[0] == "up")
-                playerScript.up();
-            if (commandStr[0] == "left")
-                playerScript.left();
-            if (commandStr[0] == "right")
-                playerScript.right();
-            if (commandStr[0] == "down")
-                playerScript.down();
-            ///////
+            switch(commandStr[0])
+            {
+                case "up":
+                    playerScript.up();
+                    playerScript.movement = true;
+                    break;
+                case "left":
+                    playerScript.left();
+                    playerScript.movement = true;
+                    break;
+                case "right":
+                    playerScript.right();
+                    playerScript.movement = true;
+                    break;
+                case "down":
+                    playerScript.down();
+                    playerScript.movement = true;
+                    break;
+            }
+
             commandStr.RemoveAt(0);
             update = true;
 
-            if (commandStr.Count <= 0 && playerScript.isAction()==false)
-            {
-                GameManager.instance.switchRun(false);
-            }
 
+        }
+
+        //コマンドリストが空、動いていない時にリクエスト送信
+        if (commandStr.Count <= 0 && playerScript.isAction() == false)
+        {
+            Debug.Log(CharTag + "が終了リクエストを送りました");
+            playerScript.finishReqToManager(CharTag);
         }
 
     }

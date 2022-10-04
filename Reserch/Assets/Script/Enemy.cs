@@ -9,19 +9,14 @@ public class Enemy : Character
     {
         base.Start();
         commandList = new CommandList("Enemy"); //実行後、コマンドリストのインスタンスを作成
-
+        pushCommandListAtRondom();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (!isAction() && GameManager.instance.isRunning())
-        {
-            commandList.run();
-        }
-
-        move();
+        base.Update();
+        
     }
 
     //ランダムでリストにコマンドを入れる

@@ -9,10 +9,21 @@ public class GameManager : MonoBehaviour
 
     private bool running = false;
 
+    private bool EnemyFinishReq = false;
+    private bool PlayerFinishReq = false;
+
+    public void setFinishReq(string charTag,bool Enable)
+    {
+        if (charTag == "Enemy")
+            EnemyFinishReq = enabled;
+        else
+            PlayerFinishReq = enabled;
+    }
+
+
     [SerializeField] private GameObject commandwin;
     [SerializeField] private GameObject Player;
 
-    playerMove script;
 
     private void Awake()
     {
@@ -30,12 +41,22 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        script = Player.GetComponent<playerMove>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(EnemyFinishReq && PlayerFinishReq)
+        {
+            switchRun(false);
+            EnemyFinishReq = false;
+            PlayerFinishReq = false;
+            commandwin.SetActive(true);
+        }
+
+        if (isRunning())
+            commandwin.SetActive(false);
 
     }
 
@@ -48,4 +69,5 @@ public class GameManager : MonoBehaviour
     {
         running = enabled;
     }
+
 }
