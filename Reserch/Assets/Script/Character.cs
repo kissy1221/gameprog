@@ -5,7 +5,11 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     private float speed = 5;
-    private float distance=1.26f;//ˆÚ“®‹——£
+    private float distanceX=1.6f;
+    private float distanceY = 0.95f;//ˆÚ“®‹——£
+
+    private Vector2 distance2;
+
     private Vector2 direction;  //ˆÚ“®•ûŒü
     protected Vector3 targetPos; //ˆÚ“®–Ú“I’n
 
@@ -17,6 +21,7 @@ public class Character : MonoBehaviour
     protected void Start()
     {
         targetPos = transform.position;
+
         
     }
 
@@ -35,7 +40,7 @@ public class Character : MonoBehaviour
 
         if(direction!=Vector2.zero&&transform.position==targetPos)
         {
-            targetPos += new Vector3(direction.x * distance, direction.y * distance, 0);
+            targetPos += new Vector3(direction.x * distanceX, direction.y * distanceY, 0);
             
         }
         if(transform.position!=targetPos)
