@@ -29,7 +29,7 @@ public class Enemy : Character
     //ランダムでリストにコマンドを入れる
     public void pushCommandListAtRondom()
     {
-        int CommandNum=Random.Range(1,8);
+        int CommandNum=Random.Range(3,5);
 
         for(int i=0;i<CommandNum;i++)
         {

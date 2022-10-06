@@ -12,7 +12,18 @@ public class Down : Command
 
     public override void excute()
     {
-        CharacterScript.down();
-        CharacterScript.movement = true;
+        if(map.canMove(charTag, new Vector2Int(0, 1)))
+        {
+            //map“à•”ˆ—
+            map.move(charTag, new Vector2Int(0, 1));
+
+            //•\–Êˆ—
+            CharacterScript.down();
+            CharacterScript.movement = true;
+        }
+        else
+        {
+            CharacterScript.finishMoveReqToManager();
+        }
     }
 }

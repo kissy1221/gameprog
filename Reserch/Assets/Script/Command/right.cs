@@ -13,7 +13,16 @@ public class Right : Command
 
     public override void excute()
     {
-        CharacterScript.right();
-        CharacterScript.movement = true;
+        if(map.canMove(charTag, new Vector2Int(1, 0)))
+        {
+            map.move(charTag, new Vector2Int(1, 0));
+
+            CharacterScript.right();
+            CharacterScript.movement = true;
+        }
+        else
+        {
+            CharacterScript.finishMoveReqToManager();
+        }
     }
 }

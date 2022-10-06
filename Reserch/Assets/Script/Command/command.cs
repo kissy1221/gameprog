@@ -8,11 +8,17 @@ public abstract class Command
     private string type;
     public Sprite Image;
 
+    protected string charTag;
+
     protected GameObject Character;   //コマンドの実行対象(プレイヤー or Enemy)
     protected Character CharacterScript;
 
+    protected GameObject mapObj;
+    protected Map map;
+
     public Command(string charTag)
     {
+        this.charTag = charTag;
         if(charTag=="Player")
         {
             Character = GameObject.FindWithTag("Player");
@@ -23,6 +29,8 @@ public abstract class Command
             Character = GameObject.FindWithTag("Enemy");
             CharacterScript = Character.GetComponent<Character>();
         }
+
+        map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
 
     }
 
