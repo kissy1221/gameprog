@@ -7,7 +7,6 @@ public class Up : Command
 
     public Up(string charTag):base(charTag)
     {
-        Debug.Log("ãƒRƒ}ƒ“ƒh‰Šú‰»");
 
         name = "up";
         Image = Resources.Load<Sprite>("Images/up");

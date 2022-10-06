@@ -8,7 +8,6 @@ public class Character : MonoBehaviour
     private float distanceX=1.6f;
     private float distanceY = 0.95f;//移動距離
 
-    private Vector2 distance2;
 
     private Vector2 direction;  //移動方向
     protected Vector3 targetPos; //移動目的地
@@ -29,7 +28,9 @@ public class Character : MonoBehaviour
     {
         if (!isAction() && GameManager.instance.isRunning())
         {
-            run();
+            if(!GameManager.instance.getMove(charTag))
+                run();
+            
         }
 
         move();
@@ -60,7 +61,7 @@ public class Character : MonoBehaviour
 
         if (transform.position == targetPosition)
         {
-
+            finishMoveReqToManager();
             movement = false;
         }
 
@@ -96,12 +97,20 @@ public class Character : MonoBehaviour
         GameManager.instance.setFinishReq(charTag, true);
     }
 
+    //ゲームマネージャーに１つのコマンドが終了を伝える
+    public void finishMoveReqToManager()
+    {
+        Debug.Log(charTag + "がコマンド終了リクを送りました");
+        GameManager.instance.setMoveReq(charTag,true);
+    }
+
 
     public void run()
     {
         if(commandList.Count>0)
         {
             Command com = commandList.getFrom(0);//先頭を取り出す
+            GameManager.instance.setMoveReq(charTag, false);
             com.excute();
             commandList.removeHead();
         }

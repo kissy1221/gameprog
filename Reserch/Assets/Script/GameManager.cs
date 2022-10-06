@@ -11,15 +11,46 @@ public class GameManager : MonoBehaviour
     private bool running = false;
     
 
+    //コマンドが終了したか
     private bool EnemyFinishReq = false;
     private bool PlayerFinishReq = false;
+
+    //１つのコマンドが終了したか
+    private bool EnemyMoveReq = true;
+    private bool PlayerMoveReq = true;
 
     public void setFinishReq(string charTag,bool Enable)
     {
         if (charTag == "Enemy")
-            EnemyFinishReq = enabled;
+            EnemyFinishReq = Enable;
         else
-            PlayerFinishReq = enabled;
+            PlayerFinishReq = Enable;
+    }
+
+    public void setMoveReq(bool Enabled)
+    {
+        EnemyMoveReq = Enabled;
+        PlayerMoveReq = Enabled;
+    }
+
+    public void setMoveReq(string charTag,bool Enabled)
+    {
+        if (charTag == "Enemy")
+            EnemyMoveReq = Enabled;
+        else
+            PlayerMoveReq = Enabled;
+    }
+
+    public bool getMove(string charTag)
+    {
+        if(charTag=="Player")
+        {
+            return PlayerMoveReq;
+        }
+        else
+        {
+            return EnemyMoveReq;
+        }
     }
 
 
@@ -51,9 +82,14 @@ public class GameManager : MonoBehaviour
     {
         if(EnemyFinishReq && PlayerFinishReq)
         {
+            Debug.Log("双方終了のリクエストが来ました");
+
             switchRun(false);
             EnemyFinishReq = false;
             PlayerFinishReq = false;
+
+            setMoveReq(true);
+
             commandwin.SetActive(true);
 
             GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().pushCommandListAtRondom();
@@ -61,6 +97,10 @@ public class GameManager : MonoBehaviour
 
         if (isRunning())
             commandwin.SetActive(false);
+
+        if ((PlayerMoveReq && EnemyMoveReq) ||EnemyFinishReq || PlayerFinishReq )
+            setMoveReq(false);
+
 
     }
 

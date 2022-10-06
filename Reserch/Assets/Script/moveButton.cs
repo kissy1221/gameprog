@@ -48,11 +48,17 @@ public class moveButton : MonoBehaviour
 
     public void RunButtonOnClick()
     {
+        Debug.Log("Run!");
         GameManager.instance.switchRun(true);
     }
 
     public void DeleteButtonOnClick()
     {
         playerScript.commandList.removeTail();
+    }
+
+    public void StayButtonOnClick()
+    {
+        playerScript.commandList.add(new stay(playerScript.charTag));
     }
 }
