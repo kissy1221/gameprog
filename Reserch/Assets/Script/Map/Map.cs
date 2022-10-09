@@ -117,6 +117,44 @@ public class Map : MonoBehaviour
         Debug.Log(print_array);
     }
 
+    public void move(Object targetObj,Vector2Int direction)
+    {
+        Vector2Int targetObjPos = searchMap(targetObj);
+        int x = targetObjPos.x;
+        int y = targetObjPos.y;
+
+        map1[x, y].putObjectOnFloor(null);
+        map1[x + direction.x, y + direction.y].putObjectOnFloor(targetObj);
+    }
+
+    //対象物が移動方向に移動できるか
+    public bool canMove(Object targetObj,Vector2Int direction)
+    {
+        Vector2Int targetObjPos = searchMap(targetObj);
+        Vector2Int targetPos = targetObjPos + direction;//移動先
+
+        //範囲外ではないか？
+        if ((0 <= targetPos.x && targetPos.x < 6) && (0 <= targetPos.y && targetPos.y <= 2))
+        {
+            Square targetSquare = map1[targetObjPos.x + direction.x, targetObjPos.x + direction.y];//移動先のマス
+
+            //プレイヤーの場合
+            if(targetObj.GetType()==typeof(Player))
+            {
+                if (targetSquare.getFloorColor().GetType() == typeof(Red))
+                    return true;
+            }
+            else
+            {
+                if (targetSquare.getFloorColor().GetType() == typeof(Blue))
+                    return true;
+            }
+        }
+
+        return false;
+
+    }
+
     //マップ内の内部処理 (移動オブジェクト、移動方向)
     public void move(string targetObjTag,Vector2Int direction)
     {
@@ -172,6 +210,25 @@ public class Map : MonoBehaviour
             return false;
         }
         
+    }
+
+    //対象物の座標を探す(1つ存在するものに限る)
+    Vector2Int searchMap(Object obj)
+    {
+        Vector2Int objPos;
+        for (int x = 0; x < map.GetLength(0); x++)
+        {
+            for (int y = 0; y < map.GetLength(1); y++)
+            {
+                if (map1[x, y].getObjectOnFloor() ==obj)
+                {
+                    objPos = new Vector2Int(x, y);
+                    return objPos;
+                }
+            }
+        }
+
+        return new Vector2Int(-1, -1);
     }
 
     Vector2Int searchMap(int obj)
