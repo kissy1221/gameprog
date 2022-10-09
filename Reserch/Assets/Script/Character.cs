@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : Object
 {
     private float speed = 5;
     private float distanceX=1.6f;
@@ -92,16 +92,16 @@ public class Character : MonoBehaviour
         direction.y = -1;
     }
     
-    public void finishReqToManager(string charTag)
+    public void finishReqToManager()
     {
-        GameManager.instance.setFinishReq(charTag, true);
+
+        GameManager.instance.setFinishReq(this, true);
     }
 
     //ゲームマネージャーに１つのコマンドが終了を伝える
     public void finishMoveReqToManager()
     {
-        Debug.Log(charTag + "がコマンド終了リクを送りました");
-        GameManager.instance.setMoveReq(charTag,true);
+        GameManager.instance.setMoveReq(this,true);
     }
 
 
@@ -110,14 +110,14 @@ public class Character : MonoBehaviour
         if(commandList.Count>0)
         {
             Command com = commandList.getFrom(0);//先頭を取り出す
-            GameManager.instance.setMoveReq(charTag, false);
+            GameManager.instance.setMoveReq(this, false);
             com.excute();
             commandList.removeHead();
         }
 
         if(commandList.Count<=0 && isAction()==false)
         {
-            finishReqToManager(charTag);
+            finishReqToManager();
         }
     }
 }

@@ -19,12 +19,16 @@ public class GameManager : MonoBehaviour
     private bool EnemyMoveReq = true;
     private bool PlayerMoveReq = true;
 
-    public void setFinishReq(string charTag,bool Enable)
+    public void setFinishReq(Character character,bool Enable)
     {
-        if (charTag == "Enemy")
-            EnemyFinishReq = Enable;
-        else
+        if(character.GetType()==typeof(Player))
+        {
             PlayerFinishReq = Enable;
+        }
+        else
+        {
+            EnemyFinishReq = Enable;
+        }
     }
 
     public void setMoveReq(bool Enabled)
@@ -33,12 +37,17 @@ public class GameManager : MonoBehaviour
         PlayerMoveReq = Enabled;
     }
 
-    public void setMoveReq(string charTag,bool Enabled)
+    public void setMoveReq(Character character,bool Enabled)
     {
-        if (charTag == "Enemy")
-            EnemyMoveReq = Enabled;
-        else
+
+        if(character.GetType()==typeof(Player))
+        {
             PlayerMoveReq = Enabled;
+        }
+        else
+        {
+            EnemyMoveReq = Enabled;
+        }
     }
 
     public bool getMove(string charTag)

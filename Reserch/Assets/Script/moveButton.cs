@@ -5,7 +5,7 @@ using UnityEngine;
 public class moveButton : MonoBehaviour
 {
     public GameObject player;   //プレイヤーオブジェクト
-    private playerMove playerScript;
+    private Player playerScript;
 
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class moveButton : MonoBehaviour
     void Update()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<playerMove>();
+        playerScript = player.GetComponent<Player>();
     }
 
     public void UpButtonOnClick()
