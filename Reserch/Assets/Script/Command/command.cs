@@ -15,6 +15,7 @@ public abstract class Command
     protected GameObject mapObj;
     protected Map map;
 
+    //引数:コマンド実行者
     public Command(Character character)
     {
         this.CharacterScript = character;

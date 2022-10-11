@@ -46,6 +46,11 @@ public class moveButton : MonoBehaviour
         player.commandList.add(new Down(player));
     }
 
+    public void putCubeButtononClick()
+    {
+        player.commandList.add(new putCube(player));
+    }
+
     public void RunButtonOnClick()
     {
         Debug.Log("Run!");
