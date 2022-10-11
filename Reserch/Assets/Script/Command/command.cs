@@ -10,26 +10,14 @@ public abstract class Command
 
     protected string charTag;
 
-    protected GameObject Character;   //コマンドの実行対象(プレイヤー or Enemy)
     protected Character CharacterScript;
 
     protected GameObject mapObj;
     protected Map map;
 
-    public Command(string charTag)
+    public Command(Character character)
     {
-        this.charTag = charTag;
-        if(charTag=="Player")
-        {
-            Character = GameObject.FindWithTag("Player");
-            CharacterScript = Character.GetComponent<Character>();
-        }
-        else
-        {
-            Character = GameObject.FindWithTag("Enemy");
-            CharacterScript = Character.GetComponent<Character>();
-        }
-
+        this.CharacterScript = character;
         map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
 
     }

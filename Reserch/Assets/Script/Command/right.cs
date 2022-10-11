@@ -5,7 +5,7 @@ using UnityEngine;
 public class Right : Command
 {
 
-    public Right(string charTag):base(charTag)
+    public Right(Character character) :base(character)
     {
         name = "right";
         Image = Resources.Load<Sprite>("Images/right");
@@ -13,9 +13,9 @@ public class Right : Command
 
     public override void excute()
     {
-        if(map.canMove(charTag, new Vector2Int(1, 0)))
+        if(map.canMove(CharacterScript, new Vector2Int(1, 0)))
         {
-            map.move(charTag, new Vector2Int(1, 0));
+            map.move(CharacterScript, new Vector2Int(1, 0));
 
             CharacterScript.right();
             CharacterScript.movement = true;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Up : Command
 {
 
-    public Up(string charTag):base(charTag)
+    public Up(Character character) :base(character)
     {
 
         name = "up";
@@ -14,9 +14,9 @@ public class Up : Command
 
     public override void excute()
     {
-        if(map.canMove(charTag, new Vector2Int(0, -1)))
+        if(map.canMove(CharacterScript, new Vector2Int(0, -1)))
         {
-            map.move(charTag, new Vector2Int(0, -1));
+            map.move(CharacterScript, new Vector2Int(0, -1));
 
             CharacterScript.up();
             CharacterScript.movement = true;

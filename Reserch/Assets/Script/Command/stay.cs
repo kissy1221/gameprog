@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class stay : Command
 {
-    public stay(string charTag) : base(charTag)
+    public stay(Character character) : base(character)
     {
         name = "left";
         Image = Resources.Load<Sprite>("Images/stay");

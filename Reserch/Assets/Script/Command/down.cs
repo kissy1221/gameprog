@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Down : Command
 {
-    public Down(string charTag):base(charTag)
+    public Down(Character character) :base(character)
     {
         name = "down";
         Image = Resources.Load<Sprite>("Images/down");
@@ -12,10 +12,10 @@ public class Down : Command
 
     public override void excute()
     {
-        if(map.canMove(charTag, new Vector2Int(0, 1)))
+        if(map.canMove(CharacterScript, new Vector2Int(0, 1)))
         {
             //map“à•”ˆ—
-            map.move(charTag, new Vector2Int(0, 1));
+            map.move(CharacterScript, new Vector2Int(0, 1));
 
             //•\–Êˆ—
             CharacterScript.down();

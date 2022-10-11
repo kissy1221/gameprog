@@ -38,17 +38,17 @@ public class Enemy : Character
             switch(RandomNum)
             {
                 case 1:
-                    commandList.add(new Up("Enemy"));
+                    commandList.add(new Up(this));
                     break;
                 case 2:
-                    commandList.add(new Left("Enemy"));
+                    commandList.add(new Left(this));
                     break;
                 case 3:
-                    commandList.add(new Right("Enemy"));
+                    commandList.add(new Right(this));
                     break;
                     
                 case 4:
-                    commandList.add(new Down("Enemy"));
+                    commandList.add(new Down(this));
                     break;
             }
         }
