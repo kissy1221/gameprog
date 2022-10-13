@@ -32,8 +32,8 @@ public class Map : MonoBehaviour
 
         initMap();
 
-        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        Enemy enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
 
         map1[1, 1].putObjectOnFloor(player);
         map1[4, 1].putObjectOnFloor(enemy);
@@ -52,7 +52,7 @@ public class Map : MonoBehaviour
 
     }
 
-    public void putObject(Object obj,Vector2Int pos)
+    public void putObject(GameObject obj,Vector2Int pos)
     {
         map1[pos.x, pos.y].putObjectOnFloor(obj);
     }
@@ -79,7 +79,7 @@ public class Map : MonoBehaviour
         {
             for (int j = 0; j < map1.GetLength(0); j++)
             {
-                Object obj = map1[j, i].getObjectOnFloor();
+                GameObject obj = map1[j, i].getObjectOnFloor();
                 if (obj==null)
                 {
                     print_array += string.Format("{0,11}", "null")+":";
@@ -95,7 +95,7 @@ public class Map : MonoBehaviour
     }
 
 
-    public void move(Object targetObj,Vector2Int direction)
+    public void move(GameObject targetObj,Vector2Int direction)
     {
         Vector2Int targetObjPos = searchMap(targetObj);
         int x = targetObjPos.x;
@@ -106,7 +106,7 @@ public class Map : MonoBehaviour
     }
 
     //‘ÎÛ•¨‚ªˆÚ“®•ûŒü‚ÉˆÚ“®‚Å‚«‚é‚©
-    public bool canMove(Object targetObj,Vector2Int direction)
+    public bool canMove(GameObject targetObj,Vector2Int direction)
     {
         Vector2Int targetObjPos = searchMap(targetObj);
         Vector2Int targetPos = targetObjPos + direction;//ˆÚ“®æ
@@ -136,7 +136,7 @@ public class Map : MonoBehaviour
    
 
     //‘ÎÛ•¨‚ÌÀ•W‚ð’T‚·(1‚Â‘¶Ý‚·‚é‚à‚Ì‚ÉŒÀ‚é)
-    public Vector2Int searchMap(Object obj)
+    public Vector2Int searchMap(GameObject obj)
     {
         Vector2Int objPos;
         for (int x = 0; x < map1.GetLength(0); x++)
@@ -154,7 +154,7 @@ public class Map : MonoBehaviour
         return new Vector2Int(-1, -1);
     }
 
-
+    /*
     void input()
     {
 
@@ -197,4 +197,5 @@ public class Map : MonoBehaviour
                 Debug.Log("“®‚¯‚Ü‚¹‚ñ");
         }
     }
+    */
 }
