@@ -52,6 +52,11 @@ public class Map : MonoBehaviour
 
     }
 
+    public void putObject(Object obj,Vector2Int pos)
+    {
+        map1[pos.x, pos.y].putObjectOnFloor(obj);
+    }
+
     //map‘S‘Ì‚ÌF
     void printMapFloorColor()
     {
@@ -131,7 +136,7 @@ public class Map : MonoBehaviour
    
 
     //‘ÎÛ•¨‚ÌÀ•W‚ğ’T‚·(1‚Â‘¶İ‚·‚é‚à‚Ì‚ÉŒÀ‚é)
-    Vector2Int searchMap(Object obj)
+    public Vector2Int searchMap(Object obj)
     {
         Vector2Int objPos;
         for (int x = 0; x < map1.GetLength(0); x++)
