@@ -4,55 +4,61 @@ using UnityEngine;
 
 public class moveButton : MonoBehaviour
 {
-    public GameObject player;   //プレイヤーオブジェクト
-    private playerMove playerScript;
+    public GameObject playerObject;   //プレイヤーオブジェクト
+    private Player player;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+        player = playerObject.GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<playerMove>();
+
     }
 
     public void UpButtonOnClick()
     {
-       // Debug.Log("Up押した");
+        // Debug.Log("Up押した");
 
-        playerScript.commandList.push("up");
+        player.commandList.add(new Up(player));
     }
 
     public void LeftButtonOnClick()
     {
-       // Debug.Log("Left押した");
-        playerScript.commandList.push("left");
+        // Debug.Log("Left押した");
+        player.commandList.add(new Left(player));
     }
 
     public void RIghtButtonOnClick()
     {
-       // Debug.Log("Right押した");
-        playerScript.commandList.push("right");
+        // Debug.Log("Right押した");
+        player.commandList.add(new Right(player));
     }
 
     public void DownButtonOnClick()
     {
         //Debug.Log("Down押した");
-        playerScript.commandList.push("down");
+        player.commandList.add(new Down(player));
     }
 
     public void RunButtonOnClick()
     {
+        Debug.Log("Run!");
         GameManager.instance.switchRun(true);
     }
 
     public void DeleteButtonOnClick()
     {
-        playerScript.commandList.pop();
+        player.commandList.removeTail();
+    }
+
+    public void StayButtonOnClick()
+    {
+        player.commandList.add(new stay(player));
     }
 }

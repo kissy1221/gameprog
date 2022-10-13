@@ -7,17 +7,59 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance = null;
 
+    //true=>コマンド動作中 , false=>コマンド画面
     private bool running = false;
+    
 
+    //コマンドが終了したか
     private bool EnemyFinishReq = false;
     private bool PlayerFinishReq = false;
 
-    public void setFinishReq(string charTag,bool Enable)
+    //１つのコマンドが終了したか
+    private bool EnemyMoveReq = true;
+    private bool PlayerMoveReq = true;
+
+    public void setFinishReq(Character character,bool Enable)
     {
-        if (charTag == "Enemy")
-            EnemyFinishReq = enabled;
+        if(character.GetType()==typeof(Player))
+        {
+            PlayerFinishReq = Enable;
+        }
         else
-            PlayerFinishReq = enabled;
+        {
+            EnemyFinishReq = Enable;
+        }
+    }
+
+    public void setMoveReq(bool Enabled)
+    {
+        EnemyMoveReq = Enabled;
+        PlayerMoveReq = Enabled;
+    }
+
+    public void setMoveReq(Character character,bool Enabled)
+    {
+
+        if(character.GetType()==typeof(Player))
+        {
+            PlayerMoveReq = Enabled;
+        }
+        else
+        {
+            EnemyMoveReq = Enabled;
+        }
+    }
+
+    public bool getMove(string charTag)
+    {
+        if(charTag=="Player")
+        {
+            return PlayerMoveReq;
+        }
+        else
+        {
+            return EnemyMoveReq;
+        }
     }
 
 
@@ -49,14 +91,25 @@ public class GameManager : MonoBehaviour
     {
         if(EnemyFinishReq && PlayerFinishReq)
         {
+            Debug.Log("双方終了のリクエストが来ました");
+
             switchRun(false);
             EnemyFinishReq = false;
             PlayerFinishReq = false;
+
+            setMoveReq(true);
+
             commandwin.SetActive(true);
+
+            GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().pushCommandListAtRondom();
         }
 
         if (isRunning())
             commandwin.SetActive(false);
+
+        if ((PlayerMoveReq && EnemyMoveReq) ||EnemyFinishReq || PlayerFinishReq )
+            setMoveReq(false);
+
 
     }
 

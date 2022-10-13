@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : Object
 {
     private float speed = 5;
-    private float distance=1.26f;//移動距離
+    private float distanceX=1.6f;
+    private float distanceY = 0.95f;//移動距離
+
+
     private Vector2 direction;  //移動方向
     protected Vector3 targetPos; //移動目的地
 
     public bool movement = false;//アクション（移動・攻撃）中か
+    public CommandList2 commandList=new CommandList2();
 
-    public CommandList commandList;
+    public string charTag=null;
 
     protected void Start()
     {
         targetPos = transform.position;
+
         
     }
 
@@ -23,7 +28,9 @@ public class Character : MonoBehaviour
     {
         if (!isAction() && GameManager.instance.isRunning())
         {
-            commandList.run();
+            if(!GameManager.instance.getMove(charTag))
+                run();
+            
         }
 
         move();
@@ -34,7 +41,7 @@ public class Character : MonoBehaviour
 
         if(direction!=Vector2.zero&&transform.position==targetPos)
         {
-            targetPos += new Vector3(direction.x * distance, direction.y * distance, 0);
+            targetPos += new Vector3(direction.x * distanceX, direction.y * distanceY, 0);
             
         }
         if(transform.position!=targetPos)
@@ -54,7 +61,7 @@ public class Character : MonoBehaviour
 
         if (transform.position == targetPosition)
         {
-
+            finishMoveReqToManager();
             movement = false;
         }
 
@@ -85,8 +92,32 @@ public class Character : MonoBehaviour
         direction.y = -1;
     }
     
-    public void finishReqToManager(string charTag)
+    public void finishReqToManager()
     {
-        GameManager.instance.setFinishReq(charTag, true);
+
+        GameManager.instance.setFinishReq(this, true);
+    }
+
+    //ゲームマネージャーに１つのコマンドが終了を伝える
+    public void finishMoveReqToManager()
+    {
+        GameManager.instance.setMoveReq(this,true);
+    }
+
+
+    public void run()
+    {
+        if(commandList.Count>0)
+        {
+            Command com = commandList.getFrom(0);//先頭を取り出す
+            GameManager.instance.setMoveReq(this, false);
+            com.excute();
+            commandList.removeHead();
+        }
+
+        if(commandList.Count<=0 && isAction()==false)
+        {
+            finishReqToManager();
+        }
     }
 }
