@@ -7,7 +7,12 @@ public class Map : MonoBehaviour
 
     private Square[,] map1 = new Square[6, 3];
 
-    private GameObject[,] gMap = new GameObject[6, 3];
+    private GameObject[,] map = new GameObject[6, 3];
+
+    public GameObject[,] getMap()
+    {
+        return map;
+    }
 
 
     void initMap()
@@ -40,10 +45,12 @@ public class Map : MonoBehaviour
 
         initMap1();
 
-        printMapObj();
+        map[1, 1].GetComponent<Floor>().setObject(player);
+        map[4, 1].GetComponent<Floor>().setObject(enemy);
 
         map1[1, 1].putObjectOnFloor(player);
         map1[4, 1].putObjectOnFloor(enemy);
+
     }
 
     // Update is called once per frame
@@ -51,11 +58,6 @@ public class Map : MonoBehaviour
     {
         //Debug.Log("Player位置:"+searchMap(PLAYER));
         //Debug.Log("Enemy位置:" + searchMap(ENEMY));
-
-
-        printMapFloorColor();
-
-        printMapOnObject();
 
     }
 
@@ -74,15 +76,15 @@ public class Map : MonoBehaviour
             switch (Pos.y)
             {
                 case 0.95f:
-                    gMap[i, 0] = g;
+                    map[i, 0] = g;
                     i++;
                     break;
                 case 0:
-                    gMap[j, 1] = g;
+                    map[j, 1] = g;
                     j++;
                     break;
                 case -0.95f:
-                    gMap[k, 2] = g;
+                    map[k, 2] = g;
                     k++;
                     break;
             }
@@ -90,34 +92,14 @@ public class Map : MonoBehaviour
         }
     }
 
-    public void putObject(GameObject obj,Vector2Int pos)
-    {
-        map1[pos.x, pos.y].putObjectOnFloor(obj);
-    }
-
-    //map全体の色
-    void printMapFloorColor()
-    {
-        string print_array = "\n";
-        for (int i = 0; i < map1.GetLength(1); i++)
-        {
-            for (int j = 0; j < map1.GetLength(0); j++)
-            {
-                print_array += map1[j, i].getFloorColor().GetType().Name + ":";
-            }
-            print_array += "\n";
-        }
-        Debug.Log(print_array);
-    }
-
     void printMapObj()
     {
         string print_array = "\n";
-        for (int i = 0; i < gMap.GetLength(1); i++)
+        for (int i = 0; i < map.GetLength(1); i++)
         {
-            for (int j = 0; j < gMap.GetLength(0); j++)
+            for (int j = 0; j < map.GetLength(0); j++)
             {
-                Floor f = gMap[j, i].GetComponent<Floor>();
+                Floor f = map[j, i].GetComponent<Floor>();
                 if(f.getColor()==Floor.floorColor.Red)
                 {
                     print_array += "赤:";
@@ -132,21 +114,22 @@ public class Map : MonoBehaviour
         Debug.Log(print_array);
     }
 
+    //不要　消す
     void printMapOnObject()
     {
         string print_array = "\n";
-        for (int i = 0; i < map1.GetLength(1); i++)
+        for (int i = 0; i < map.GetLength(1); i++)
         {
-            for (int j = 0; j < map1.GetLength(0); j++)
+            for (int j = 0; j < map.GetLength(0); j++)
             {
-                GameObject obj = map1[j, i].getObjectOnFloor();
+                GameObject obj = map[j, i].GetComponent<Floor>().getGameObjectOnFloor();
                 if (obj==null)
                 {
                     print_array += string.Format("{0,11}", "null")+":";
                 }
                 else
                 {
-                    print_array += string.Format("{0,8}", map1[j, i].getObjectOnFloor().GetType().Name)+":";
+                    print_array += string.Format("{0,8}", obj.name)+":";
                 }
             }
             print_array += "\n";

@@ -7,7 +7,7 @@ public class Floor : MonoBehaviour
 {
     SpriteRenderer spRen;
 
-    GameObject ObjectOnFloor;//
+    GameObject ObjectOnFloor=null;
 
     [SerializeField] Sprite RedFloorSprite;
     [SerializeField] Sprite BlueFloorSprite;
@@ -36,6 +36,25 @@ public class Floor : MonoBehaviour
     public floorColor getColor()
     {
         return this.color;
+    }
+
+    
+    public GameObject getGameObjectOnFloor()
+    {
+        return ObjectOnFloor;
+    }
+
+
+    //既存のオブジェクトを紐づける
+    public void setObject(GameObject obj)
+    {
+        this.ObjectOnFloor = obj;
+    }
+
+    //配置
+    public void putObject(GameObject obj)
+    {
+
     }
 
     public　void changeColor()
