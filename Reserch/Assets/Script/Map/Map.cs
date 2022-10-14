@@ -7,6 +7,9 @@ public class Map : MonoBehaviour
 
     private Square[,] map1 = new Square[6, 3];
 
+    private GameObject[,] gMap = new GameObject[6, 3];
+
+
     void initMap()
     {
         for(int i=0;i<map1.GetLength(1); i++)
@@ -35,6 +38,10 @@ public class Map : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
 
+        initMap1();
+
+        printMapObj();
+
         map1[1, 1].putObjectOnFloor(player);
         map1[4, 1].putObjectOnFloor(enemy);
     }
@@ -52,6 +59,37 @@ public class Map : MonoBehaviour
 
     }
 
+    //床を配列として落とし込む
+    void initMap1()
+    {
+        GameObject[] gameObjectMap = GameObject.FindGameObjectsWithTag("Floor");//Floorタグを配列として取得
+
+        int i = 0, j = 0, k = 0;
+
+        foreach (GameObject g in gameObjectMap)
+        {
+            Transform t = g.GetComponent<Transform>();
+            Vector3 Pos = t.transform.localPosition;
+
+            switch (Pos.y)
+            {
+                case 0.95f:
+                    gMap[i, 0] = g;
+                    i++;
+                    break;
+                case 0:
+                    gMap[j, 1] = g;
+                    j++;
+                    break;
+                case -0.95f:
+                    gMap[k, 2] = g;
+                    k++;
+                    break;
+            }
+
+        }
+    }
+
     public void putObject(GameObject obj,Vector2Int pos)
     {
         map1[pos.x, pos.y].putObjectOnFloor(obj);
@@ -66,6 +104,28 @@ public class Map : MonoBehaviour
             for (int j = 0; j < map1.GetLength(0); j++)
             {
                 print_array += map1[j, i].getFloorColor().GetType().Name + ":";
+            }
+            print_array += "\n";
+        }
+        Debug.Log(print_array);
+    }
+
+    void printMapObj()
+    {
+        string print_array = "\n";
+        for (int i = 0; i < gMap.GetLength(1); i++)
+        {
+            for (int j = 0; j < gMap.GetLength(0); j++)
+            {
+                Floor f = gMap[j, i].GetComponent<Floor>();
+                if(f.getColor()==Floor.floorColor.Red)
+                {
+                    print_array += "赤:";
+                }
+                else
+                {
+                    print_array += "青:";
+                }
             }
             print_array += "\n";
         }

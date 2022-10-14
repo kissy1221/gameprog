@@ -13,6 +13,7 @@ public class Right : Command
 
     public override void excute()
     {
+        /*
         if(map.canMove(CharacterScript, new Vector2Int(1, 0)))
         {
             map.move(CharacterScript, new Vector2Int(1, 0));
@@ -24,5 +25,6 @@ public class Right : Command
         {
             CharacterScript.finishMoveReqToManager();
         }
+        */
     }
 }

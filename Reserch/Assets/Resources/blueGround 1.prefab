@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8792003697251050290}
   - component: {fileID: 279913865769239764}
   - component: {fileID: 2764745991163716197}
+  - component: {fileID: -1602511554495294865}
   m_Layer: 0
   m_Name: blueGround 1
-  m_TagString: Square
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +110,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.654349, y: 0.8764379}
   m_EdgeRadius: 0
+--- !u!114 &-1602511554495294865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4251666154281144631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c604b935cbb724641809434d404b33a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 1

@@ -12,6 +12,7 @@ public class putCube : Command
 
     public override void excute()
     {
+        /*
         Vector2Int putCubePos = map.searchMap(CharacterScript) + new Vector2Int(1, 0);
 
         Debug.Log("キューブ配置座標:" + putCubePos);
@@ -19,5 +20,6 @@ public class putCube : Command
         map.putObject(new Cube(), putCubePos);
 
         Debug.Log("キューブ配置成功");
+        */
     }
 }

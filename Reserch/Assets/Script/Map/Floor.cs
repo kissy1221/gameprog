@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
+    GameObject ObjectOnFloor;//
+
+    public enum floorColor
+    {
+        Red,
+        Blue
+    };
+
+    [SerializeField] floorColor color;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +24,10 @@ public class Floor : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public floorColor getColor()
+    {
+        return this.color;
     }
 }

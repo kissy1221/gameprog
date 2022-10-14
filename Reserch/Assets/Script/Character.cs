@@ -17,6 +17,13 @@ public class Character : Object
 
     public string charTag=null;
 
+    public enum PlayerState
+    {
+        WAIT,
+        MOVE,
+        ATTACK
+    };
+
     protected void Start()
     {
         targetPos = transform.position;

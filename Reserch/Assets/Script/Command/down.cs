@@ -12,6 +12,7 @@ public class Down : Command
 
     public override void excute()
     {
+        /*
         if(map.canMove(CharacterScript, new Vector2Int(0, 1)))
         {
             //map“à•”ˆ—
@@ -25,5 +26,6 @@ public class Down : Command
         {
             CharacterScript.finishMoveReqToManager();
         }
+        */
     }
 }
