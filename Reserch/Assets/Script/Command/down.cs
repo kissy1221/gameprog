@@ -27,5 +27,14 @@ public class Down : Command
             CharacterScript.finishMoveReqToManager();
         }
         */
+        if (CharacterScript.canMove(new Vector2Int(0, 1)))
+        {
+            CharacterScript.down();
+            CharacterScript.movement = true;
+        }
+        else
+        {
+            CharacterScript.finishMoveReqToManager();
+        }
     }
 }

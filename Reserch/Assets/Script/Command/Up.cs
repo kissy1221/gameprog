@@ -28,5 +28,16 @@ public class Up : Command
         }
         */
 
+        if (CharacterScript.canMove(new Vector2Int(0, -1)))
+        {
+            
+            CharacterScript.up();
+            CharacterScript.movement = true;
+        }
+        else
+        {
+            CharacterScript.finishMoveReqToManager();
+        }
+
     }
 }

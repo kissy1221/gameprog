@@ -24,5 +24,15 @@ public class Left : Command
             CharacterScript.finishMoveReqToManager();
         }
         */
+
+        if (CharacterScript.canMove(new Vector2Int(-1, 0)))
+        {
+            CharacterScript.left();
+            CharacterScript.movement = true;
+        }
+        else
+        {
+            CharacterScript.finishMoveReqToManager();
+        }
     }
 }

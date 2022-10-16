@@ -8,9 +8,6 @@ public class test : MonoBehaviour
     
     void Start()
     {
-        obj = this.transform.GetComponent<Transform>();
-
-        Debug.Log(transform.localPosition);
     }
 
     // Update is called once per frame

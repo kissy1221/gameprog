@@ -7,9 +7,10 @@ public class Map : MonoBehaviour
 
     private Square[,] map1 = new Square[6, 3];
 
-    private GameObject[,] map = new GameObject[6, 3];
+    //private GameObject[,] map = new GameObject[6, 3];
+    private Floor[,] map = new Floor[6, 3];
 
-    public GameObject[,] getMap()
+    public Floor[,] getMap()
     {
         return map;
     }
@@ -51,11 +52,14 @@ public class Map : MonoBehaviour
         map1[1, 1].putObjectOnFloor(player);
         map1[4, 1].putObjectOnFloor(enemy);
 
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        printMapOnObject();
         //Debug.Log("Player位置:"+searchMap(PLAYER));
         //Debug.Log("Enemy位置:" + searchMap(ENEMY));
 
@@ -76,15 +80,15 @@ public class Map : MonoBehaviour
             switch (Pos.y)
             {
                 case 0.95f:
-                    map[i, 0] = g;
+                    map[i, 0] = g.GetComponent<Floor>();
                     i++;
                     break;
                 case 0:
-                    map[j, 1] = g;
+                    map[j, 1] = g.GetComponent<Floor>();
                     j++;
                     break;
                 case -0.95f:
-                    map[k, 2] = g;
+                    map[k, 2] = g.GetComponent<Floor>();
                     k++;
                     break;
             }
@@ -99,7 +103,7 @@ public class Map : MonoBehaviour
         {
             for (int j = 0; j < map.GetLength(0); j++)
             {
-                Floor f = map[j, i].GetComponent<Floor>();
+                Floor f = map[j, i];
                 if(f.getColor()==Floor.floorColor.Red)
                 {
                     print_array += "赤:";
@@ -114,7 +118,6 @@ public class Map : MonoBehaviour
         Debug.Log(print_array);
     }
 
-    //不要　消す
     void printMapOnObject()
     {
         string print_array = "\n";
@@ -122,7 +125,7 @@ public class Map : MonoBehaviour
         {
             for (int j = 0; j < map.GetLength(0); j++)
             {
-                GameObject obj = map[j, i].GetComponent<Floor>().getGameObjectOnFloor();
+                GameObject obj = map[j, i].getGameObjectOnFloor();
                 if (obj==null)
                 {
                     print_array += string.Format("{0,11}", "null")+":";
@@ -146,34 +149,6 @@ public class Map : MonoBehaviour
 
         map1[x, y].putObjectOnFloor(null);
         map1[x + direction.x, y + direction.y].putObjectOnFloor(targetObj);
-    }
-
-    //対象物が移動方向に移動できるか
-    public bool canMove(GameObject targetObj,Vector2Int direction)
-    {
-        Vector2Int targetObjPos = searchMap(targetObj);
-        Vector2Int targetPos = targetObjPos + direction;//移動先
-
-        //範囲外ではないか？
-        if ((0 <= targetPos.x && targetPos.x < 6) && (0 <= targetPos.y && targetPos.y <= 2))
-        {
-            Square targetSquare = map1[targetPos.x, targetObjPos.y];//移動先のマス
-
-            //プレイヤーの場合
-            if(targetObj.GetType()==typeof(Player))
-            {
-                if (targetSquare.getFloorColor().GetType() == typeof(Red))
-                    return true;
-            }
-            else
-            {
-                if (targetSquare.getFloorColor().GetType() == typeof(Blue))
-                    return true;
-            }
-        }
-
-        return false;
-
     }
 
    

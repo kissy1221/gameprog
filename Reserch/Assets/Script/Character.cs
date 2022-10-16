@@ -29,6 +29,8 @@ public class Character : Object
         targetPos = transform.position;
 
         
+
+        
     }
 
     protected void Update()
@@ -41,6 +43,7 @@ public class Character : Object
         }
 
         move();
+
     }
 
     protected void move()
@@ -81,21 +84,58 @@ public class Character : Object
 
     public void left()
     {
+        Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        Vector2Int CharacterPos = this.gameObject.getMapPosition();
+        int x = CharacterPos.x;
+        int y = CharacterPos.y;
+
+        map[x, y].GetComponent<Floor>().setObject(null);
+        map[x-1, y].GetComponent<Floor>().setObject(this.gameObject);
+
         direction.x = -1;
     }
 
     public void right()
     {
+        Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        Vector2Int CharacterPos = this.gameObject.getMapPosition();
+        int x = CharacterPos.x;
+        int y = CharacterPos.y;
+
+        map[x, y].GetComponent<Floor>().setObject(null);
+        map[x+1, y].GetComponent<Floor>().setObject(this.gameObject);
+        Debug.Log("配置完了");
+
+
         direction.x = 1;
     }
 
     public void up()
     {
+        Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        Vector2Int CharacterPos = this.gameObject.getMapPosition();
+        int x = CharacterPos.x;
+        int y = CharacterPos.y;
+
+        map[x, y].GetComponent<Floor>().setObject(null);
+        map[x, y-1].GetComponent<Floor>().setObject(this.gameObject);
+        Debug.Log("配置完了");
+
         direction.y = 1;
     }
 
     public void down()
     {
+
+        Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        Vector2Int CharacterPos = this.gameObject.getMapPosition();
+        int x = CharacterPos.x;
+        int y = CharacterPos.y;
+
+        map[x, y].GetComponent<Floor>().setObject(null);
+        map[x, y+1].GetComponent<Floor>().setObject(this.gameObject);
+        Debug.Log("配置完了");
+
         direction.y = -1;
     }
     
@@ -126,5 +166,34 @@ public class Character : Object
         {
             finishReqToManager();
         }
+    }
+
+    public bool canMove(Vector2Int direction)
+    {
+        Vector2Int CharacterPos = this.gameObject.getMapPosition();
+        Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        Vector2Int targetPos = CharacterPos + direction;
+
+        //範囲外か？移動先は移動可能か
+        if ((0 <= targetPos.x && targetPos.x < 6) && (0 <= targetPos.y && targetPos.y <= 2))
+        {
+            Floor targetFloor = map[targetPos.x, targetPos.y];
+
+            if(this.gameObject.tag=="Player")
+            {
+                if ((targetFloor.getColor() == Floor.floorColor.Red)&&!(targetFloor.getGameObjectOnFloor() is null))
+                {
+                    return true;
+                }
+                    
+            }
+            else
+            {
+                if ((targetFloor.getColor() == Floor.floorColor.Blue)&&!(targetFloor.getGameObjectOnFloor() is null))
+                    return true;
+            }
+        }
+
+        return false;
     }
 }
