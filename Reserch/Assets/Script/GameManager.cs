@@ -50,9 +50,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool getMove(string charTag)
+    public bool getMove(GameObject character)
     {
-        if(charTag=="Player")
+        if(character.tag=="Player")
         {
             return PlayerMoveReq;
         }

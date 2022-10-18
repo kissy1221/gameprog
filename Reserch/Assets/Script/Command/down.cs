@@ -30,7 +30,7 @@ public class Down : Command
         if (CharacterScript.canMove(new Vector2Int(0, 1)))
         {
             CharacterScript.down();
-            CharacterScript.movement = true;
+            CharacterScript.State.setState(CharacterState.State.MOVE);
         }
         else
         {

@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-
-    private Square[,] map1 = new Square[6, 3];
-
-    //private GameObject[,] map = new GameObject[6, 3];
     private Floor[,] map = new Floor[6, 3];
 
     public Floor[,] getMap()
@@ -16,30 +12,9 @@ public class Map : MonoBehaviour
     }
 
 
-    void initMap()
-    {
-        for(int i=0;i<map1.GetLength(1); i++)
-        {
-            for(int j=0; j<map1.GetLength(0); j++)
-            {
-                if(0<=j && j<3)
-                {
-                    map1[j, i] = new Square(new Red(), null);
-                }
-                else
-                {
-                    map1[j, i] = new Square(new Blue(), null);
-                }
-            }
-        }
-    }
-
-
     // Start is called before the first frame update
     void Start()
     {
-
-        initMap();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
@@ -48,9 +23,6 @@ public class Map : MonoBehaviour
 
         map[1, 1].GetComponent<Floor>().setObject(player);
         map[4, 1].GetComponent<Floor>().setObject(enemy);
-
-        map1[1, 1].putObjectOnFloor(player);
-        map1[4, 1].putObjectOnFloor(enemy);
 
 
 
@@ -140,37 +112,6 @@ public class Map : MonoBehaviour
         Debug.Log(print_array);
     }
 
-
-    public void move(GameObject targetObj,Vector2Int direction)
-    {
-        Vector2Int targetObjPos = searchMap(targetObj);
-        int x = targetObjPos.x;
-        int y = targetObjPos.y;
-
-        map1[x, y].putObjectOnFloor(null);
-        map1[x + direction.x, y + direction.y].putObjectOnFloor(targetObj);
-    }
-
-   
-
-    //ëŒè€ï®ÇÃç¿ïWÇíTÇ∑(1Ç¬ë∂ç›Ç∑ÇÈÇ‡ÇÃÇ…å¿ÇÈ)
-    public Vector2Int searchMap(GameObject obj)
-    {
-        Vector2Int objPos;
-        for (int x = 0; x < map1.GetLength(0); x++)
-        {
-            for (int y = 0; y < map1.GetLength(1); y++)
-            {
-                if (map1[x, y].getObjectOnFloor() ==obj)
-                {
-                    objPos = new Vector2Int(x, y);
-                    return objPos;
-                }
-            }
-        }
-
-        return new Vector2Int(-1, -1);
-    }
 
     /*
     void input()

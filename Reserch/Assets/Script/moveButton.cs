@@ -66,4 +66,9 @@ public class moveButton : MonoBehaviour
     {
         player.commandList.add(new stay(player));
     }
+
+    public void AreaStealButtonOnClick()
+    {
+        player.commandList.add(new AreaSteal(player));
+    }
 }

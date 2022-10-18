@@ -57,6 +57,7 @@ public class Floor : MonoBehaviour
 
     }
 
+    //êFîΩì]
     publicÅ@void changeColor()
     {
         if (color == floorColor.Red)
@@ -68,6 +69,20 @@ public class Floor : MonoBehaviour
         {
             color = floorColor.Red;
             spRen.sprite = RedFloorSprite;
+        }
+    }
+
+    public void changeColor(floorColor c)
+    {
+        if (c == floorColor.Red)
+        {
+            color = floorColor.Red;
+            spRen.sprite = RedFloorSprite;
+        }
+        else
+        {
+            color = floorColor.Blue;
+            spRen.sprite = BlueFloorSprite;
         }
     }
 }

@@ -30,7 +30,7 @@ public class Right : Command
         if (CharacterScript.canMove(new Vector2Int(1, 0)))
         {
             CharacterScript.right();
-            CharacterScript.movement = true;
+            CharacterScript.State.setState(CharacterState.State.MOVE);
         }
         else
         {

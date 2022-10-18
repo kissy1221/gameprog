@@ -12,35 +12,26 @@ public class Character : Object
     private Vector2 direction;  //移動方向
     protected Vector3 targetPos; //移動目的地
 
-    public bool movement = false;//アクション（移動・攻撃）中か
     public CommandList2 commandList=new CommandList2();
 
-    public string charTag=null;
-
-    public enum PlayerState
-    {
-        WAIT,
-        MOVE,
-        ATTACK
-    };
+    public CharacterState State = new CharacterState();
 
     protected void Start()
     {
         targetPos = transform.position;
-
-        
-
         
     }
 
     protected void Update()
     {
-        if (!isAction() && GameManager.instance.isRunning())
+        if (State.getState()==CharacterState.State.WAIT && GameManager.instance.isRunning())
         {
-            if(!GameManager.instance.getMove(charTag))
+            if(!GameManager.instance.getMove(this.gameObject))
                 run();
             
         }
+
+        Debug.Log(State.getState());
 
         move();
 
@@ -72,14 +63,9 @@ public class Character : Object
         if (transform.position == targetPosition)
         {
             finishMoveReqToManager();
-            movement = false;
+            State.setState(CharacterState.State.WAIT);
         }
 
-    }
-
-    public bool isAction()
-    {
-        return movement;
     }
 
     public void left()
@@ -104,7 +90,6 @@ public class Character : Object
 
         map[x, y].GetComponent<Floor>().setObject(null);
         map[x+1, y].GetComponent<Floor>().setObject(this.gameObject);
-        Debug.Log("配置完了");
 
 
         direction.x = 1;
@@ -119,7 +104,6 @@ public class Character : Object
 
         map[x, y].GetComponent<Floor>().setObject(null);
         map[x, y-1].GetComponent<Floor>().setObject(this.gameObject);
-        Debug.Log("配置完了");
 
         direction.y = 1;
     }
@@ -134,7 +118,6 @@ public class Character : Object
 
         map[x, y].GetComponent<Floor>().setObject(null);
         map[x, y+1].GetComponent<Floor>().setObject(this.gameObject);
-        Debug.Log("配置完了");
 
         direction.y = -1;
     }
@@ -162,7 +145,7 @@ public class Character : Object
             commandList.removeHead();
         }
 
-        if(commandList.Count<=0 && isAction()==false)
+        if(commandList.Count<=0 && State.getState() == CharacterState.State.WAIT)
         {
             finishReqToManager();
         }
@@ -181,7 +164,7 @@ public class Character : Object
 
             if(this.gameObject.tag=="Player")
             {
-                if ((targetFloor.getColor() == Floor.floorColor.Red)&&!(targetFloor.getGameObjectOnFloor() is null))
+                if ((targetFloor.getColor() == Floor.floorColor.Red)&&(targetFloor.getGameObjectOnFloor() is null))
                 {
                     return true;
                 }
@@ -189,7 +172,7 @@ public class Character : Object
             }
             else
             {
-                if ((targetFloor.getColor() == Floor.floorColor.Blue)&&!(targetFloor.getGameObjectOnFloor() is null))
+                if ((targetFloor.getColor() == Floor.floorColor.Blue)&&(targetFloor.getGameObjectOnFloor() is null))
                     return true;
             }
         }
