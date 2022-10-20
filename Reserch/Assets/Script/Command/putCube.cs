@@ -4,20 +4,63 @@ using UnityEngine;
 
 public class putCube : Command
 {
+    GameObject CubeObjPrefab;
+    GameObject CubeObj;
+
+
 
     public putCube(Character character):base(character)
     {
         Image = Resources.Load<Sprite>("Images/Cube");
+        CubeObjPrefab = (GameObject)Resources.Load("CubePrefab");
+
     }
 
     public override void excute()
     {
-        Vector2Int putCubePos = map.searchMap(CharacterScript) + new Vector2Int(1, 0);
 
-        Debug.Log("キューブ配置座標:" + putCubePos);
+        Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        Vector2Int putCubePos = CharacterScript.gameObject.getMapPosition() + new Vector2Int(1, 0);
+        Vector3 characterPos = CharacterScript.gameObject.transform.position;
+        Vector3 putCubeV3Pos = characterPos + new Vector3(1.6f, 0, -1);
 
-        map.putObject(new Cube(), putCubePos);
 
-        Debug.Log("キューブ配置成功");
+        if (map[putCubePos.x, putCubePos.y].getGameObjectOnFloor() is null)
+        {
+            CubeObj = Object.Instantiate(CubeObjPrefab, putCubeV3Pos, Quaternion.identity);
+
+            CubeObj.name = "Cube";
+            CubeObj.transform.parent = GameObject.FindGameObjectWithTag("Map").transform;
+
+            map[putCubePos.x, putCubePos.y].setObject(CubeObj);
+
+        }
+
+
+        CharacterScript.finishMoveReqToManager();
+
+        
     }
+
+    async void putCubeExcute()
+    {
+
+        Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        Vector2Int putCubePos = CharacterScript.gameObject.getMapPosition() + new Vector2Int(1, 0);
+        Vector3 characterPos = CharacterScript.gameObject.transform.position;
+        Vector3 putCubeV3Pos = characterPos + new Vector3(1.6f, 0, -1);
+
+
+        if (map[putCubePos.x, putCubePos.y].getGameObjectOnFloor() is null)
+        {
+            CubeObj = Object.Instantiate(CubeObjPrefab, putCubeV3Pos, Quaternion.identity);
+
+            CubeObj.name = "Cube";
+            CubeObj.transform.parent = GameObject.FindGameObjectWithTag("Map").transform;
+
+            map[putCubePos.x, putCubePos.y].setObject(CubeObj);
+
+        }
+    }
+
 }

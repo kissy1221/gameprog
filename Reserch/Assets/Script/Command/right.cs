@@ -13,12 +13,24 @@ public class Right : Command
 
     public override void excute()
     {
+        /*
         if(map.canMove(CharacterScript, new Vector2Int(1, 0)))
         {
             map.move(CharacterScript, new Vector2Int(1, 0));
 
             CharacterScript.right();
             CharacterScript.movement = true;
+        }
+        else
+        {
+            CharacterScript.finishMoveReqToManager();
+        }
+        */
+
+        if (CharacterScript.canMove(new Vector2Int(1, 0)))
+        {
+            CharacterScript.right();
+            CharacterScript.State.setState(CharacterState.State.MOVE);
         }
         else
         {

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Square
 {
-    Object ObjectOnFloor;//上に配置されているもの
+    //Object ObjectOnFloor;//上に配置されているもの
+    GameObject ObjectOnFloor;
     Floor floor; 
 
-    public Square(Floor floor,Object obj)
+    public Square(Floor floor,GameObject obj)
     {
         ObjectOnFloor = obj;
         this.floor = floor;
@@ -18,12 +19,12 @@ public class Square
         return floor;
     }
 
-    public Object getObjectOnFloor()
+    public GameObject getObjectOnFloor()
     {
         return ObjectOnFloor;
     }
 
-    public void putObjectOnFloor(Object obj)
+    public void putObjectOnFloor(GameObject obj)
     {
         ObjectOnFloor = obj;
     }

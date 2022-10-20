@@ -12,7 +12,6 @@ public class Enemy : Character
     void Start()
     {
         base.Start();
-        charTag = "Enemy";
         pushCommandListAtRondom();
 
         EnemyObject = GameObject.FindGameObjectWithTag("Enemy");
@@ -29,7 +28,7 @@ public class Enemy : Character
     //ランダムでリストにコマンドを入れる
     public void pushCommandListAtRondom()
     {
-        int CommandNum=Random.Range(3,5);
+        int CommandNum=Random.Range(1,5);
 
         for(int i=0;i<CommandNum;i++)
         {

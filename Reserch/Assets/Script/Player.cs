@@ -8,7 +8,6 @@ public class Player : Character
     {
         base.Start();
 
-        charTag = "Player";
 
     }
     void Update()
