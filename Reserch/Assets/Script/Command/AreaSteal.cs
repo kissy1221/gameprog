@@ -7,7 +7,7 @@ public class AreaSteal : Command
     private int AreaStealCol;
     Floor[,] m;
 
-    public AreaSteal(Character character) : base(character)
+    public AreaSteal(GameObject characterObj) : base(characterObj)
     {
         Image = Resources.Load<Sprite>("Images/Cube");
         m = map.getMap();

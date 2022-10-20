@@ -5,7 +5,7 @@ using UnityEngine;
 public class Up : Command
 {
 
-    public Up(Character character) :base(character)
+    public Up(GameObject characterObj) :base(characterObj)
     {
 
         name = "up";
@@ -14,9 +14,9 @@ public class Up : Command
 
     public override void excute()
     {
-        if (CharacterScript.canMove(new Vector2Int(0, -1)))
+        if (MoveSciprt.canMove(new Vector2Int(0, -1)))
         {
-            CharacterScript.up();
+            MoveSciprt.up();
             CharacterScript.State.setState(CharacterState.State.MOVE);
         }
         else

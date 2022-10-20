@@ -9,7 +9,7 @@ public class putCube : Command
 
 
 
-    public putCube(Character character):base(character)
+    public putCube(GameObject characterObj) :base(characterObj)
     {
         Image = Resources.Load<Sprite>("Images/Cube");
         CubeObjPrefab = (GameObject)Resources.Load("CubePrefab");

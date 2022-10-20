@@ -16,6 +16,19 @@ public class CommandList2
 
     public bool update = false; //リストが更新されたか
 
+    public string getListstr()
+    {
+        string str ="";
+
+        foreach(Command i in List)
+        {
+            str += i.GetType().Name;
+            str += "=>";
+        }
+
+        return str;
+    }
+
     public void add(Command com)
     {
         List.Add(com);

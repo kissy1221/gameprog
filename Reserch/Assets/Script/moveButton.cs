@@ -31,21 +31,21 @@ public class moveButton : MonoBehaviour
     {
         // Debug.Log("Up‰Ÿ‚µ‚½");
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new Up(player));
+        player.commandList.add(new Up(playerObject));
     }
 
     public void LeftButtonOnClick()
     {
         // Debug.Log("Left‰Ÿ‚µ‚½");
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new Left(player));
+        player.commandList.add(new Left(playerObject));
     }
 
     public void RIghtButtonOnClick()
     {
         // Debug.Log("Right‰Ÿ‚µ‚½");
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new Right(player));
+        player.commandList.add(new Right(playerObject));
     }
 
     public void DownButtonOnClick()
@@ -53,13 +53,13 @@ public class moveButton : MonoBehaviour
         //Debug.Log("Down‰Ÿ‚µ‚½");
         
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new Down(player));
+        player.commandList.add(new Down(playerObject));
     }
 
     public void putCubeButtononClick()
     {
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new putCube(player));
+        player.commandList.add(new putCube(playerObject));
     }
 
     public void RunButtonOnClick()
@@ -77,12 +77,12 @@ public class moveButton : MonoBehaviour
     public void StayButtonOnClick()
     {
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new stay(player));
+        player.commandList.add(new stay(playerObject));
     }
 
     public void AreaStealButtonOnClick()
     {
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new AreaSteal(player));
+        player.commandList.add(new AreaSteal(playerObject));
     }
 }

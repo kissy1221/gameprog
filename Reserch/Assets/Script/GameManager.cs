@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private bool EnemyFinishReq = false;
     private bool PlayerFinishReq = false;
 
-    //１つのコマンドが終了したか
+    //１つのコマンドが終了したか true→コマンド実行 false →コマンド実行していない
     private bool EnemyMoveReq = true;
     private bool PlayerMoveReq = true;
 
@@ -37,10 +37,10 @@ public class GameManager : MonoBehaviour
         PlayerMoveReq = Enabled;
     }
 
-    public void setMoveReq(Character character,bool Enabled)
+    public void setMoveReq(GameObject character,bool Enabled)
     {
 
-        if(character.GetType()==typeof(Player))
+        if(character.tag=="Player")
         {
             PlayerMoveReq = Enabled;
         }
@@ -109,6 +109,9 @@ public class GameManager : MonoBehaviour
 
         if ((PlayerMoveReq && EnemyMoveReq) ||EnemyFinishReq || PlayerFinishReq )
             setMoveReq(false);
+
+        //Debug.Log("敵リクエスト"+EnemyMoveReq);
+        //Debug.Log("プレイヤーリクエスト" + PlayerMoveReq);
 
 
     }
