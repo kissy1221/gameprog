@@ -5,34 +5,18 @@ using UnityEngine;
 public class AreaSteal : Command
 {
     private int AreaStealCol;
+    Floor[,] m;
 
     public AreaSteal(Character character) : base(character)
     {
         Image = Resources.Load<Sprite>("Images/Cube");
+        m = map.getMap();
     }
 
     public override void excute()
     {
-        Floor[,] m=map.getMap();
-        bool flag = false;
 
-        Debug.Log("AREASTEAL");
-
-        for(int i=0;i<m.GetLength(0);i++)
-        {
-            for(int j=0;j<m.GetLength(1);j++)
-            {
-                if(m[i,j].getColor()==Floor.floorColor.Blue)
-                {
-                    AreaStealCol = i;
-                    flag = true;
-                    break;
-                }
-            }
-
-            if (flag)
-                break;
-        }
+        AreaStealCol = searchAreaStealCol();
 
 
         for(int i=0;i<m.GetLength(1);i++)
@@ -44,5 +28,22 @@ public class AreaSteal : Command
         
 
         CharacterScript.finishMoveReqToManager();
+    }
+
+    private int searchAreaStealCol()
+    {
+        for (int i = 0; i < m.GetLength(0); i++)
+        {
+            for (int j = 0; j < m.GetLength(1); j++)
+            {
+                if (m[i, j].getColor() == Floor.floorColor.Blue)
+                {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+
     }
 }
