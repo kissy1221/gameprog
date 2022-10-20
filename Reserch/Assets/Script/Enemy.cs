@@ -10,6 +10,7 @@ public class Enemy : Character
     {
         base.Start();
         pushCommandListAtRondom();
+        setHP(500);
     }
 
     // Update is called once per frame

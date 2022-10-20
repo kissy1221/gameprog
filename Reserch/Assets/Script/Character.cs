@@ -11,11 +11,12 @@ public class Character : Object
 
     protected void Start()
     {
-        
+        base.Start();
     }
 
     protected void Update()
     {
+        base.Update();
 
         if (State.getState()==CharacterState.State.WAIT && GameManager.instance.isRunning())
         {

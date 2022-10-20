@@ -10,7 +10,7 @@ public class AreaSteal : Command
     public AreaSteal(GameObject characterObj) : base(characterObj)
     {
         Image = Resources.Load<Sprite>("Images/Cube");
-        m = map.getMap();
+        m = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
     }
 
     public override void excute()

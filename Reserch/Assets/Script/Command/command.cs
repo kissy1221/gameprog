@@ -14,7 +14,7 @@ public abstract class Command
     protected GameObject CharacterObject;//コマンド実行者
 
     protected GameObject mapObj;
-    protected Map map;
+    protected Floor[,] map;
 
     //引数:コマンド実行者
     public Command(GameObject characterObj)
@@ -23,7 +23,7 @@ public abstract class Command
         this.MoveSciprt = CharacterObject.GetComponent<Move>();
         this.CharacterScript = CharacterObject.GetComponent<Character>();
 
-        map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
+        map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
 
     }
 

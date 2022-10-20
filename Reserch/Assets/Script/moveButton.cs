@@ -85,4 +85,9 @@ public class moveButton : MonoBehaviour
         audioSource.PlayOneShot(CommandSelectSound);
         player.commandList.add(new AreaSteal(playerObject));
     }
+
+    public void SwordButtonOnClick()
+    {
+        player.commandList.add(new Sword(playerObject));
+    }
 }
