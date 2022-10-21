@@ -31,7 +31,7 @@ public class Map : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //printMapOnObject();
+        printMapOnObject();
         //Debug.Log("PlayerˆÊ’u:"+searchMap(PLAYER));
         //Debug.Log("EnemyˆÊ’u:" + searchMap(ENEMY));
 

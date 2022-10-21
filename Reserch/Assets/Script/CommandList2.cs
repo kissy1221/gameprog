@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Const;
+
 public class CommandList2
 {
     private List<Command> List = new List<Command>();
@@ -31,7 +33,7 @@ public class CommandList2
 
     public void add(Command com)
     {
-        if(Count<9)
+        if (Count < Const.CO.MAX_COMMAND_LIST_SIZE) 
         {
             List.Add(com);
             update = true;

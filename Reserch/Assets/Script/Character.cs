@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Const;
 
 public class Character : Object
 {
@@ -8,10 +9,6 @@ public class Character : Object
     public CommandList2 commandList=new CommandList2();
 
     public CharacterState State = new CharacterState();
-
-    bool flag = false;
-
-    int i=1;
 
     public bool CommandAllow = true; //ゲームマネージャからコマンド実行を許可されたか
 
@@ -23,8 +20,6 @@ public class Character : Object
     protected void Update()
     {
         base.Update();
-
-        //Debug.Log(this.gameObject.tag + ":" + CommandAllow);
 
         if (State.getState()==CharacterState.State.WAIT && GameManager.instance.isRunning())
         {
@@ -68,11 +63,6 @@ public class Character : Object
         /*
         if(commandList.Count<=0 && State.getState() == CharacterState.State.WAIT)
         {
-            if(!flag)
-            {
-                Debug.Log(this.gameObject.tag + "のコマンドが全て終了いたしまjした");
-                flag = true;
-            }
             
             finishReqToManager();
         }
@@ -85,12 +75,10 @@ public class Character : Object
         Command com = commandList.getFrom(0);//先頭を取り出す
         GameManager.instance.setMoveReq(this.gameObject, false);
         com.excute();
-        Debug.Log(this.gameObject.tag+":"+i + "回目実行");
-        i++;
         commandList.removeHead();
         CommandAllow = false;
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(Const.CO.COMMAND_WAIT_TIME);
 
         finishMoveReqToManager();
 

@@ -132,8 +132,6 @@ public class GameManager : MonoBehaviour
                 PlayerObject.GetComponent<Character>().CommandAllow = true;
                 EnemyObject.GetComponent<Character>().CommandAllow = true;
             }
-
-
             
         }
             
