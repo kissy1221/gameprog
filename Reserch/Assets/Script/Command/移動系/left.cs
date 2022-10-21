@@ -19,7 +19,7 @@ public class Left : Command
         }
         else
         {
-            CharacterScript.finishMoveReqToManager();
+            //CharacterScript.finishMoveReqToManager();
         }
     }
 }

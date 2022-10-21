@@ -21,7 +21,7 @@ public class Right : Command
         }
         else
         {
-            CharacterScript.finishMoveReqToManager();
+            //CharacterScript.finishMoveReqToManager();
         }
     }
 }

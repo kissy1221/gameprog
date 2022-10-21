@@ -19,7 +19,7 @@ public class Down : Command
         }
         else
         {
-            CharacterScript.finishMoveReqToManager();
+            //CharacterScript.finishMoveReqToManager();
         }
     }
 }

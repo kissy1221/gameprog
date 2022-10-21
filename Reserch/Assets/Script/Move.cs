@@ -58,7 +58,7 @@ public class Move : MonoBehaviour
 
         if (transform.position == targetPosition)
         {
-            character.finishMoveReqToManager();
+            //character.finishMoveReqToManager();
             character.State.setState(CharacterState.State.WAIT);
         }
 

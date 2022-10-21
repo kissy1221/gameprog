@@ -22,7 +22,7 @@ public class Up : Command
         else
         {
             Debug.Log("“®‚¯‚Ü‚¹‚ñ");
-            CharacterScript.finishMoveReqToManager();
+            //CharacterScript.finishMoveReqToManager();
         }
 
     }

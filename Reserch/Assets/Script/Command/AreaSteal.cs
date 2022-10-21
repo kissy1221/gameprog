@@ -27,7 +27,7 @@ public class AreaSteal : Command
 
         
 
-        CharacterScript.finishMoveReqToManager();
+        //CharacterScript.finishMoveReqToManager();
     }
 
     private int searchAreaStealCol()

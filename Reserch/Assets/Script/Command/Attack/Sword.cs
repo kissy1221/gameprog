@@ -30,7 +30,7 @@ public class Sword : Command
             Debug.Log("オブジェクトがありません");
         }
 
-        CharacterScript.finishMoveReqToManager();
+        //CharacterScript.finishMoveReqToManager();
         
     }
 }

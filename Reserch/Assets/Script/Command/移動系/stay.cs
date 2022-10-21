@@ -12,6 +12,6 @@ public class stay : Command
 
     public override void excute()
     {
-        CharacterScript.finishMoveReqToManager();
+        //CharacterScript.finishMoveReqToManager();
     }
 }

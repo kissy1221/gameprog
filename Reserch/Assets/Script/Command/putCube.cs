@@ -37,7 +37,7 @@ public class putCube : Command
         }
 
 
-        CharacterScript.finishMoveReqToManager();
+        //CharacterScript.finishMoveReqToManager();
 
         
     }
