@@ -31,8 +31,16 @@ public class CommandList2
 
     public void add(Command com)
     {
-        List.Add(com);
-        update = true;
+        if(Count<9)
+        {
+            List.Add(com);
+            update = true;
+        }
+        else
+        {
+            Debug.Log("’Ç‰Á‚Å‚«‚Ü‚¹‚ñ");
+        }
+
     }
 
     public Command getFrom(int i)

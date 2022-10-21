@@ -29,6 +29,7 @@ public class Object : MonoBehaviour
         if(HP<=0)
         {
             Destroy(this.gameObject);
+            this.gameObject.DestroyfromMap();
         }
     }
 

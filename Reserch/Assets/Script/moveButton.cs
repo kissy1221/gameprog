@@ -90,4 +90,9 @@ public class moveButton : MonoBehaviour
     {
         player.commandList.add(new Sword(playerObject));
     }
+
+    public void CannonButtonOnClick()
+    {
+        player.commandList.add(new Cannon(playerObject));
+    }
 }

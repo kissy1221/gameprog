@@ -60,4 +60,9 @@ public class Character : Object
             finishReqToManager();
         }
     }
+
+    private IEnumerator ExcuteCommand()
+    {
+
+    }
 }
