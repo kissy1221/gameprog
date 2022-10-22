@@ -66,7 +66,9 @@ public class moveButton : MonoBehaviour
     {
         audioSource.PlayOneShot(RunSelectSound);
         Debug.Log("Run!");
-        GameManager.instance.switchRun(true);
+        GameObject.Find("BattleStart").GetComponent<BattleStart>().anim.SetTrigger("Start");
+        GameManager.instance.commandwin.SetActive(false);
+        //GameManager.instance.switchRun(true);
     }
 
     public void DeleteButtonOnClick()

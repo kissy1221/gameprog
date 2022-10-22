@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    [SerializeField] private GameObject commandwin;
+    [SerializeField] public GameObject commandwin;
     [SerializeField] private GameObject Player;
 
 
@@ -107,7 +107,10 @@ public class GameManager : MonoBehaviour
         }
 
         if (isRunning())
+        {
             commandwin.SetActive(false);
+        }
+            
 
         if (PlayerMoveReq && EnemyMoveReq)
         {
