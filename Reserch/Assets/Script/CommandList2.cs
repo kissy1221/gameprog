@@ -62,6 +62,20 @@ public class CommandList2
         update = true;
     }
 
+    public void swap(int index1,int index2)
+    {
+        if(List.Count<=index1||List.Count<=index2)
+        {
+            return;
+        }
+
+        Command temp = List[index1];
+        List[index1] = List[index2];
+        List[index2] = temp;
+
+        update = true;
+    }
+
     public List<Command> returnList()
     {
         return List;

@@ -28,7 +28,6 @@ public class Character : Object
             {
                 run();
             }
-                
             
         }
 
@@ -51,22 +50,8 @@ public class Character : Object
     {
         if(commandList.Count>0)
         {
-            /*
-            Command com = commandList.getFrom(0);//æ“ª‚ğæ‚èo‚·
-            GameManager.instance.setMoveReq(this.gameObject, false);
-            com.excute();
-            commandList.removeHead();
-            */
             StartCoroutine(ExcuteCommand());
         }
-
-        /*
-        if(commandList.Count<=0 && State.getState() == CharacterState.State.WAIT)
-        {
-            
-            finishReqToManager();
-        }
-        */
     }
 
     private IEnumerator ExcuteCommand()

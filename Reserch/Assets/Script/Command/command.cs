@@ -13,6 +13,8 @@ public abstract class Command
 
     protected GameObject CharacterObject;//コマンド実行者
 
+    protected CommandList2 commandList;
+
     protected GameObject mapObj;
     protected Floor[,] map;
 
@@ -22,6 +24,7 @@ public abstract class Command
         this.CharacterObject = characterObj;
         this.MoveSciprt = CharacterObject.GetComponent<Move>();
         this.CharacterScript = CharacterObject.GetComponent<Character>();
+        this.commandList = CharacterScript.commandList;
 
         map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
 
@@ -30,6 +33,21 @@ public abstract class Command
 
     //実行
     public abstract void excute();
+
+    protected int searchCommandIndex()
+    {
+        List<Command> list = commandList.returnList();
+
+        for(int i=0;i<commandList.Count;i++)
+        {
+            if(this==list[i])
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 
 
 

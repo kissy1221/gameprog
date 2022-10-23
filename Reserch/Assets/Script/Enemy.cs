@@ -27,7 +27,7 @@ public class Enemy : Character
 
         for(int i=0;i<CommandNum;i++)
         {
-            int RandomNum = Random.Range(1, 5);
+            int RandomNum = Random.Range(1, 6);
 
             switch(RandomNum)
             {
@@ -40,9 +40,11 @@ public class Enemy : Character
                 case 3:
                     commandList.add(new Right(this.gameObject));
                     break;
-                    
                 case 4:
                     commandList.add(new Down(this.gameObject));
+                    break;
+                case 5:
+                    commandList.add(new Swap(this.gameObject));
                     break;
             }
         }

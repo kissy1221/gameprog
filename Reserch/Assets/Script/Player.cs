@@ -17,6 +17,12 @@ public class Player : Character
 
         base.Update();
 
+
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            commandList.add(new Swap(this.gameObject));
+        }
+
     }
 
 
