@@ -135,6 +135,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 860346636}
     m_Modifications:
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 4251666154281144631, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
       propertyPath: m_Name
       value: blueGround (2)
@@ -590,6 +598,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 860346636}
     m_Modifications:
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4251666154281144631, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
       propertyPath: m_Name
       value: blueGround (4)
@@ -830,7 +846,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 273c4250591a09b459264d2ea37b590f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.31
   m_Pitch: 1
   Loop: 0
@@ -1379,6 +1395,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1832919849}
     m_Modifications:
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: -2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2053,6 +2077,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1832919849}
     m_Modifications:
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: -2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2309,9 +2341,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1832919849}
     m_Modifications:
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3254,6 +3294,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1832919849}
     m_Modifications:
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3437,6 +3485,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 860346636}
     m_Modifications:
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 4251666154281144631, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
       propertyPath: m_Name
       value: blueGround (3)
@@ -4038,9 +4094,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1832919849}
     m_Modifications:
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4110,6 +4174,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 860346636}
     m_Modifications:
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4251666154281144631, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
       propertyPath: m_Name
       value: blueGround (5)
@@ -4246,6 +4318,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 860346636}
     m_Modifications:
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4251666154281144631, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
       propertyPath: m_Name
       value: blueGround 1
@@ -4303,6 +4383,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 860346636}
     m_Modifications:
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4251666154281144631, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
       propertyPath: m_Name
       value: blueGround (1)
@@ -5117,6 +5205,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1832919849}
     m_Modifications:
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: -2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -5174,9 +5270,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1832919849}
     m_Modifications:
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5359,6 +5463,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 860346636}
     m_Modifications:
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4251666154281144631, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
       propertyPath: m_Name
       value: blueGround (6)
@@ -5416,9 +5528,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1832919849}
     m_Modifications:
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5862,12 +5982,12 @@ Transform:
   - {fileID: 359396937}
   - {fileID: 1100582657}
   - {fileID: 842512604}
-  - {fileID: 893173551}
-  - {fileID: 2004176175}
   - {fileID: 343383695}
-  - {fileID: 2092343014}
-  - {fileID: 609380731}
+  - {fileID: 2004176175}
+  - {fileID: 893173551}
   - {fileID: 779593565}
+  - {fileID: 609380731}
+  - {fileID: 2092343014}
   m_Father: {fileID: 1588749435}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6531,6 +6651,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 860346636}
     m_Modifications:
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4251666154281144631, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
       propertyPath: m_Name
       value: blueGround 1 (1)
@@ -7342,6 +7470,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1832919849}
     m_Modifications:
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8672977903023065933, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5105082376099693164, guid: 6bb3422b83051ce408b20aa958714d4a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7408,6 +7544,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 860346636}
     m_Modifications:
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602511554495294865, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
+      propertyPath: PlayerFloorPos.y
+      value: -0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 4251666154281144631, guid: 1d690cc85d4e26c41b23fd8effb00677, type: 3}
       propertyPath: m_Name
       value: blueGround

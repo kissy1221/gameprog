@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 using Const;
 
 public class Character : Object
@@ -46,15 +47,16 @@ public class Character : Object
     }
 
 
-    public void run()
+    public async void run()
     {
         if(commandList.Count>0)
         {
-            StartCoroutine(ExcuteCommand());
+            //StartCoroutine(ExcuteCommand());
+            await ExcuteCommand();
         }
     }
 
-    private IEnumerator ExcuteCommand()
+    private async UniTask ExcuteCommand()
     {
 
         Command com = commandList.getFrom(0);//êÊì™ÇéÊÇËèoÇ∑
@@ -63,7 +65,10 @@ public class Character : Object
         commandList.removeHead();
         CommandAllow = false;
 
-        yield return new WaitForSeconds(Const.CO.COMMAND_WAIT_TIME);
+        //yield return new WaitForSeconds(Const.CO.COMMAND_WAIT_TIME);
+        await UniTask.Delay(500);
+
+        Debug.Log("moveFinish!");
 
         finishMoveReqToManager();
 

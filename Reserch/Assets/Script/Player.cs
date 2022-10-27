@@ -20,11 +20,7 @@ public class Player : Character
 
         if(Input.GetKeyDown(KeyCode.S))
         {
-            commandList.add(new WhileStart(this.gameObject));
-        }
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            commandList.add(new WhileEnd(this.gameObject));
+            commandList.add(new WarpSword(this.gameObject));
         }
 
     }

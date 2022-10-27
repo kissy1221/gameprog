@@ -11,6 +11,7 @@ public class Floor : MonoBehaviour
 
     [SerializeField] Sprite RedFloorSprite;
     [SerializeField] Sprite BlueFloorSprite;
+    [SerializeField] public  Vector3 PlayerFloorPos;
 
     public enum floorColor
     {
