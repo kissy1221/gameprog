@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class stay : Command
 {
-    public stay(Character character) : base(character)
+    public stay(GameObject characterObj) : base(characterObj)
     {
         name = "left";
         Image = Resources.Load<Sprite>("Images/stay");
@@ -12,6 +12,6 @@ public class stay : Command
 
     public override void excute()
     {
-        CharacterScript.finishMoveReqToManager();
+        //CharacterScript.finishMoveReqToManager();
     }
 }

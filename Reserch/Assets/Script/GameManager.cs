@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance = null;
-
+    GameObject PlayerObject;
+    GameObject EnemyObject;
     //true=>コマンド動作中 , false=>コマンド画面
     private bool running = false;
     
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     private bool EnemyFinishReq = false;
     private bool PlayerFinishReq = false;
 
-    //１つのコマンドが終了したか
+    //１つのコマンドが終了したか true→コマンド実行 false →コマンド実行していない
     private bool EnemyMoveReq = true;
     private bool PlayerMoveReq = true;
 
@@ -37,10 +38,10 @@ public class GameManager : MonoBehaviour
         PlayerMoveReq = Enabled;
     }
 
-    public void setMoveReq(Character character,bool Enabled)
+    public void setMoveReq(GameObject character,bool Enabled)
     {
 
-        if(character.GetType()==typeof(Player))
+        if(character.tag=="Player")
         {
             PlayerMoveReq = Enabled;
         }
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    [SerializeField] private GameObject commandwin;
+    [SerializeField] public GameObject commandwin;
     [SerializeField] private GameObject Player;
 
 
@@ -83,7 +84,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        PlayerObject = GameObject.FindGameObjectWithTag("Player");
+        EnemyObject = GameObject.FindGameObjectWithTag("Enemy");
     }
 
     // Update is called once per frame
@@ -105,10 +107,40 @@ public class GameManager : MonoBehaviour
         }
 
         if (isRunning())
+        {
             commandwin.SetActive(false);
+        }
+            
 
-        if ((PlayerMoveReq && EnemyMoveReq) ||EnemyFinishReq || PlayerFinishReq )
-            setMoveReq(false);
+        if (PlayerMoveReq && EnemyMoveReq)
+        {
+
+            Debug.Log("PlayerMoveReq:" + PlayerFinishReq);
+            Debug.Log("EnemyMoveReq:" + EnemyFinishReq);
+
+            if (EnemyFinishReq && !PlayerFinishReq)
+            {
+                Debug.Log("敵のコマンド終了");
+                setMoveReq(PlayerObject, false);
+                PlayerObject.GetComponent<Character>().CommandAllow = true;
+            }
+            else if(PlayerFinishReq && !EnemyFinishReq)
+            {
+                setMoveReq(EnemyObject, false);
+                EnemyObject.GetComponent<Character>().CommandAllow = true;
+            }
+            else
+            {
+                setMoveReq(false);
+                PlayerObject.GetComponent<Character>().CommandAllow = true;
+                EnemyObject.GetComponent<Character>().CommandAllow = true;
+            }
+            
+        }
+            
+
+        //Debug.Log("敵リクエスト"+EnemyMoveReq);
+        //Debug.Log("プレイヤーリクエスト" + PlayerMoveReq);
 
 
     }

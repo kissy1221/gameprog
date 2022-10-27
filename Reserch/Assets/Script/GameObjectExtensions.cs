@@ -24,4 +24,13 @@ public static class GameObjectExtensions
         }
         return new Vector2Int(-1, -1);
     }
+
+    public static void DestroyfromMap(this GameObject self)
+    {
+        Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        Vector2Int pos = getMapPosition(self);
+
+        map[pos.x, pos.y].setObject(null);
+
+    }
 }
