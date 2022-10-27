@@ -18,9 +18,13 @@ public class Player : Character
         base.Update();
 
 
-        if(Input.GetKeyDown(KeyCode.U))
+        if(Input.GetKeyDown(KeyCode.S))
         {
-            commandList.add(new Swap(this.gameObject));
+            commandList.add(new WhileStart(this.gameObject));
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            commandList.add(new WhileEnd(this.gameObject));
         }
 
     }
