@@ -14,7 +14,7 @@ public class WarpSword : Command
         Image = Resources.Load<Sprite>("Images/Sword");
     }
 
-    public override async void excute()
+    public override void excute()
     {
         if(CharacterObject.tag=="Player")
         {
@@ -29,7 +29,7 @@ public class WarpSword : Command
             if (map[movePos.x+1, movePos.y].getGameObjectOnFloor() != null)
             {
                 map[movePos.x + 1, movePos.y].getGameObjectOnFloor().GetComponent<Object>().Damage(Power);
-                await waitSec();
+
                 Debug.Log("‚à‚Æ‚ÌˆÊ’u‚É–ß‚è‚Ü‚·");
                 CharacterObject.GetComponent<Move>().moveAt(nowPos.x, nowPos.y);
 
@@ -40,10 +40,5 @@ public class WarpSword : Command
         {
 
         }
-    }
-
-    async UniTask waitSec()
-    {
-        await UniTask.Delay(1000);
     }
 }

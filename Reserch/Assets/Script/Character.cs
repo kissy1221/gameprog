@@ -66,7 +66,7 @@ public class Character : Object
         CommandAllow = false;
 
         //yield return new WaitForSeconds(Const.CO.COMMAND_WAIT_TIME);
-        await UniTask.Delay(500);
+        await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME*1000));
 
         Debug.Log("moveFinish!");
 
