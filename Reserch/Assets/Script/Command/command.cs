@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public abstract class Command
 {
@@ -33,6 +34,8 @@ public abstract class Command
 
     //é¿çs
     public abstract void excute();
+
+    public abstract async UniTask excute()
 
     protected int searchCommandIndex()
     {

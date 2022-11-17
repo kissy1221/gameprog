@@ -16,16 +16,19 @@ public class WarpSword : Command
 
     public override void excute()
     {
+        //player‚Ìê‡‚Ì“®ì
         if(CharacterObject.tag=="Player")
         {
-            Vector2Int EnemyPos=GameObject.FindGameObjectWithTag("Enemy").getMapPosition();
+            Vector2Int EnemyPos=GameObject.FindGameObjectWithTag("Enemy").getMapPosition();//“G‚ÌˆÊ’uæ“¾
             Vector2Int movePos = new Vector2Int(EnemyPos.x - 1, EnemyPos.y);
             Vector2Int nowPos = GameObject.FindGameObjectWithTag("Player").getMapPosition();
 
             Debug.Log("ˆÚ“®æ:" + movePos);
 
+            //“G‚Ì‘O‚ÉˆÚ“®ó‘Ô
             CharacterObject.GetComponent<Move>().moveAt(movePos.x, movePos.y);
 
+            //•¨‘Ì‚ª‚¢‚½‚ç
             if (map[movePos.x+1, movePos.y].getGameObjectOnFloor() != null)
             {
                 map[movePos.x + 1, movePos.y].getGameObjectOnFloor().GetComponent<Object>().Damage(Power);
@@ -35,6 +38,8 @@ public class WarpSword : Command
 
 
             }
+
+            //Œ³‚ÌˆÊ’u‚É–ß‚é
         }
         else
         {
