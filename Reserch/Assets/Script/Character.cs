@@ -51,11 +51,15 @@ public class Character : Object
     {
         if(commandList.Count>0)
         {
+            /*
             ExcuteCommand();
 
             await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
 
             //下記よりコマンド動作終了後の動作
+            */
+
+            await ExcuteCommandAsync();
 
             finishMoveReqToManager(); //動作が終了をGMに伝える
 
@@ -81,7 +85,7 @@ public class Character : Object
         CommandAllow = false;
         Command com = commandList.getFrom(0);//先頭を参照
         GameManager.instance.setMoveReq(this.gameObject, false);
-        com.excute(); //コマンドが終了するまで待つ await記入
+        await com.excute(); //コマンドが終了するまで待つ await記入
 
         commandList.removeHead();//先頭を外す
 

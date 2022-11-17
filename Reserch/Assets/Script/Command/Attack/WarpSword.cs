@@ -14,14 +14,24 @@ public class WarpSword : Command
         Image = Resources.Load<Sprite>("Images/Sword");
     }
 
-    public override void excute()
+    public override async UniTask excute()
     {
-        //playerの場合の動作
+        Vector2Int AttackObjectPos;//攻撃対象座標
+        Vector2Int movePos;
+        Vector2Int nowPos;
+
         if(CharacterObject.tag=="Player")
         {
-            Vector2Int EnemyPos=GameObject.FindGameObjectWithTag("Enemy").getMapPosition();//敵の位置取得
-            Vector2Int movePos = new Vector2Int(EnemyPos.x - 1, EnemyPos.y);
-            Vector2Int nowPos = GameObject.FindGameObjectWithTag("Player").getMapPosition();
+            AttackObjectPos = GameObject.FindGameObjectWithTag("Enemy").getMapPosition();
+            movePos = new Vector2Int(AttackObjectPos.x - 1, AttackObjectPos.y);
+            nowPos = GameObject.FindGameObjectWithTag("Player").getMapPosition();
+        }
+        else
+        {
+            AttackObjectPos = GameObject.FindGameObjectWithTag("Player").getMapPosition();
+            movePos = new Vector2Int(AttackObjectPos.x + 1, AttackObjectPos.y);
+            nowPos = GameObject.FindGameObjectWithTag("Enemy").getMapPosition();
+        }
 
             Debug.Log("移動先:" + movePos);
 
@@ -33,17 +43,14 @@ public class WarpSword : Command
             {
                 map[movePos.x + 1, movePos.y].getGameObjectOnFloor().GetComponent<Object>().Damage(Power);
 
+                await UniTask.Delay((int)(0.7 * 1000));
+
                 Debug.Log("もとの位置に戻ります");
                 CharacterObject.GetComponent<Move>().moveAt(nowPos.x, nowPos.y);
 
+                await UniTask.Delay((int)(0.3f * 1000));
+
 
             }
-
-            //元の位置に戻る
-        }
-        else
-        {
-
-        }
     }
 }

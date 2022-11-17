@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using Const;
 
 public class Cannon : Command
 {
@@ -13,7 +15,7 @@ public class Cannon : Command
         Image = Resources.Load<Sprite>("Images/Sword");
     }
 
-    public override void excute()
+    public override async UniTask excute()
     {
         Vector2Int characterPos = CharacterObject.getMapPosition();
         int x = characterPos.x + 1;
@@ -34,6 +36,7 @@ public class Cannon : Command
         }
 
         //CharacterScript.finishMoveReqToManager();
+        await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
     }
 
 }

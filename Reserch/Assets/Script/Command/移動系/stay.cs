@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using Const;
 
 public class stay : Command
 {
@@ -10,8 +12,9 @@ public class stay : Command
         Image = Resources.Load<Sprite>("Images/stay");
     }
 
-    public override void excute()
+    public override async UniTask excute()
     {
+        await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
         //CharacterScript.finishMoveReqToManager();
     }
 }

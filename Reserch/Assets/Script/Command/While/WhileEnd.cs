@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class WhileEnd : Command
 {
@@ -10,7 +11,7 @@ public class WhileEnd : Command
 
     }
 
-    public override void excute()
+    public override async UniTask excute()
     {
 
     }

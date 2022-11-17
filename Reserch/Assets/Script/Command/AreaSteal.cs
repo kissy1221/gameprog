@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using Const;
 
 public class AreaSteal : Command
 {
@@ -13,7 +15,7 @@ public class AreaSteal : Command
         m = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
     }
 
-    public override void excute()
+    public override async UniTask excute()
     {
 
         AreaStealCol = searchAreaStealCol();
@@ -25,8 +27,8 @@ public class AreaSteal : Command
                 m[AreaStealCol, i].changeColor(Floor.floorColor.Red);
         }
 
-        
 
+        await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
         //CharacterScript.finishMoveReqToManager();
     }
 

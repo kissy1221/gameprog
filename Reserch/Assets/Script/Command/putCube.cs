@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using Const;
 
 public class putCube : Command
 {
@@ -16,7 +18,7 @@ public class putCube : Command
 
     }
 
-    public override void excute()
+    public override async UniTask excute()
     {
 
         //Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
@@ -34,9 +36,11 @@ public class putCube : Command
 
             map[putCubePos.x, putCubePos.y].setObject(CubeObj);
 
+            
+
         }
 
-
+        await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
         //CharacterScript.finishMoveReqToManager();
 
         
