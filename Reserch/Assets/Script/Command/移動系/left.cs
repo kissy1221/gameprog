@@ -26,5 +26,6 @@ public class Left : Command
         }
 
         await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
+
     }
 }
