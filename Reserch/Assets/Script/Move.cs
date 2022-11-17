@@ -30,6 +30,10 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.M) && this.gameObject.tag==("Player"))
+        {
+            moveAt(2, 0);
+        }
         move();
     }
 
@@ -155,4 +159,19 @@ public class Move : MonoBehaviour
 
         direction.y = -1;
     }
+
+    //map座標の場所へ移動 (unityのグローバル座標指定ではない)
+    public void moveAt(int x, int y)
+    {
+        Vector2Int CharacterPos = this.gameObject.getMapPosition();
+        map[CharacterPos.x, CharacterPos.y].GetComponent<Floor>().setObject(null);
+        map[x, y].GetComponent<Floor>().setObject(this.gameObject);
+
+        targetPos = map[x, y].PlayerFloorPos;
+        Debug.Log("移動先" + map[x, y].PlayerFloorPos);
+        this.transform.position = map[x,y].PlayerFloorPos;
+
+    }
+
+
 }

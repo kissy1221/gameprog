@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using Const;
 
 public class Swap : Command
 {
@@ -10,9 +12,10 @@ public class Swap : Command
 
     }
 
-    public override void excute()
+    public override async UniTask excute()
     {
         commandList.swap(1, 2);
+        await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
     }
 
 }

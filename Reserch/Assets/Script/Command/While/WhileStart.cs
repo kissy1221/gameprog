@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class WhileStart : Command
 {
@@ -10,8 +11,8 @@ public class WhileStart : Command
 
     }
 
-    public override void excute()
+    public override async UniTask excute()
     {
-        commandList.swap(1, 2);
+
     }
 }

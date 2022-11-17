@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 using Const;
 
 public class Character : Object
@@ -46,31 +47,53 @@ public class Character : Object
     }
 
 
-    public void run()
+    public async void run()
     {
         if(commandList.Count>0)
         {
-            StartCoroutine(ExcuteCommand());
+            /*
+            ExcuteCommand();
+
+            await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
+
+            //下記よりコマンド動作終了後の動作
+            */
+
+            await ExcuteCommandAsync();
+
+            finishMoveReqToManager(); //動作が終了をGMに伝える
+
+            if (commandList.Count <= 0)
+            {
+                finishReqToManager();
+            }
         }
     }
 
-    private IEnumerator ExcuteCommand()
+    private void ExcuteCommand()
     {
-
-        Command com = commandList.getFrom(0);//先頭を取り出す
+        CommandAllow = false;
+        Command com = commandList.getFrom(0);//先頭を参照
         GameManager.instance.setMoveReq(this.gameObject, false);
         com.excute();
-        commandList.removeHead();
+        commandList.removeHead();//先頭を外す
+        
+    }
+
+    async UniTask ExcuteCommandAsync()
+    {
         CommandAllow = false;
+        Command com = commandList.getFrom(0);//先頭を参照
+        GameManager.instance.setMoveReq(this.gameObject, false);
+        await com.excute(); //コマンドが終了するまで待つ await記入
 
-        yield return new WaitForSeconds(Const.CO.COMMAND_WAIT_TIME);
+        commandList.removeHead();//先頭を外す
 
-        finishMoveReqToManager();
+        finishMoveReqToManager(); //動作が終了をGMに伝える
 
-        if(commandList.Count<=0)
+        if (commandList.Count <= 0)
         {
             finishReqToManager();
         }
-
     }
 }
