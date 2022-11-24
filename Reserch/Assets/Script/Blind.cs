@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Blind : MonoBehaviour
 {
@@ -40,11 +41,16 @@ public class Blind : MonoBehaviour
     {
         PrintNoiseIndex();
 
+        
         foreach(int BlackOutNum in blackoutList)
         {
-            string str = "Command" + BlackOutNum;
+            int num = BlackOutNum + 1;
+            string str = "Command"+num;
             GameObject target = EnemyCommandIcon.transform.Find(str).gameObject;
+
+            target.GetComponent<Image>().sprite = BlackOutImage;
         }
+        
 
     }
 
