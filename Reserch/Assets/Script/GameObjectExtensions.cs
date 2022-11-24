@@ -22,6 +22,19 @@ public static class GameObjectExtensions
                         
             }
         }
+
+        for (int x = 0; x < map.GetLength(0); x++)
+        {
+            for (int y = 0; y < map.GetLength(1); y++)
+            {
+                Floor floor = map[x, y];
+
+                if (self == floor.getGameObjectOnFloorSub())
+                    return new Vector2Int(x, y);
+
+            }
+        }
+
         return new Vector2Int(-1, -1);
     }
 
