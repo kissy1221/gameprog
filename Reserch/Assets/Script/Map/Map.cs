@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Const;
 
 public class Map : MonoBehaviour
 {
-    private Floor[,] map = new Floor[6, 3];
-
+    private Floor[,] map = new Floor[CO.MAP_SIZE.X, CO.MAP_SIZE.Y];
+    private int[,] test = new int[3, 3];
+ 
     public Floor[,] getMap()
     {
         return map;
@@ -19,10 +21,12 @@ public class Map : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
 
+        Debug.Log(player.name);
+
         initMap1();
 
         map[1, 1].GetComponent<Floor>().setObject(player);
-        map[4, 1].GetComponent<Floor>().setObject(enemy);
+        map[6, 2].GetComponent<Floor>().setObject(enemy);
 
 
 
@@ -42,7 +46,7 @@ public class Map : MonoBehaviour
     {
         GameObject[] gameObjectMap = GameObject.FindGameObjectsWithTag("Floor");//Floorƒ^ƒO‚ð”z—ñ‚Æ‚µ‚ÄŽæ“¾
 
-        int i = 0, j = 0, k = 0;
+        int i = 0, j = 0, k = 0, l = 0;
 
         foreach (GameObject g in gameObjectMap)
         {
@@ -51,17 +55,22 @@ public class Map : MonoBehaviour
 
             switch (Pos.y)
             {
-                case 0.95f:
+
+                case 1.14f:
                     map[i, 0] = g.GetComponent<Floor>();
                     i++;
                     break;
-                case 0:
+                case 0.38f:
                     map[j, 1] = g.GetComponent<Floor>();
                     j++;
                     break;
-                case -0.95f:
+                case -0.38f:
                     map[k, 2] = g.GetComponent<Floor>();
                     k++;
+                    break;
+                case -1.14f:
+                    map[l, 3] = g.GetComponent<Floor>();
+                    l++;
                     break;
             }
 

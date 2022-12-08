@@ -13,7 +13,7 @@ public class Mine : Command
     public Mine(GameObject characterObj) : base(characterObj)
     {
         name = "Mine";
-        Image = Resources.Load<Sprite>("Images/Mine");
+        Image = Resources.Load<Sprite>("Images/MineIcon");
         MinePrefab = (GameObject)Resources.Load("MinePrefab");
     }
 
@@ -21,12 +21,12 @@ public class Mine : Command
     {
         Vector2Int putMinePos = CharacterScript.gameObject.getMapPosition() + new Vector2Int(1, 0);
         Vector3 characterPos = CharacterScript.gameObject.transform.position;
-        Vector3 putCubeV3Pos = characterPos + new Vector3(1.6f, -0.3f, -1);
+        Vector3 putMineV3Pos = characterPos + new Vector3(CO.FLOOR_DISTANCE.X, -0.3f, -1);
 
 
         if (map[putMinePos.x, putMinePos.y].getGameObjectOnFloorSub() is null && map[putMinePos.x, putMinePos.y].getGameObjectOnFloor() is null)
         {
-            MineObj = Object.Instantiate(MinePrefab, putCubeV3Pos, Quaternion.identity);
+            MineObj = Object.Instantiate(MinePrefab, putMineV3Pos, Quaternion.identity);
 
             MineObj.name = "Mine";
             MineObj.transform.parent = GameObject.FindGameObjectWithTag("Map").transform;

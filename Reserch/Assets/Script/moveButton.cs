@@ -97,4 +97,9 @@ public class moveButton : MonoBehaviour
     {
         player.commandList.add(new Cannon(playerObject));
     }
+
+    public void MineButtonOnClick()
+    {
+        player.commandList.add(new Mine(playerObject));
+    }
 }
