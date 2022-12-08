@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Const;
 
 public class Move : MonoBehaviour
 {
 
     private float speed = 5;
-    private float distanceX = 1.6f;
-    private float distanceY = 0.95f;//ˆÚ“®‹——£
+    private float distanceX = 1.3f;
+    private float distanceY = 0.76f;//ˆÚ“®‹——£
 
 
     private Vector2 direction;  //ˆÚ“®•ûŒü
@@ -75,7 +76,7 @@ public class Move : MonoBehaviour
         Vector2Int targetPos = CharacterPos + direction;
 
         //”ÍˆÍŠO‚©HˆÚ“®æ‚ÍˆÚ“®‰Â”\‚©
-        if ((0 <= targetPos.x && targetPos.x < 6) && (0 <= targetPos.y && targetPos.y <= 2))
+        if ((0 <= targetPos.x && targetPos.x < CO.MAP_SIZE.X) && (0 <= targetPos.y && targetPos.y < CO.MAP_SIZE.Y))
         {
             Floor targetFloor = map[targetPos.x, targetPos.y];
 
