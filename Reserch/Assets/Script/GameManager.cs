@@ -93,9 +93,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //お互いコマンド終了リクエストがきたら
         if(EnemyFinishReq && PlayerFinishReq)
         {
-            Debug.Log("双方終了のリクエストが来ました");
 
             switchRun(false);
             EnemyFinishReq = false;
@@ -139,10 +139,6 @@ public class GameManager : MonoBehaviour
             }
             
         }
-            
-
-        //Debug.Log("敵リクエスト"+EnemyMoveReq);
-        //Debug.Log("プレイヤーリクエスト" + PlayerMoveReq);
 
 
     }
