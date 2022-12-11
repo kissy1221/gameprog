@@ -81,4 +81,11 @@ public class CommandList2
         return List;
     }
 
+    public void deleteAll()
+    {
+        List.Clear();
+        update = true;
+    }
+        
+
 }

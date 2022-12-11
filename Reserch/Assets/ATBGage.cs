@@ -19,12 +19,18 @@ public class ATBGage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        slider.value+=Time.deltaTime/30;
+        if(GameManager.instance.State==GameManager.gameState.Command)
+        {
+            slider.value += Time.deltaTime / 30;
+        }
+        
 
         if(slider.value==1)
         {
             slider.value = 0;
+            GameManager.instance.switchRun(true);
         }
+
+
     }
 }
