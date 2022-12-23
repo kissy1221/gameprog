@@ -5,18 +5,29 @@ using UnityEngine;
 public class Enemy : Character
 {
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
-        pushCommandListAtRondom();
+        //pushCommandListAtRondom();
         setHP(500);
+
+
+
+        anim = transform.Find("EnemyObject").gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         base.Update();
+
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            commandList.add(new WarpSword(this.gameObject));
+        }
         
     }
 
