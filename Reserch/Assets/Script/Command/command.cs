@@ -31,10 +31,6 @@ public abstract class Command
 
     }
 
-
-    //é¿çs
-    //public abstract void excute();
-
     public abstract UniTask excute();
 
     protected int searchCommandIndex()
