@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2324bfbf21c1114c8e2668568ac0820, type: 3}
-  m_Name: Canon
+  m_Name: Up
   m_EditorClassIdentifier: 
-  commandName: "\u30AD\u30E3\u30CE\u30F3"
+  commandName: Up
   description: 
-  type: 0
+  type: 2
   atk: 0
-  cost: 3
+  cost: 0
   img: {fileID: 0}

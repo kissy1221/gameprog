@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2324bfbf21c1114c8e2668568ac0820, type: 3}
   m_Name: Cube
   m_EditorClassIdentifier: 
-  commandName: CUBE
+  commandName: "\u30AD\u30E5\u30FC\u30D6"
   description: 
   type: 1
   atk: 0
