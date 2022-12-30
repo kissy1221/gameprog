@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using UnityEngine.UI;
 
 public class test : MonoBehaviour
 {
 
+    [SerializeField] GameObject DeckContentObj;
+    GameObject oriBtn;
+
     void Start()
     {
-
+        oriBtn = Resources.Load("btn") as GameObject;
 
     }
 
@@ -18,11 +22,11 @@ public class test : MonoBehaviour
         
     }
 
-    async UniTask Task1()
+    public void onClick()
     {
-        await UniTask.Delay(1 * 1000);
-
-        Debug.Log("Task1èIóπ");
+        GameObject clobtn=Instantiate(oriBtn);
+        clobtn.transform.parent = DeckContentObj.transform;
+        clobtn.transform.localScale = new Vector3(1, 1, 1);
     }
 
 }

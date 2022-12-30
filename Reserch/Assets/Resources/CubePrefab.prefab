@@ -29,6 +29,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2152004196123827138}
   m_RootOrder: 0
@@ -122,7 +123,8 @@ Transform:
   m_GameObject: {fileID: 5975135668966294051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2152004196123827138}
   m_Father: {fileID: 0}
@@ -139,6 +141,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -188,10 +191,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5975135668966294051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79b2a62e88ed0754d8f508bf61d7c6a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7be372304cf37e342afa7e6823056018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 300
+  HP: 100
   TextObject: {fileID: 2289365617538886406}
 --- !u!1 &9107675838453706462
 GameObject:
@@ -222,6 +225,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2.5}
   m_LocalScale: {x: 0.03, y: 0.02, z: 0.4}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 466482375338036477}
   m_Father: {fileID: 423473246383934247}

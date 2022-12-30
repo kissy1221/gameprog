@@ -17,8 +17,8 @@ public class WarpSword : Command
     public override async UniTask excute()
     {
         Vector2Int AttackObjectPos;//攻撃対象座標
-        Vector2Int movePos;
-        Vector2Int nowPos;
+        Vector2Int movePos; //移動地点
+        Vector2Int nowPos;  //発動地点
 
         if(CharacterObject.tag=="Player")
         {
@@ -33,24 +33,28 @@ public class WarpSword : Command
             nowPos = GameObject.FindGameObjectWithTag("Enemy").getMapPosition();
         }
 
-            Debug.Log("移動先:" + movePos);
+        Debug.Log("攻撃対象座標" + AttackObjectPos);
+        Debug.Log("移動先:" + movePos);
 
-            //敵の前に移動状態
+
+        //移動先の物体の判定
+        if (map[movePos.x, movePos.y].getGameObjectOnFloor() is null)
+        {
             CharacterObject.GetComponent<Move>().moveAt(movePos.x, movePos.y);
 
-            //物体がいたら
-            if (map[movePos.x+1, movePos.y].getGameObjectOnFloor() != null)
-            {
-                map[movePos.x + 1, movePos.y].getGameObjectOnFloor().GetComponent<Object>().Damage(Power);
+            CharacterObject.transform.Find("EnemyObject").gameObject.GetComponent<Animator>().SetTrigger("Sword");
 
-                await UniTask.Delay((int)(0.7 * 1000));
+            if (map[movePos.x - 1, movePos.y].getGameObjectOnFloor()!=null)
+                map[movePos.x -1, movePos.y].getGameObjectOnFloor().GetComponent<Object>().Damage(Power);
 
-                Debug.Log("もとの位置に戻ります");
-                CharacterObject.GetComponent<Move>().moveAt(nowPos.x, nowPos.y);
+            await UniTask.Delay((int)(0.7 * 1000));
 
-                await UniTask.Delay((int)(0.3f * 1000));
+            Debug.Log("もとの位置に戻ります");
+            CharacterObject.GetComponent<Move>().moveAt(nowPos.x, nowPos.y);
 
+            await UniTask.Delay((int)(0.3f * 1000));
 
-            }
+        }
+            
     }
 }

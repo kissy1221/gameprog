@@ -5,12 +5,18 @@ using Const;
 
 public class GameManager : MonoBehaviour
 {
+    public enum gameState
+    {
+        Run,    //Run中
+        Command //コマンド選択中
+    }
+
+    public gameState State=gameState.Command;
 
     public static GameManager instance = null;
+
     GameObject PlayerObject;
     GameObject EnemyObject;
-    //true=>コマンド動作中 , false=>コマンド画面
-    private bool running = false;
     
 
     //コマンドが終了したか
@@ -93,9 +99,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //お互いコマンド終了リクエストがきたら
         if(EnemyFinishReq && PlayerFinishReq)
         {
-            Debug.Log("双方終了のリクエストが来ました");
 
             switchRun(false);
             EnemyFinishReq = false;
@@ -108,6 +114,7 @@ public class GameManager : MonoBehaviour
             GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().pushCommandListAtRondom();
         }
 
+        //Run中
         if (isRunning())
         {
             commandwin.SetActive(false);
@@ -139,22 +146,30 @@ public class GameManager : MonoBehaviour
             }
             
         }
-            
-
-        //Debug.Log("敵リクエスト"+EnemyMoveReq);
-        //Debug.Log("プレイヤーリクエスト" + PlayerMoveReq);
 
 
     }
 
     public bool isRunning()
     {
-        return running;
+        if(State==gameState.Run)
+        {
+            return true;
+        }
+        return false;
+        
     }
 
     public void switchRun(bool enabled)
     {
-        running = enabled;
+        if(enabled)
+        {
+            State = gameState.Run;
+        }
+        else
+        {
+            State = gameState.Command;
+        }
     }
 
 }
