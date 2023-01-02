@@ -8,9 +8,9 @@ public class CommandDate : ScriptableObject
 {
     public enum commandType
     {
+        Backbone,
         Atack,
-        Support,
-        Backbone
+        Support
     }
 
     public string commandName;

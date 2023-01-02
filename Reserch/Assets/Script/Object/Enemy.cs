@@ -11,10 +11,8 @@ public class Enemy : Character
     void Start()
     {
         base.Start();
-        //pushCommandListAtRondom();
+        pushCommandListAtRondom();
         setHP(500);
-
-
 
         anim = transform.Find("EnemyObject").gameObject.GetComponent<Animator>();
     }
@@ -38,7 +36,7 @@ public class Enemy : Character
 
         for(int i=0;i<CommandNum;i++)
         {
-            int RandomNum = Random.Range(1, 6);
+            int RandomNum = Random.Range(1, 7);
 
             switch(RandomNum)
             {
@@ -56,6 +54,9 @@ public class Enemy : Character
                     break;
                 case 5:
                     commandList.add(new Swap(this.gameObject));
+                    break;
+                case 6:
+                    commandList.add(new WarpSword(this.gameObject));
                     break;
             }
         }

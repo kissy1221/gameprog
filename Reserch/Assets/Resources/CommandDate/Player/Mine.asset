@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2324bfbf21c1114c8e2668568ac0820, type: 3}
-  m_Name: Cube
+  m_Name: Mine
   m_EditorClassIdentifier: 
-  commandName: "\u30AD\u30E5\u30FC\u30D6"
-  description: 
+  commandName: "\u30DE\u30A4\u30F3"
+  description: "\u5730\u96F7\u3092\u8A2D\u7F6E\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u308B"
   type: 1
-  atk: 0
-  cost: 1
+  atk: 50
+  cost: 2
   img: {fileID: 0}

@@ -5,6 +5,9 @@ using Cysharp.Threading.Tasks;
 
 public abstract class Command
 {
+    public CommandDate date;
+
+    //削除予定
     public string name;
     private string type;
     public Sprite Image;
@@ -22,9 +25,11 @@ public abstract class Command
     //引数:コマンド実行者
     public Command(GameObject characterObj)
     {
-        this.CharacterObject = characterObj;
+        this.CharacterObject = characterObj; //コマンド実行者
         this.MoveSciprt = CharacterObject.GetComponent<Move>();
         this.CharacterScript = CharacterObject.GetComponent<Character>();
+
+
         this.commandList = CharacterScript.commandList;
 
         map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();

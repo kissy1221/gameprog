@@ -57,8 +57,10 @@ public class Character : Object
         }
         finishMoveReqToManager(); //動作が終了をGMに伝える
 
+        //全コマンドが終了したら
         if (commandList.Count <= 0)
         {
+            //コマンド終了をgamemanagerに伝える
             finishReqToManager();
         }
     }

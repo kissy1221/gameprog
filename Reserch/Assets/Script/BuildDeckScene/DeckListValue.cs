@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CommandDateView : MonoBehaviour
+public class DeckListValue : MonoBehaviour
 {
     Text commandText;
     Text typeText;
@@ -13,6 +13,12 @@ public class CommandDateView : MonoBehaviour
     Button deleteButton;
 
     [SerializeField]CommandDate date;
+
+    public CommandDate Date
+    {
+        set { date = value; }
+        get { return date;}
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +57,25 @@ public class CommandDateView : MonoBehaviour
 
     public void onClickDeleteButton()
     {
-        Destroy(this.gameObject);
+        SelectableList<CommandDate> deck = GameObject.Find("DeckList").GetComponent<DeckList>().deck;
+
+        deck.RemoveAt(getDeckIndex());
+    }
+
+    public int getDeckIndex()
+    {
+        GameObject contentObj = GameObject.Find("DeckList/ScrollView/Viewport/Content");
+        int index = 0;
+
+        foreach(Transform n in contentObj.transform)
+        {
+            if(n.gameObject==this.gameObject)
+            {
+                return index-1;
+            }
+            index++;
+        }
+
+        return -1;
     }
 }
