@@ -19,7 +19,7 @@ public class CommandDate : ScriptableObject
     public commandType type;
     public int atk;
     public int cost;
-    public Image img;
+    public Sprite sprite;
     
     
 }

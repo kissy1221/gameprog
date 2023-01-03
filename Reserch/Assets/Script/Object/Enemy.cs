@@ -8,7 +8,7 @@ public class Enemy : Character
     Animator anim;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
         pushCommandListAtRondom();
@@ -18,14 +18,9 @@ public class Enemy : Character
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         base.Update();
-
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            commandList.add(new WarpSword(this.gameObject));
-        }
         
     }
 
@@ -41,22 +36,22 @@ public class Enemy : Character
             switch(RandomNum)
             {
                 case 1:
-                    commandList.add(new Up(this.gameObject));
+                    commandList.Add(new Up(this.gameObject));
                     break;
                 case 2:
-                    commandList.add(new Left(this.gameObject));
+                    commandList.Add(new Left(this.gameObject));
                     break;
                 case 3:
-                    commandList.add(new Right(this.gameObject));
+                    commandList.Add(new Right(this.gameObject));
                     break;
                 case 4:
-                    commandList.add(new Down(this.gameObject));
+                    commandList.Add(new Down(this.gameObject));
                     break;
                 case 5:
-                    commandList.add(new Swap(this.gameObject));
+                    commandList.Add(new Swap(this.gameObject));
                     break;
                 case 6:
-                    commandList.add(new WarpSword(this.gameObject));
+                    commandList.Add(new WarpSword(this.gameObject));
                     break;
             }
         }

@@ -5,20 +5,16 @@ using Cysharp.Threading.Tasks;
 
 public abstract class Command
 {
-    public CommandDate date;
+    public CommandDate date;//コマンドのデータ
 
-    //削除予定
-    public string name;
-    private string type;
-    public Sprite Image;
-
+    //コマンド実行者スクリプト
+    protected GameObject CharacterObject;//コマンド実行者
     protected Character CharacterScript;
     protected Move MoveSciprt;
 
-    protected GameObject CharacterObject;//コマンド実行者
+    protected CommandList commandList;
 
-    protected CommandList2 commandList;
-
+    //Map系
     protected GameObject mapObj;
     protected Floor[,] map;
 
@@ -30,7 +26,7 @@ public abstract class Command
         this.CharacterScript = CharacterObject.GetComponent<Character>();
 
 
-        this.commandList = CharacterScript.commandList;
+        this.commandList = CharacterObject.GetComponent<CommandList>();
 
         map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
 
@@ -38,6 +34,7 @@ public abstract class Command
 
     public abstract UniTask excute();
 
+    /*
     protected int searchCommandIndex()
     {
         List<Command> list = commandList.returnList();
@@ -52,6 +49,8 @@ public abstract class Command
 
         return -1;
     }
+
+    */
 
 
 

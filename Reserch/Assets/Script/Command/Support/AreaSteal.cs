@@ -11,7 +11,8 @@ public class AreaSteal : Command
 
     public AreaSteal(GameObject characterObj) : base(characterObj)
     {
-        Image = Resources.Load<Sprite>("Images/Cube");
+        date = Resources.Load(CO.PATH.COMMAND_PLAYER + "AreaSteal") as CommandDate;
+
         m = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
     }
 

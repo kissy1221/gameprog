@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class Player : Character
 {
-
-
-    private void Start()
+    new private void Start()
     {
         base.Start();
 
-
     }
-    void Update()
+    new void Update()
     {
 
         base.Update();
 
-
-        if(Input.GetKeyDown(KeyCode.S))
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            //commandList.add(new WarpSword(this.gameObject));
-            commandList.add(new Mine(this.gameObject));
+            commandList.Add(new If(this.gameObject));
         }
-        if(Input.GetKeyDown(KeyCode.B))
+        if(Input.GetKeyDown(KeyCode.E))
         {
-            commandList.add(new BlackOut(this.gameObject));
+            commandList.Add(new End(this.gameObject));
+        }
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("構文チェック結果:" + commandList.checkSynax());
         }
 
     }

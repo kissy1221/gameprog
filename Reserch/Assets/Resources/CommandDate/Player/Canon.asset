@@ -17,4 +17,4 @@ MonoBehaviour:
   type: 1
   atk: 50
   cost: 3
-  img: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 220f194913279b146a344d08bfaa1b89, type: 3}

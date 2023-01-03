@@ -9,8 +9,8 @@ public class Right : Command
 
     public Right(GameObject characterObj) :base(characterObj)
     {
-        name = "right";
-        Image = Resources.Load<Sprite>("Images/right");
+        date = Resources.Load(CO.PATH.COMMAND_BACKBORNE + "Right") as CommandDate;
+
     }
 
     public override async UniTask excute()

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ATBGage : MonoBehaviour
 {
     private Slider slider;
-    float time=0;
 
     // Start is called before the first frame update
     void Start()

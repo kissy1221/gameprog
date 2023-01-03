@@ -7,29 +7,29 @@ using Const;
 public class Character : Object
 {
 
-    public CommandList2 commandList=new CommandList2();
+    //public CommandList2 commandList=new CommandList2();
 
+    protected CommandList commandList;
     public CharacterState State = new CharacterState();
-
     public bool CommandAllow = true; //ゲームマネージャからコマンド実行を許可されたか
 
-    protected void Start()
+    
+
+    new protected void Start()
     {
         base.Start();
+
+        commandList = GetComponent<CommandList>();
     }
 
-    protected void Update()
+    new protected void Update()
     {
         base.Update();
 
+        //Run中なら
         if (State.getState()==CharacterState.State.WAIT && GameManager.instance.isRunning())
         {
-
-            if(CommandAllow)
-            {
-                run();
-            }
-            
+                run();   
         }
 
     }
@@ -49,19 +49,22 @@ public class Character : Object
 
     public async void run()
     {
-        if(commandList.Count>0)
+        if(CommandAllow)
         {
+            if (commandList.Count > 0)
+            {
 
-            await ExcuteCommandAsync();
+                await ExcuteCommandAsync();
 
-        }
-        finishMoveReqToManager(); //動作が終了をGMに伝える
+            }
+            finishMoveReqToManager(); //動作が終了をGMに伝える
 
-        //全コマンドが終了したら
-        if (commandList.Count <= 0)
-        {
-            //コマンド終了をgamemanagerに伝える
-            finishReqToManager();
+            //全コマンドが終了したら
+            if (commandList.Count <= 0)
+            {
+                //コマンド終了をgamemanagerに伝える
+                finishReqToManager();
+            }
         }
     }
     async UniTask ExcuteCommandAsync()
@@ -69,8 +72,11 @@ public class Character : Object
         CommandAllow = false;
         Command com = commandList.getFrom(0);//先頭を参照
         GameManager.instance.setMoveReq(this.gameObject, false);
-        await com.excute(); //コマンドが終了するまで待つ await記入
+        await com.excute(); //コマンドが終了するまで待つ
 
         commandList.removeHead();//先頭を外す
     }
+
+
+
 }

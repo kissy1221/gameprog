@@ -10,9 +10,8 @@ public class Cannon : Command
 
     public Cannon(GameObject characterObj) : base(characterObj)
     {
+        date = Resources.Load(CO.PATH.COMMAND_PLAYER + "Canon") as CommandDate;
 
-        name = "Cannon";
-        Image = Resources.Load<Sprite>("Images/Sword");
     }
 
     public override async UniTask excute()

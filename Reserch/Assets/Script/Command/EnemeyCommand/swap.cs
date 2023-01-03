@@ -8,7 +8,8 @@ public class Swap : Command
 {
     public Swap(GameObject characterObj) : base(characterObj)
     {
-        Image = Resources.Load<Sprite>("Images/swapIcon");
+        date = Resources.Load(CO.PATH.COMMAND_ENEMY + "Swap") as CommandDate;
+
 
     }
 

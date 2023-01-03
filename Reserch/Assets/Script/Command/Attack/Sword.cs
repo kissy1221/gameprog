@@ -12,8 +12,8 @@ public class Sword : Command
     public Sword(GameObject characterObj) : base(characterObj)
     {
 
-        name = "Sword";
-        Image = Resources.Load<Sprite>("Images/Sword");
+        date = Resources.Load(CO.PATH.COMMAND_PLAYER + "Sword") as CommandDate;
+
     }
 
     public override async UniTask excute()

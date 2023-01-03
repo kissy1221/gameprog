@@ -5,7 +5,7 @@ using UnityEngine;
 public class moveButton : MonoBehaviour
 {
     public GameObject playerObject;   //プレイヤーオブジェクト
-    private Player player;
+    private CommandList playerList;
 
     public AudioClip CommandSelectSound;
     public AudioClip RunSelectSound;
@@ -16,7 +16,7 @@ public class moveButton : MonoBehaviour
     void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
-        player = playerObject.GetComponent<Player>();
+        playerList = playerObject.GetComponent<CommandList>();
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -31,21 +31,21 @@ public class moveButton : MonoBehaviour
     {
         // Debug.Log("Up押した");
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new Up(playerObject));
+        playerList.Add(new Up(playerObject));
     }
 
     public void LeftButtonOnClick()
     {
         // Debug.Log("Left押した");
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new Left(playerObject));
+        playerList.Add(new Left(playerObject));
     }
 
     public void RIghtButtonOnClick()
     {
         // Debug.Log("Right押した");
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new Right(playerObject));
+        playerList.Add(new Right(playerObject));
     }
 
     public void DownButtonOnClick()
@@ -53,13 +53,13 @@ public class moveButton : MonoBehaviour
         //Debug.Log("Down押した");
         
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new Down(playerObject));
+        playerList.Add(new Down(playerObject));
     }
 
     public void putCubeButtononClick()
     {
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new putCube(playerObject));
+        playerList.Add(new putCube(playerObject));
     }
 
     public void RunButtonOnClick()
@@ -73,33 +73,33 @@ public class moveButton : MonoBehaviour
 
     public void DeleteButtonOnClick()
     {
-        player.commandList.removeTail();
+        playerList.removeTail();
     }
 
     public void StayButtonOnClick()
     {
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new stay(playerObject));
+        playerList.Add(new stay(playerObject));
     }
 
     public void AreaStealButtonOnClick()
     {
         audioSource.PlayOneShot(CommandSelectSound);
-        player.commandList.add(new AreaSteal(playerObject));
+        playerList.Add(new AreaSteal(playerObject));
     }
 
     public void SwordButtonOnClick()
     {
-        player.commandList.add(new Sword(playerObject));
+        playerList.Add(new Sword(playerObject));
     }
 
     public void CannonButtonOnClick()
     {
-        player.commandList.add(new Cannon(playerObject));
+        playerList.Add(new Cannon(playerObject));
     }
 
     public void MineButtonOnClick()
     {
-        player.commandList.add(new Mine(playerObject));
+        playerList.Add(new Mine(playerObject));
     }
 }

@@ -13,7 +13,8 @@ public class putCube : Command
 
     public putCube(GameObject characterObj) :base(characterObj)
     {
-        Image = Resources.Load<Sprite>("Images/Cube");
+        date = Resources.Load(CO.PATH.COMMAND_PLAYER + "Cube") as CommandDate;
+
         CubeObjPrefab = (GameObject)Resources.Load("CubePrefab");
 
     }

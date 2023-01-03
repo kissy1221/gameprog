@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
+using Const;
+
 public class WarpSword : Command
 {
     int Power = 50;
 
     public WarpSword(GameObject characterObj) : base(characterObj)
     {
-
-        name = "Sword";
-        Image = Resources.Load<Sprite>("Images/Sword");
+        date = Resources.Load(CO.PATH.COMMAND_ENEMY+"WarpSword") as CommandDate ;
     }
 
     public override async UniTask excute()
@@ -45,7 +45,7 @@ public class WarpSword : Command
             CharacterObject.transform.Find("EnemyObject").gameObject.GetComponent<Animator>().SetTrigger("Sword");
 
             if (map[movePos.x - 1, movePos.y].getGameObjectOnFloor()!=null)
-                map[movePos.x -1, movePos.y].getGameObjectOnFloor().GetComponent<Object>().Damage(Power);
+                map[movePos.x -1, movePos.y].getGameObjectOnFloor().GetComponent<Object>().Damage(date.atk);
 
             await UniTask.Delay((int)(0.7 * 1000));
 

@@ -8,8 +8,9 @@ public class Down : Command
 {
     public Down(GameObject characterObj) :base(characterObj)
     {
-        name = "down";
-        Image = Resources.Load<Sprite>("Images/down");
+        date = Resources.Load(CO.PATH.COMMAND_BACKBORNE + "Down") as CommandDate;
+
+
     }
 
     public override async UniTask excute()

@@ -22,6 +22,17 @@ namespace Const
             public const float X = 1.3f;
             public const float Y = 0.76f;
         }
+
+        public static class PATH
+        {
+            public const string IMAGES = "";
+            public const string PREFAB = "";
+
+            public const string COMMAND = "CommandDate/";
+            public const string COMMAND_ENEMY = "CommandDate/Enemy/";
+            public const string COMMAND_PLAYER = "CommandDate/Player/";
+            public const string COMMAND_BACKBORNE = "CommandDate/BackBorne/";
+        }
     }
 }
 

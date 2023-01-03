@@ -8,9 +8,7 @@ public class BlackOut : Command
 {
     public BlackOut(GameObject characterObj) : base(characterObj)
     {
-
-        name = "BlackOut";
-        Image = Resources.Load<Sprite>("Images/BlackOutIcon");
+        date = Resources.Load(CO.PATH.COMMAND_ENEMY + "BlackOut") as CommandDate;
     }
 
     public override async UniTask excute()

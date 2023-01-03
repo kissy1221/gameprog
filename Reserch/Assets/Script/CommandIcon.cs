@@ -20,11 +20,13 @@ public class CommandIcon:MonoBehaviour
     void Update()
     {
 
-        list = characterScript.commandList.returnList();
-        updateCommandListUI();
+        //list = characterScript.commandList.returnList();
+        //updateCommandListUI();
         
 
     }
+
+    /*
 
     private void updateCommandListUI()
     {
@@ -53,6 +55,7 @@ public class CommandIcon:MonoBehaviour
         }
     }
 
+
     //表示されているコマンドアイコンをすべて削除
     private void deleteCommandListIcon()
     {
@@ -61,4 +64,6 @@ public class CommandIcon:MonoBehaviour
             child.gameObject.GetComponent<Image>().sprite = null;
         }
     }
+
+    */
 }

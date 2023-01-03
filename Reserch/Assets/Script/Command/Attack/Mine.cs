@@ -8,17 +8,18 @@ public class Mine : Command
 {
 
     GameObject MinePrefab;
-    GameObject MineObj;
 
     public Mine(GameObject characterObj) : base(characterObj)
     {
-        name = "Mine";
-        Image = Resources.Load<Sprite>("Images/MineIcon");
+        date = Resources.Load(CO.PATH.COMMAND_PLAYER + "Mine") as CommandDate;
+
         MinePrefab = (GameObject)Resources.Load("MinePrefab");
     }
 
     public override async UniTask excute()
     {
+        GameObject MineObj;
+
         Vector2Int putMinePos = CharacterScript.gameObject.getMapPosition() + new Vector2Int(1, 0);
         Vector3 characterPos = CharacterScript.gameObject.transform.position;
         Vector3 putMineV3Pos = characterPos + new Vector3(CO.FLOOR_DISTANCE.X, -0.3f, -1);

@@ -8,8 +8,8 @@ public class Left : Command
 {
     public Left(GameObject characterObj) :base(characterObj)
     {
-        name = "left";
-        Image = Resources.Load<Sprite>("Images/left");
+        date = Resources.Load(CO.PATH.COMMAND_BACKBORNE + "Left") as CommandDate;
+
     }
     public override async UniTask excute()
     {

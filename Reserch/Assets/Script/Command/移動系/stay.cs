@@ -8,8 +8,8 @@ public class stay : Command
 {
     public stay(GameObject characterObj) : base(characterObj)
     {
-        name = "left";
-        Image = Resources.Load<Sprite>("Images/stay");
+        date = Resources.Load(CO.PATH.COMMAND_BACKBORNE + "Stay") as CommandDate;
+
     }
 
     public override async UniTask excute()
