@@ -22,6 +22,7 @@ public class Character : Object
 
     public CommandState commandStatus;
 
+    public Vector2Int beforePos; //以前のコマンドのときにいたポジション
 
 
     new protected void Start()
@@ -35,13 +36,15 @@ public class Character : Object
     {
         base.Update();
 
+        if (GameManager.instance.State != GameManager.gameState.Run)
+            commandStatus = CommandState.START;
+
     }
 
 
     public virtual async void run()
     {
         commandStatus = CommandState.START;
-
         GameManager.instance.switchRun(true);
 
         //構文チェック
@@ -50,25 +53,31 @@ public class Character : Object
             while (commandList.Count > 0)
             {
                 await UniTask.WaitUntil(() => CommandAllow);
+                beforePos = this.gameObject.getMapPosition();//コマンド実行前にポジションの履歴を記録
                 await ExcuteCommandAsync();
             }
         }
 
         //コマンドが終了したことを記載
         commandStatus = CommandState.FINISH;
+        beforePos = this.gameObject.getMapPosition();
 
 
     }
-    protected async UniTask ExcuteCommandAsync()
+    public async UniTask ExcuteCommandAsync()
     {
         commandStatus = CommandState.EXCUTE;
 
         CommandAllow = false;
         Command com = commandList.getFrom(0);//先頭を参照
+        
+        Debug.Log(this.gameObject.name+"=>"+com.date.name+"を実行！");
         await com.excute(); //コマンドが終了するまで待つ
 
         commandList.removeHead();//先頭を外す
+
         commandStatus = CommandState.WAIT;
+        
         
 
     }

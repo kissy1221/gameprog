@@ -13,7 +13,7 @@ public class Enemy : Character
     {
         base.Start();
         pushCommandListAtRondom();
-        setHP(500);
+        //setHP(500);
 
         commandList.updateCommandListUI();
 

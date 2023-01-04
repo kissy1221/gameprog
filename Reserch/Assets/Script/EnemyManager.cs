@@ -19,11 +19,14 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
+
         //全キャラクターに実行を伝える
         if (canCall())
         {
             Call();
         }
+
     }
 
     void Call()

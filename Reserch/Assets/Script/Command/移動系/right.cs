@@ -22,10 +22,6 @@ public class Right : Command
             CharacterScript.State.setState(CharacterState.State.MOVE);
             
         }
-        else
-        {
-            //CharacterScript.finishMoveReqToManager();
-        }
 
         await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
     }

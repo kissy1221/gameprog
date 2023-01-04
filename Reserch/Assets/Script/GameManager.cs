@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public enum gameState
     {
         Run,    //Run中
-        Command //コマンド選択中
+        Command, //コマンド選択中
+        GameClear,//ゲームクリアした
+        GameOver//ゲームオーバーになった
     }
 
     public gameState State=gameState.Command;
@@ -54,13 +56,23 @@ public class GameManager : MonoBehaviour
             Enemies.GetComponent<EnemyManager>().pushCommandAllEnemies();
         }
 
+        if(Enemies.GetComponent<EnemyManager>().Enemies.Count==0)
+        {
+            State = gameState.GameClear;
+        }
+
+        if(GameObject.FindWithTag("Player")==null)
+        {
+            State = gameState.GameOver;
+        }
+
 
         //コマンドウィンドウの表示可否
         if(isRunning())
         {
             commandwin.SetActive(false);
         }
-        else
+        else if(State==gameState.Command)
         {
             commandwin.SetActive(true);
         }

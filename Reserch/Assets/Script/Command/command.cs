@@ -18,6 +18,11 @@ public abstract class Command
     protected GameObject mapObj;
     protected Floor[,] map;
 
+    public GameObject getExcuteObject()
+    {
+        return CharacterObject;
+    }
+
     //引数:コマンド実行者
     public Command(GameObject characterObj)
     {

@@ -13,16 +13,11 @@ public class Left : Command
     }
     public override async UniTask excute()
     {
-
         if (MoveSciprt.canMove(new Vector2Int(-1, 0)))
         {
            MoveSciprt.left();
             CharacterScript.State.setState(CharacterState.State.MOVE);
             
-        }
-        else
-        {
-            //CharacterScript.finishMoveReqToManager();
         }
 
         await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));

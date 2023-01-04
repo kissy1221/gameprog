@@ -24,6 +24,7 @@ public class Player : Character
             commandList.Add(new End(this.gameObject));
         }
 
+
     }
 
 

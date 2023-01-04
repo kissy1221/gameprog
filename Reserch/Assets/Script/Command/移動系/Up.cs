@@ -20,11 +20,6 @@ public class Up : Command
             CharacterScript.State.setState(CharacterState.State.MOVE);
             
         }
-        else
-        {
-            Debug.Log("“®‚¯‚Ü‚¹‚ñ");
-            //CharacterScript.finishMoveReqToManager();
-        }
 
         await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
 

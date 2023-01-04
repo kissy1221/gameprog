@@ -169,7 +169,6 @@ public class Move : MonoBehaviour
         map[x, y].GetComponent<Floor>().setObject(this.gameObject);
 
         targetPos = map[x, y].PlayerFloorPos;
-        Debug.Log("à⁄ìÆêÊ" + map[x, y].PlayerFloorPos);
         this.transform.position = map[x,y].PlayerFloorPos;
 
     }

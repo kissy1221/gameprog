@@ -27,7 +27,8 @@ public class WarpSword : Command
         }
         else
         {
-            AttackObjectPos = GameObject.FindGameObjectWithTag("Player").getMapPosition();
+
+            AttackObjectPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().beforePos;
             movePos = new Vector2Int(AttackObjectPos.x + 1, AttackObjectPos.y);
             nowPos = GameObject.FindGameObjectWithTag("Enemy").getMapPosition();
         }
@@ -38,7 +39,7 @@ public class WarpSword : Command
         {
             CharacterObject.GetComponent<Move>().moveAt(movePos.x, movePos.y);
 
-            CharacterObject.transform.Find("EnemyObject").gameObject.GetComponent<Animator>().SetTrigger("Sword");
+            CharacterObject.transform.Find("EnemyObject").gameObject.GetComponent<Animator>().SetTrigger("Sword");//アニメーション実行
 
             if (map[movePos.x - 1, movePos.y].getGameObjectOnFloor()!=null)
                 map[movePos.x -1, movePos.y].getGameObjectOnFloor().GetComponent<Object>().Damage(date.atk);
