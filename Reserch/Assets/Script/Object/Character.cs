@@ -48,18 +48,18 @@ public class Character : Object
         GameManager.instance.switchRun(true);
 
         //構文チェック
-        if(commandList.checkSynax())
+        if (commandList.checkSynax())
         {
             while (commandList.Count > 0)
             {
-                await UniTask.WaitUntil(() => CommandAllow);
+                CommandAllow = false;
+                commandStatus = CommandState.START;
+                BattleManager.Instance.List.Add(commandList.getFrom(0));
                 beforePos = this.gameObject.getMapPosition();//コマンド実行前にポジションの履歴を記録
-                await ExcuteCommandAsync();
+                await UniTask.WaitUntil(() => CommandAllow);
             }
         }
 
-        //コマンドが終了したことを記載
-        commandStatus = CommandState.FINISH;
         beforePos = this.gameObject.getMapPosition();
 
 
@@ -68,17 +68,18 @@ public class Character : Object
     {
         commandStatus = CommandState.EXCUTE;
 
-        CommandAllow = false;
+        //CommandAllow = false;
         Command com = commandList.getFrom(0);//先頭を参照
-        
-        Debug.Log(this.gameObject.name+"=>"+com.date.name+"を実行！");
+        commandList.removeHead();//先頭を外す
+        Debug.Log(this.gameObject.name + "=>" + com.date.name + "を実行！");
         await com.excute(); //コマンドが終了するまで待つ
 
-        commandList.removeHead();//先頭を外す
+        if (commandList.Count > 0)
+            commandStatus = CommandState.WAIT;
+        else
+            commandStatus = CommandState.FINISH;
 
-        commandStatus = CommandState.WAIT;
-        
-        
+
 
     }
 

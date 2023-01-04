@@ -101,9 +101,7 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
             List.ClearWithoutCallback();
 
         }
-        else
-        {
-        }
+
     }
 
 }
