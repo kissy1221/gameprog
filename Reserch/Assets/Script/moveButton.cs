@@ -5,11 +5,14 @@ using UnityEngine;
 public class moveButton : MonoBehaviour
 {
     public GameObject playerObject;   //プレイヤーオブジェクト
+    [SerializeField] EnemyManager enemyManager;
     private CommandList playerList;
 
     public AudioClip CommandSelectSound;
     public AudioClip RunSelectSound;
     AudioSource audioSource;
+
+    [SerializeField]Animator centerTextAnim;
 
 
     // Start is called before the first frame update
@@ -64,11 +67,11 @@ public class moveButton : MonoBehaviour
 
     public void RunButtonOnClick()
     {
+        
         audioSource.PlayOneShot(RunSelectSound);
-        Debug.Log("Run!");
-        GameObject.Find("CenterText").GetComponent<BattleStart>().anim.SetTrigger("Start");
-        GameManager.instance.commandwin.SetActive(false);
-        //GameManager.instance.switchRun(true);
+
+        GameManager.instance.runAll();
+        //centerTextAnim.SetTrigger("Start");
     }
 
     public void DeleteButtonOnClick()

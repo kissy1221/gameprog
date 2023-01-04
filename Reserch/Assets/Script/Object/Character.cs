@@ -7,13 +7,22 @@ using Const;
 public class Character : Object
 {
 
-    //public CommandList2 commandList=new CommandList2();
-
     protected CommandList commandList;
     public CharacterState State = new CharacterState();
-    public bool CommandAllow = true; //ゲームマネージャからコマンド実行を許可されたか
 
-    
+    public bool CommandAllow; //ゲームマネージャからコマンド実行を許可されたか
+
+    public enum CommandState
+    {
+        START,
+        WAIT,
+        EXCUTE,
+        FINISH
+    }
+
+    public CommandState commandStatus;
+
+
 
     new protected void Start()
     {
@@ -26,55 +35,58 @@ public class Character : Object
     {
         base.Update();
 
-        //Run中なら
-        if (State.getState()==CharacterState.State.WAIT && GameManager.instance.isRunning())
+    }
+
+
+    public virtual async void run()
+    {
+        commandStatus = CommandState.START;
+
+        GameManager.instance.switchRun(true);
+
+        //構文チェック
+        if(commandList.checkSynax())
         {
-                run();   
-        }
-
-    }
-    
-    public void finishReqToManager()
-    {
-
-        GameManager.instance.setFinishReq(this, true);
-    }
-
-    //ゲームマネージャーに１つのコマンドが終了を伝える
-    public void finishMoveReqToManager()
-    {
-        GameManager.instance.setMoveReq(this.gameObject,true);
-    }
-
-
-    public async void run()
-    {
-        if(CommandAllow)
-        {
-            if (commandList.Count > 0)
+            while (commandList.Count > 0)
             {
-
+                await UniTask.WaitUntil(() => CommandAllow);
                 await ExcuteCommandAsync();
-
-            }
-            finishMoveReqToManager(); //動作が終了をGMに伝える
-
-            //全コマンドが終了したら
-            if (commandList.Count <= 0)
-            {
-                //コマンド終了をgamemanagerに伝える
-                finishReqToManager();
             }
         }
+
+        //コマンドが終了したことを記載
+        commandStatus = CommandState.FINISH;
+
+
     }
-    async UniTask ExcuteCommandAsync()
+    protected async UniTask ExcuteCommandAsync()
     {
+        commandStatus = CommandState.EXCUTE;
+
         CommandAllow = false;
         Command com = commandList.getFrom(0);//先頭を参照
-        GameManager.instance.setMoveReq(this.gameObject, false);
         await com.excute(); //コマンドが終了するまで待つ
 
         commandList.removeHead();//先頭を外す
+        commandStatus = CommandState.WAIT;
+        
+
+    }
+
+
+    //相手の行動を待たずにコマンドを実行
+    //バグあり 使わないこと
+    public async void runSelf()
+    {
+        commandStatus = CommandState.START;
+
+        while (commandList.Count > 0)
+        {
+            await ExcuteCommandAsync();
+        }
+
+        //コマンドが終了したことを記載
+        commandStatus = CommandState.FINISH;
     }
 
 

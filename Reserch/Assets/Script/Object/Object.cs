@@ -24,6 +24,16 @@ public class Object : MonoBehaviour
 
     public void Damage(int damage)
     {
+        GameObject damageText = Resources.Load("Prefab/DamageText") as GameObject;
+        GameObject canvas = this.gameObject.transform.Find("Canvas").gameObject;
+
+        GameObject text;
+        text = Instantiate(damageText, new Vector3(0, 0, 0), Quaternion.identity);
+        text.transform.SetParent(canvas.transform, false);
+        text.transform.position = this.gameObject.transform.position;
+
+        text.GetComponent<Text>().text = damage.ToString();
+
         HP -= damage;
 
         if(HP<=0)

@@ -13,16 +13,12 @@ public class BattleStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            anim.SetTrigger("Start");
-        }
         
     }
 
     public void finishAnim()
     {
-        GameManager.instance.switchRun(true);
+        GameManager.instance.runAll();
     }
 
 

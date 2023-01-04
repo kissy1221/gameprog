@@ -21,7 +21,6 @@ public class Map : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
 
-        Debug.Log(player.name);
 
         initMap1();
 

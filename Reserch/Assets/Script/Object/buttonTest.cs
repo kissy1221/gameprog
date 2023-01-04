@@ -25,9 +25,11 @@ public class buttonTest : MonoBehaviour
 
     public void onClickStartButton()
     {
+        /*
         Player.Chart();
         Enemy1.chart();
         Enemy2.chart1();
         Enemy3.chart2();
+        */
     }
 }

@@ -22,6 +22,17 @@ public class CommandList : MonoBehaviour
 
     }
 
+    public void printListOnCosole()
+    {
+        string str="";
+        foreach(Command com in List)
+        {
+            str += com.date.name+"=>";
+        }
+
+        Debug.Log(str);
+    }
+
     public void Add(Command com)
     {
         if (Count < Const.CO.MAX_COMMAND_LIST_SIZE)
@@ -44,6 +55,11 @@ public class CommandList : MonoBehaviour
     public void removeHead()
     {
         List.RemoveAt(0);
+    }
+
+    public void removeAt(int i)
+    {
+        List.RemoveAt(i);
     }
 
     public Command getFrom(int i)
@@ -72,7 +88,7 @@ public class CommandList : MonoBehaviour
 
 
 
-    private void updateCommandListUI()
+    public void updateCommandListUI()
     {
 
         foreach (Transform child in commandListUI.transform)
@@ -96,6 +112,13 @@ public class CommandList : MonoBehaviour
 
             }
     }
+
+    public int indexOf(Command com)
+    {
+        return List.IndexOf(com);
+    }
+
+
 
     //構文チェック
     public bool checkSynax()

@@ -25,7 +25,7 @@ public class PlayerTest : CharacterTest
         status = State.EXCUTE;
         Allow = false;
 
-        gage.setTime(time);
+        gage.setTime(time); //処理に関係なし
         descriputionText.text = time + "秒間実行中する";
         await UniTask.Delay(time*1000); //コマンドの実行
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class Enemy : Character
 {
@@ -13,6 +14,8 @@ public class Enemy : Character
         base.Start();
         pushCommandListAtRondom();
         setHP(500);
+
+        commandList.updateCommandListUI();
 
         anim = transform.Find("EnemyObject").gameObject.GetComponent<Animator>();
     }
@@ -57,4 +60,6 @@ public class Enemy : Character
         }
 
     }
+
+
 }

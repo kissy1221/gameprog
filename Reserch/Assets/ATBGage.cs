@@ -28,6 +28,7 @@ public class ATBGage : MonoBehaviour
         {
             slider.value = 0;
             GameManager.instance.switchRun(true);
+            GameManager.instance.runAll();
         }
 
 

@@ -7,7 +7,6 @@ using Const;
 
 public class WarpSword : Command
 {
-    int Power = 50;
 
     public WarpSword(GameObject characterObj) : base(characterObj)
     {
@@ -33,9 +32,6 @@ public class WarpSword : Command
             nowPos = GameObject.FindGameObjectWithTag("Enemy").getMapPosition();
         }
 
-        Debug.Log("UŒ‚‘ÎÛÀ•W" + AttackObjectPos);
-        Debug.Log("ˆÚ“®æ:" + movePos);
-
 
         //ˆÚ“®æ‚Ì•¨‘Ì‚Ì”»’è
         if (map[movePos.x, movePos.y].getGameObjectOnFloor() is null)
@@ -49,7 +45,6 @@ public class WarpSword : Command
 
             await UniTask.Delay((int)(0.7 * 1000));
 
-            Debug.Log("‚à‚Æ‚ÌˆÊ’u‚É–ß‚è‚Ü‚·");
             CharacterObject.GetComponent<Move>().moveAt(nowPos.x, nowPos.y);
 
             await UniTask.Delay((int)(0.3f * 1000));

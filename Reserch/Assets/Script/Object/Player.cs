@@ -14,18 +14,14 @@ public class Player : Character
 
         base.Update();
 
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.I))
         {
             commandList.Add(new If(this.gameObject));
         }
+
         if(Input.GetKeyDown(KeyCode.E))
         {
             commandList.Add(new End(this.gameObject));
-        }
-
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("構文チェック結果:" + commandList.checkSynax());
         }
 
     }

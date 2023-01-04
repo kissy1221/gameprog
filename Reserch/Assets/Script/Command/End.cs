@@ -13,6 +13,14 @@ public class End : Command
 
     public override async UniTask excute()
     {
-        await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
+        int index = commandList.indexOf(this);
+
+        if(index+1<commandList.Count)
+        {
+            Command com = commandList.getFrom(index + 1);
+            await com.excute();
+            commandList.removeAt(index + 1);
+        }
+
     }
 }

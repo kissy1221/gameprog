@@ -6,8 +6,6 @@ using UnityEngine;
 public class EnemyManagerTest : MonoBehaviour
 {
 
-
-
     List<GameObject> Enemies = new List<GameObject>();
     GameObject Player;
 
@@ -31,22 +29,6 @@ public class EnemyManagerTest : MonoBehaviour
 
     }
 
-    //コマンドが終了していない敵の数を数える
-    int WaitEnemy()
-    {
-        int num = 0;
-        foreach (GameObject Enemy in Enemies)
-        {
-            if(Enemy.GetComponent<CharacterTest>().status==CharacterTest.State.WAIT)
-            {
-                num++;
-            }
-
-            
-        }
-
-        return num;
-    }
 
     void Call()
     {

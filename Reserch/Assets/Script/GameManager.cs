@@ -16,63 +16,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     GameObject PlayerObject;
+    [SerializeField]GameObject Enemies;
     GameObject EnemyObject;
-    
-
-    //コマンドが終了したか
-    private bool EnemyFinishReq = false;
-    private bool PlayerFinishReq = false;
-
-    //１つのコマンドが終了したか true→コマンド実行 false →コマンド実行していない
-    private bool EnemyMoveReq = true;
-    private bool PlayerMoveReq = true;
-
-    public void setFinishReq(Character character,bool Enable)
-    {
-        if(character.GetType()==typeof(Player))
-        {
-            PlayerFinishReq = Enable;
-        }
-        else
-        {
-            EnemyFinishReq = Enable;
-        }
-    }
-
-    public void setMoveReq(bool Enabled)
-    {
-        EnemyMoveReq = Enabled;
-        PlayerMoveReq = Enabled;
-    }
-
-    public void setMoveReq(GameObject character,bool Enabled)
-    {
-
-        if(character.tag=="Player")
-        {
-            PlayerMoveReq = Enabled;
-        }
-        else
-        {
-            EnemyMoveReq = Enabled;
-        }
-    }
-
-    public bool getMove(GameObject character)
-    {
-        if(character.tag=="Player")
-        {
-            return PlayerMoveReq;
-        }
-        else
-        {
-            return EnemyMoveReq;
-        }
-    }
 
 
     [SerializeField] public GameObject commandwin;
-    [SerializeField] private GameObject Player;
 
 
     private void Awake()
@@ -99,55 +47,54 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //お互いコマンド終了リクエストがきたら
-        if(EnemyFinishReq && PlayerFinishReq)
+        if(isfinishCommand() && State==gameState.Run)
         {
+            State = gameState.Command;
 
-            switchRun(false);
-            EnemyFinishReq = false;
-            PlayerFinishReq = false;
-
-            setMoveReq(true);
-
-            commandwin.SetActive(true);
-
-            GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().pushCommandListAtRondom();
+            Enemies.GetComponent<EnemyManager>().pushCommandAllEnemies();
         }
 
-        //Run中
-        if (isRunning())
+
+        //コマンドウィンドウの表示可否
+        if(isRunning())
         {
             commandwin.SetActive(false);
         }
-            
-
-        if (PlayerMoveReq && EnemyMoveReq)
+        else
         {
+            commandwin.SetActive(true);
+        }
+    }
 
-            Debug.Log("PlayerMoveReq:" + PlayerFinishReq);
-            Debug.Log("EnemyMoveReq:" + EnemyFinishReq);
+    public bool isfinishCommand()
+    {
+        Character character;
 
-            if (EnemyFinishReq && !PlayerFinishReq)
-            {
-                Debug.Log("敵のコマンド終了");
-                setMoveReq(PlayerObject, false);
-                PlayerObject.GetComponent<Character>().CommandAllow = true;
-            }
-            else if(PlayerFinishReq && !EnemyFinishReq)
-            {
-                setMoveReq(EnemyObject, false);
-                EnemyObject.GetComponent<Character>().CommandAllow = true;
-            }
-            else
-            {
-                setMoveReq(false);
-                PlayerObject.GetComponent<Character>().CommandAllow = true;
-                EnemyObject.GetComponent<Character>().CommandAllow = true;
-            }
-            
+        character = PlayerObject.GetComponent<Character>();
+        if(character.commandStatus!=Character.CommandState.FINISH)
+        {
+            return false;
         }
 
+        foreach(GameObject enemy in Enemies.GetComponent<EnemyManager>().Enemies)
+        {
+            character = enemy.GetComponent<Character>();
 
+            if (character.commandStatus != Character.CommandState.FINISH)
+            {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+    public void runAll()
+    {
+        State = gameState.Run;
+        PlayerObject.GetComponent<Character>().run();
+        Enemies.GetComponent<EnemyManager>().runAllEnemies();
     }
 
     public bool isRunning()
