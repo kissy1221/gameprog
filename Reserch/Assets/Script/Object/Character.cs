@@ -53,8 +53,17 @@ public class Character : Object
             while (commandList.Count > 0)
             {
                 await UniTask.WaitUntil(() => CommandAllow);
+
                 beforePos = this.gameObject.getMapPosition();//コマンド実行前にポジションの履歴を記録
-                await ExcuteCommandAsync();
+
+                await ExcuteCommandAsync(); //コマンド実行
+
+                //次のコマンドがある場合
+                if(commandList.Count>0)
+                {
+                    commandStatus = CommandState.WAIT; //待機
+                }
+                
             }
         }
 
@@ -75,11 +84,6 @@ public class Character : Object
         await com.excute(); //コマンドが終了するまで待つ
 
         commandList.removeHead();//先頭を外す
-
-        commandStatus = CommandState.WAIT;
-        
-        
-
     }
 
 
