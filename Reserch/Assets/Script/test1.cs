@@ -8,13 +8,10 @@ public class test1 : MonoBehaviour
     List<UniTask> array = new List<UniTask>();
     async void Start()
     {
-        array.Add(WaitSec(3));
-        array.Add(WaitSec(1));
-        array.Add(WaitSec(2));
 
 
         Debug.Log("Start UniTask!");
-        await UniTask.WhenAll(array);
+        await UniTask.WhenAll(WaitSec(1),WaitSec(2));
         Debug.Log("Complete All UniTask!");
     }
 

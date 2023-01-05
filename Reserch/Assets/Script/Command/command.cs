@@ -33,7 +33,7 @@ public abstract class Command
 
         this.commandList = CharacterObject.GetComponent<CommandList>();
 
-        map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        map = Map.Instance.getMap();
 
     }
 

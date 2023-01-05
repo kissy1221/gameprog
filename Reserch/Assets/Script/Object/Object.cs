@@ -7,13 +7,11 @@ public class Object : MonoBehaviour
 {
 
     [SerializeField] int HP;
-    [SerializeField] GameObject TextObject;
-    Text HPText;
+    [SerializeField]Text HPText;
 
     // Start is called before the first frame update
     protected void Start()
     {
-        HPText = TextObject.GetComponent<Text>();
     }
 
     // Update is called once per frame

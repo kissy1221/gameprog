@@ -13,9 +13,6 @@ public class Enemy : Character
     {
         base.Start();
         pushCommandListAtRondom();
-        //setHP(500);
-
-        commandList.updateCommandListUI();
 
         anim = transform.Find("EnemyObject").gameObject.GetComponent<Animator>();
     }

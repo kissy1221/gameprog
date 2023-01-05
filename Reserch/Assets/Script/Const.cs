@@ -11,6 +11,33 @@ namespace Const
 
         public const int maxCost=40;
 
+        public static class INIT_POS
+        {
+            public static class ENEMY1
+            {
+                public const int X =6;
+                public const int Y =2;
+            }
+
+            public static class ENEMY2
+            {
+                public const int X =6;
+                public const int Y =0;
+            }
+
+            public static class ENEMY3
+            {
+                public const int X =5;
+                public const int Y =3;
+            }
+
+            public static class PLAYER
+            {
+                public const int X = 1;
+                public const int Y = 1;
+            }
+        }
+
         public static class MAP_SIZE
         {
             public const int X = 8;
@@ -26,7 +53,7 @@ namespace Const
         public static class PATH
         {
             public const string IMAGES = "";
-            public const string PREFAB = "";
+            public const string PREFAB = "Prefab/";
 
             public const string COMMAND = "CommandDate/";
             public const string COMMAND_ENEMY = "CommandDate/Enemy/";

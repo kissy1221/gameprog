@@ -11,6 +11,7 @@ public class Character : Object
     public CharacterState State = new CharacterState();
 
     public bool CommandAllow; //ゲームマネージャからコマンド実行を許可されたか
+    [HideInInspector] public Vector2Int beforePos; //以前のコマンドのときにいたポジション
 
     public enum CommandState
     {
@@ -22,7 +23,7 @@ public class Character : Object
 
     public CommandState commandStatus;
 
-    public Vector2Int beforePos; //以前のコマンドのときにいたポジション
+    
 
 
     new protected void Start()
@@ -42,10 +43,11 @@ public class Character : Object
     }
 
 
-    public virtual async void run()
+    public virtual async UniTask run()
     {
         commandStatus = CommandState.START;
         GameManager.instance.switchRun(true);
+        CommandAllow = true;
 
         //構文チェック
         if(commandList.checkSynax())
@@ -71,7 +73,6 @@ public class Character : Object
         commandStatus = CommandState.FINISH;
         beforePos = this.gameObject.getMapPosition();
 
-
     }
     public async UniTask ExcuteCommandAsync()
     {
@@ -84,22 +85,6 @@ public class Character : Object
         await com.excute(); //コマンドが終了するまで待つ
 
         commandList.removeHead();//先頭を外す
-    }
-
-
-    //相手の行動を待たずにコマンドを実行
-    //バグあり 使わないこと
-    public async void runSelf()
-    {
-        commandStatus = CommandState.START;
-
-        while (commandList.Count > 0)
-        {
-            await ExcuteCommandAsync();
-        }
-
-        //コマンドが終了したことを記載
-        commandStatus = CommandState.FINISH;
     }
 
 

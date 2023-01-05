@@ -20,7 +20,7 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //全員からコマンドを受け取ったかの判定

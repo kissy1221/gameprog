@@ -7,13 +7,10 @@ using Const;
 public class AreaSteal : Command
 {
     private int AreaStealCol;
-    Floor[,] m;
 
     public AreaSteal(GameObject characterObj) : base(characterObj)
     {
         date = Resources.Load(CO.PATH.COMMAND_PLAYER + "AreaSteal") as CommandDate;
-
-        m = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
     }
 
     public override async UniTask excute()
@@ -22,10 +19,10 @@ public class AreaSteal : Command
         AreaStealCol = searchAreaStealCol();
 
 
-        for(int i=0;i<m.GetLength(1);i++)
+        for(int i=0;i<map.GetLength(1);i++)
         {
-            if(m[AreaStealCol, i].getGameObjectOnFloor() is null)
-                m[AreaStealCol, i].changeColor(Floor.floorColor.Red);
+            if(map[AreaStealCol, i].getGameObjectOnFloor() is null)
+                map[AreaStealCol, i].changeColor(Floor.floorColor.Red);
         }
 
 
@@ -35,11 +32,11 @@ public class AreaSteal : Command
 
     private int searchAreaStealCol()
     {
-        for (int i = 0; i < m.GetLength(0); i++)
+        for (int i = 0; i < map.GetLength(0); i++)
         {
-            for (int j = 0; j < m.GetLength(1); j++)
+            for (int j = 0; j < map.GetLength(1); j++)
             {
-                if (m[i, j].getColor() == Floor.floorColor.Blue)
+                if (map[i, j].getColor() == Floor.floorColor.Blue)
                 {
                     return i;
                 }

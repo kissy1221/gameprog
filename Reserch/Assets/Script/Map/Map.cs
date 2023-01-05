@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Const;
 
-public class Map : MonoBehaviour
+public class Map : SingletonMonoBehaviour<Map>
 {
     private Floor[,] map = new Floor[CO.MAP_SIZE.X, CO.MAP_SIZE.Y];
-    private int[,] test = new int[3, 3];
  
     public Floor[,] getMap()
     {
@@ -20,14 +19,15 @@ public class Map : MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
 
         initMap1();
 
-        map[1, 1].GetComponent<Floor>().setObject(player);
-        map[6, 2].GetComponent<Floor>().setObject(enemy);
+        map[CO.INIT_POS.PLAYER.X, CO.INIT_POS.PLAYER.Y].GetComponent<Floor>().putObject(player);
+        //map[CO.INIT_POS.ENEMY1.X, CO.INIT_POS.ENEMY1.Y].GetComponent<Floor>().putObject(enemies[0]);
 
-
+        Debug.Log("MAP START FINISH");
 
     }
 
@@ -39,6 +39,11 @@ public class Map : MonoBehaviour
             printMapOnObject();
         }
 
+    }
+
+    public Floor getFloor(int x,int y)
+    {
+        return map[x, y];
     }
 
     //è∞ÇîzóÒÇ∆ÇµÇƒóéÇ∆ÇµçûÇﬁ
@@ -121,49 +126,4 @@ public class Map : MonoBehaviour
         Debug.Log(print_array);
     }
 
-
-    /*
-    void input()
-    {
-
-        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            if (canMove(player, new Vector2Int(0, -1)))
-            {
-                move(player, new Vector2Int(0, -1));
-            }
-            else
-                Debug.Log("ìÆÇØÇ‹ÇπÇÒ");
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (canMove(player, new Vector2Int(-1, 0)))
-            {
-                move(player, new Vector2Int(-1, 0));
-            }
-            else
-                Debug.Log("ìÆÇØÇ‹ÇπÇÒ");
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (canMove(player, new Vector2Int(0, 1)))
-            {
-                move(player, new Vector2Int(0, 1));
-            }
-            else
-                Debug.Log("ìÆÇØÇ‹ÇπÇÒ");
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (canMove(player, new Vector2Int(1, 0)))
-            {
-                move(player, new Vector2Int(1, 0));
-            }
-            else
-                Debug.Log("ìÆÇØÇ‹ÇπÇÒ");
-        }
-    }
-    */
 }

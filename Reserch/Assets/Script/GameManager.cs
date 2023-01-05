@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 using Const;
 
 public class GameManager : MonoBehaviour
@@ -49,12 +50,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isfinishCommand() && State==gameState.Run)
-        {
-            State = gameState.Command;
-
-            Enemies.GetComponent<EnemyManager>().pushCommandAllEnemies();
-        }
 
         if(Enemies.GetComponent<EnemyManager>().Enemies.Count==0)
         {
@@ -78,35 +73,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool isfinishCommand()
-    {
-        Character character;
-
-        character = PlayerObject.GetComponent<Character>();
-        if(character.commandStatus!=Character.CommandState.FINISH)
-        {
-            return false;
-        }
-
-        foreach(GameObject enemy in Enemies.GetComponent<EnemyManager>().Enemies)
-        {
-            character = enemy.GetComponent<Character>();
-
-            if (character.commandStatus != Character.CommandState.FINISH)
-            {
-                return false;
-            }
-        }
-
-        return true;
-
-    }
-
-    public void runAll()
+    public async void runAll()
     {
         State = gameState.Run;
-        PlayerObject.GetComponent<Character>().run();
-        Enemies.GetComponent<EnemyManager>().runAllEnemies();
+        UniTask runPlayer=PlayerObject.GetComponent<Character>().run();
+        UniTask runEnemies=Enemies.GetComponent<EnemyManager>().runAllEnemies();
+
+        await UniTask.WhenAll(runPlayer, runEnemies);
+
+        State = gameState.Command;
+        Enemies.GetComponent<EnemyManager>().pushCommandAllEnemies();
     }
 
     public bool isRunning()

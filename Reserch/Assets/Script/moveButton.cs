@@ -67,11 +67,11 @@ public class moveButton : MonoBehaviour
 
     public void RunButtonOnClick()
     {
-        
+        GameManager.instance.switchRun(true);
         audioSource.PlayOneShot(RunSelectSound);
 
-        GameManager.instance.runAll();
-        //centerTextAnim.SetTrigger("Start");
+        //GameManager.instance.runAll();
+        centerTextAnim.SetTrigger("Start");
     }
 
     public void DeleteButtonOnClick()

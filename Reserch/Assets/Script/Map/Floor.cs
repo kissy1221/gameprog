@@ -16,8 +16,8 @@ public class Floor : MonoBehaviour
 
     public enum floorColor
     {
-        Red,
-        Blue
+        Red=1,
+        Blue=-1
     };
 
     [SerializeField] floorColor color;
@@ -31,8 +31,21 @@ public class Floor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //設定しているカラーによって表示変更
+        if(color==floorColor.Red)
+        {
+            spRen.sprite = RedFloorSprite;
+        }
+        else
+        {
+            spRen.sprite = BlueFloorSprite;
+        }
 
+    }
 
+    public floorColor Color
+    {
+        get { return color; }
     }
 
     public floorColor getColor()
@@ -58,6 +71,13 @@ public class Floor : MonoBehaviour
         this.ObjectOnFloor = obj;
     }
 
+    //配置させる(表示も変わる)
+    public void putObject(GameObject obj)
+    {
+        this.ObjectOnFloor = obj;
+        obj.transform.position = this.PlayerFloorPos;
+    }
+
     public void setSubObject(GameObject obj)
     {
         this.ObjectOnFloorSub = obj;
@@ -66,29 +86,11 @@ public class Floor : MonoBehaviour
     //色反転
     public　void changeColor()
     {
-        if (color == floorColor.Red)
-        {
-            color = floorColor.Blue;
-            spRen.sprite = BlueFloorSprite;
-        }
-        else
-        {
-            color = floorColor.Red;
-            spRen.sprite = RedFloorSprite;
-        }
+        this.color = (floorColor)((int)color * -1);
     }
 
     public void changeColor(floorColor c)
     {
-        if (c == floorColor.Red)
-        {
-            color = floorColor.Red;
-            spRen.sprite = RedFloorSprite;
-        }
-        else
-        {
-            color = floorColor.Blue;
-            spRen.sprite = BlueFloorSprite;
-        }
+        this.color = c;
     }
 }

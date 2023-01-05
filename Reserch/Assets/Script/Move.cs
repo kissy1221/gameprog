@@ -31,10 +31,6 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.M) && this.gameObject.tag==("Player"))
-        {
-            moveAt(2, 0);
-        }
         move();
     }
 

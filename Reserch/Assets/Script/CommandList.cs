@@ -9,13 +9,21 @@ public class CommandList : MonoBehaviour
 
     private SelectableList<Command> List=new SelectableList<Command>();
 
-    [SerializeField]GameObject commandListUI; //コマンドリストの表示先UI
+    [SerializeField] public GameObject commandListUI; //コマンドリストの表示先UI
 
     public int Count { get { return List.Count; } }
 
     // Start is called before the first frame update
     void Start()
     {
+        
+        if (this.commandListUI == null)
+        {
+            GameObject horizontalList = Resources.Load("Prefab/UI/EnemyCommandIcon") as GameObject;
+            GameObject enemyCommandListView = GameObject.Find("EnemyCommandListView");
+            commandListUI=Instantiate(horizontalList, Vector3.zero, Quaternion.identity, enemyCommandListView.transform);
+        }
+        
 
         //リストが更新されたときに呼び出すコールバック関数の登録
         List.mChanged += () => updateCommandListUI(); //UIに表示する関数を登録する
@@ -90,7 +98,6 @@ public class CommandList : MonoBehaviour
 
     public void updateCommandListUI()
     {
-
         foreach (Transform child in commandListUI.transform)
         {
             child.gameObject.GetComponent<Image>().sprite = null;

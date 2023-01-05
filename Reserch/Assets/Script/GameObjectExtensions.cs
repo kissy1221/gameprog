@@ -7,7 +7,7 @@ public static class GameObjectExtensions
     //ç¿ïWíTçı
     public static Vector2Int getMapPosition(this GameObject self)
     {
-        Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        Floor[,] map = Map.Instance.getMap();
 
         //Debug.Log("self:" + self.name);
 
@@ -40,7 +40,7 @@ public static class GameObjectExtensions
 
     public static void DestroyfromMap(this GameObject self)
     {
-        Floor[,] map = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>().getMap();
+        Floor[,] map = Map.Instance.getMap();
         Vector2Int pos = getMapPosition(self);
 
         map[pos.x, pos.y].setObject(null);
