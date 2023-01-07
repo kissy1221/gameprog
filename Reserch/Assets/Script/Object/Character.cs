@@ -40,6 +40,11 @@ public class Character : Object
         if (GameManager.instance.State != GameManager.gameState.Run)
             commandStatus = CommandState.START;
 
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            this.Damage(10);
+        }
+
     }
 
 

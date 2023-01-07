@@ -26,9 +26,12 @@ public class Object : MonoBehaviour
         GameObject canvas = this.gameObject.transform.Find("Canvas").gameObject;
 
         GameObject text;
-        text = Instantiate(damageText, new Vector3(0, 0, 0), Quaternion.identity);
+        text = Instantiate(damageText, new Vector3(this.transform.position.x, this.transform.position.y,canvas.transform.position.z), Quaternion.identity,canvas.transform);
+
+        /*
         text.transform.SetParent(canvas.transform, false);
         text.transform.position = this.gameObject.transform.position;
+        */
 
         text.GetComponent<Text>().text = damage.ToString();
 
