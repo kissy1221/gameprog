@@ -43,7 +43,21 @@ public class Map : SingletonMonoBehaviour<Map>
 
     public Floor getFloor(int x,int y)
     {
-        return map[x, y];
+        try
+        {
+            return map[x, y];
+        }
+        catch(System.IndexOutOfRangeException e)
+        {
+            Debug.LogError("マップ外を参照しています.");
+            return null;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(e.Message);
+            return null;
+        }
+        
     }
 
     //床を配列として落とし込む

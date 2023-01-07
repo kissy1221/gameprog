@@ -93,4 +93,19 @@ public class Floor : MonoBehaviour
     {
         this.color = c;
     }
+
+    //オブジェクトにダメージを与える
+    public void damageObject(int damage)
+    {
+        if(this.ObjectOnFloor!=null)
+            this.ObjectOnFloor.GetComponent<Object>().Damage(damage);
+    }
+
+    //この場所に移動できるか
+    public bool canMove()
+    {
+        if (this.ObjectOnFloor == null)
+            return true;
+        return false;
+    }
 }

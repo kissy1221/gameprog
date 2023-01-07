@@ -4,8 +4,9 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Linq;
 using Const;
+using System;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
 {
 
     [HideInInspector]public List<GameObject> Enemies = new List<GameObject>();
@@ -71,6 +72,12 @@ public class EnemyManager : MonoBehaviour
 
     void addEnemy(int num)
     {
+
+        if(num<=0 || 3<num)
+        {
+            throw new ArgumentOutOfRangeException("“G‚Ì”‚ð‚P`‚R‚ÌŠÔ‚ÅÝ’è‚µ‚Ä‚­‚¾‚³‚¢");
+        }
+
         GameObject enemy = Resources.Load(Const.CO.PATH.PREFAB + "Enemy/Samurai") as GameObject;
 
         for (int i=0;i<num;i++)

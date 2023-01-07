@@ -23,6 +23,10 @@ public class Player : Character
         {
             commandList.Add(new End(this.gameObject));
         }
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            commandList.Add(new Wind(this.gameObject));
+        }
 
 
     }
