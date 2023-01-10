@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2324bfbf21c1114c8e2668568ac0820, type: 3}
   m_Name: Wind
   m_EditorClassIdentifier: 
-  commandName: 
-  description: 
-  type: 0
+  commandName: "\u7A81\u98A8"
+  description: "\u98A8\u3067\u6575\u3092\uFF11\u30DE\u30B9\u5F8C\u65B9\u306B\u5439\u3063\u98DB\u3070\u3059"
+  type: 2
   atk: 0
-  cost: 0
-  sprite: {fileID: 0}
+  cost: 1
+  sprite: {fileID: 21300000, guid: 48f3a3dd8c12b4941b297bf63e18dc98, type: 3}
