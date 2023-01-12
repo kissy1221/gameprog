@@ -32,7 +32,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5283656486345802862}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -132,8 +132,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1613162613742926771}
   - {fileID: 1415742735}
+  - {fileID: 1613162613742926771}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -170,8 +170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 1000
-  TextObject: {fileID: 0}
+  HPText: {fileID: 0}
   CommandAllow: 1
+  beforePos: {x: 0, y: 0}
   commandStatus: 0
 --- !u!114 &3594464521950907470
 MonoBehaviour:
@@ -207,7 +208,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9032988422121773977, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.0024347305
+      value: -0.0024337769
       objectReference: {fileID: 0}
     - target: {fileID: -9032988422121773977, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
       propertyPath: m_Bounds.m_Center.y
@@ -323,7 +324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7185160353364698954, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: 0.3599259
+      value: 0.35992494
       objectReference: {fileID: 0}
     - target: {fileID: -7185160353364698954, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
       propertyPath: m_Bounds.m_Center.y
@@ -511,7 +512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2364307010229973598, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2364307010229973598, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
       propertyPath: m_LocalScale.x
@@ -735,7 +736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1145339335970338896, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.006229073
+      value: -0.0062300265
       objectReference: {fileID: 0}
     - target: {fileID: 1145339335970338896, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
       propertyPath: m_Bounds.m_Center.y
@@ -1027,7 +1028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7356889023244584863, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.00094404817
+      value: -0.00094500184
       objectReference: {fileID: 0}
     - target: {fileID: 7356889023244584863, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
       propertyPath: m_Bounds.m_Center.y
