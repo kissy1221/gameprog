@@ -18,6 +18,13 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
     // Start is called before the first frame update
     void Start()
     {
+        //
+        if(PlayerPrefs.HasKey("EnemyNum"))
+        {
+            EnemyNum = PlayerPrefs.GetInt("EnemyNum");
+        }
+
+
         Enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         Player = GameObject.FindGameObjectWithTag("Player");
 

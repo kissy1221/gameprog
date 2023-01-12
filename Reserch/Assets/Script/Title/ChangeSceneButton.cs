@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ChangeSceneButton : MonoBehaviour
 {
+    [SerializeField] GameObject OptionMenu;
+    
     public void OnClickGameStart()
     {
         SceneManager.LoadScene("SampleScene");
@@ -14,4 +16,9 @@ public class ChangeSceneButton : MonoBehaviour
     {
         SceneManager.LoadScene("buildDeck");
     }
+
+    public void onClickOpution()
+    {
+        OptionMenu.SetActive(true);
+    }    
 }

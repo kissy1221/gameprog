@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//コンポーネントを付与することで敵コマンドが一部隠れる
 public class Blind : MonoBehaviour
 {
 
