@@ -56,13 +56,15 @@ public class CommandList : MonoBehaviour
     //Œã”ö‚ðŽæ‚èœ‚­
     public void removeTail()
     {
-        List.RemoveAt(Count - 1);
+        if(List.Count>0)
+            List.RemoveAt(Count - 1);
     }
 
     //æ“ª‚ðŽæ‚èœ‚­
     public void removeHead()
     {
-        List.RemoveAt(0);
+        if(List.Count>0)
+            List.RemoveAt(0);
     }
 
     public void removeAt(int i)
@@ -101,6 +103,7 @@ public class CommandList : MonoBehaviour
         foreach (Transform child in commandListUI.transform)
         {
             child.gameObject.GetComponent<Image>().sprite = null;
+            child.GetChild(0).gameObject.SetActive(false);
         }
 
             foreach (Command command in List)
@@ -114,6 +117,11 @@ public class CommandList : MonoBehaviour
                         break;
                     }
                 }
+
+            if(command.GetType()==typeof(If))
+            {
+                nullImageHead.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            }
 
             nullImageHead.sprite = command.date.sprite;
 

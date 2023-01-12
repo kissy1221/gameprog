@@ -1,41 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
 
-public class Enemy : Character
+public class Samurai : Enemy
 {
-
-    Animator anim;
-    Player PlayerClass;
-    Player a;
-
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
         pushCommandListAtRondom();
-
-        anim = transform.Find("EnemyObject").gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     new void Update()
     {
         base.Update();
-        
     }
 
-    //ランダムでリストにコマンドを入れる
-    public void pushCommandListAtRondom()
+    public override void pushCommandListAtRondom()
     {
-        int CommandNum=Random.Range(2,6);
+        int CommandNum = Random.Range(2, 6);
 
-        for(int i=0;i<CommandNum;i++)
+        for (int i = 0; i < CommandNum; i++)
         {
             int RandomNum = Random.Range(1, 7);
 
-            switch(RandomNum)
+            switch (RandomNum)
             {
                 case 1:
                     commandList.Add(new Up(this.gameObject));
@@ -59,6 +49,4 @@ public class Enemy : Character
         }
 
     }
-
-
 }

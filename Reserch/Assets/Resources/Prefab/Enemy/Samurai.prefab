@@ -226,8 +226,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7469530317705786799}
   - component: {fileID: 7469530317705786792}
-  - component: {fileID: 7469530317705786798}
   - component: {fileID: 7469530317705786795}
+  - component: {fileID: 5401722884797334207}
   m_Layer: 0
   m_Name: Samurai
   m_TagString: Enemy
@@ -264,23 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171731a3ab64e2040a62c4c89ad4c00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7469530317705786798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7469530317705786797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5238fb2e7e6611449f583d1af2a280f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 1000
-  HPText: {fileID: 7469530317932961353}
-  CommandAllow: 1
-  beforePos: {x: 0, y: 0}
-  commandStatus: 0
 --- !u!114 &7469530317705786795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +277,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandListUI: {fileID: 0}
+--- !u!114 &5401722884797334207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469530317705786797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc315fee69736834e90326c6cdb5e06b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 1000
+  HPText: {fileID: 7469530317932961353}
+  beforePos: {x: 0, y: 0}
+  commandStatus: 0
 --- !u!1 &7469530317932961356
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +461,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 451266937
-  m_SortingLayer: 4
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
