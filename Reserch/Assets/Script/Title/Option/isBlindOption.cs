@@ -9,6 +9,11 @@ public class isBlindOption : MonoBehaviour
     [SerializeField] Dropdown BlindNumDropDown; //ˆÃ–Ù‚Ì”
 
     public bool isBlindOn { get => isBlindToggle.isOn; set { isBlindToggle.isOn = value; } }
+
+    public void setBlindNum(int num)
+    {
+        BlindNumDropDown.value = num - 1;
+    }
     
     public int getBlindNum()
     {

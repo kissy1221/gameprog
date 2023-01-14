@@ -20,5 +20,6 @@ public class ChangeSceneButton : MonoBehaviour
     public void onClickOpution()
     {
         OptionMenu.SetActive(true);
+        OptionMenu.GetComponent<OptionManager>().reflectOptionData();
     }    
 }
