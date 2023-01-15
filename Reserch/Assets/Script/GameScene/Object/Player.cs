@@ -28,6 +28,22 @@ public class Player : Character
             commandList.Add(new Wind(this.gameObject));
         }
 
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            status.Add(ConditionDB.Conditions[ConditionID.Poison]);
+        }
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            string str="";
+
+            foreach(Condition cond in status)
+            {
+                str += cond.Name + ",";
+            }
+
+            Debug.Log(str);
+        }
+
 
     }
 

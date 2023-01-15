@@ -59,6 +59,7 @@ namespace Const
             public const string COMMAND_ENEMY = "CommandDate/Enemy/";
             public const string COMMAND_PLAYER = "CommandDate/Player/";
             public const string COMMAND_BACKBORNE = "CommandDate/BackBorne/";
+            public const string COMMAND_DB = "CommandDate/CommandDataBase";
         }
     }
 }

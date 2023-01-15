@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using Const;
 
 public class Character : Object
 {
 
-    protected CommandList commandList;
+    protected CommandList commandList; //自身の所持しているコマンドリスト
+    protected List<Condition> status = new List<Condition>();
     public CharacterState State = new CharacterState();
 
+    Image conditionImage;
+
     [HideInInspector] public Vector2Int beforePos; //以前のコマンドのときにいたポジション
+
+    
 
     public enum CommandState
     {
@@ -36,11 +42,6 @@ public class Character : Object
 
         if (GameManager.instance.State != GameManager.gameState.Run)
             commandStatus = CommandState.START;
-
-        if(Input.GetKeyDown(KeyCode.D))
-        {
-            this.Damage(10);
-        }
 
     }
 
@@ -76,21 +77,6 @@ public class Character : Object
         beforePos = this.gameObject.getMapPosition();
 
     }
-    public async UniTask ExcuteCommandAsync()
-    {
-        
-        commandStatus = CommandState.EXCUTE;
-        Command com = commandList.getFrom(0);//先頭を参照
-        BattleManager.Instance.List.Add(com);//渡す
-
-        //Debug.Log(this.gameObject.name+"=>"+com.date.name+"を実行！");
-        //await com.excute(); //コマンドが終了するまで待つ
-
-        commandList.removeHead();//先頭を外す
-
-        
-        //await UniTask.WaitUntil(() => BattleManager.Instance.flag);
-    }
 
     public void sendCommandtoBattleManager()
     {
@@ -100,11 +86,10 @@ public class Character : Object
         
     }
 
-    public async UniTask waitResponseFromBattleManager()
+    //
+    void showCondition()
     {
-        bool goSign = false;
-
-        await UniTask.WaitUntil(() => goSign); //trueになるまで待機
+        
     }
 
 

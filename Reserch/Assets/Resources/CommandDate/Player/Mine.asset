@@ -15,6 +15,8 @@ MonoBehaviour:
   commandName: "\u30DE\u30A4\u30F3"
   description: "\u5730\u96F7\u3092\u8A2D\u7F6E\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u308B"
   type: 1
+  user: 2
   atk: 50
   cost: 2
   sprite: {fileID: 21300000, guid: 4ce39427eb5af764b84ae17babb67ff4, type: 3}
+  obj: {fileID: 0}

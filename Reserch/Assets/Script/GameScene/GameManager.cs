@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using Const;
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     int turn=1;
 
     [SerializeField]GameObject enemyDebugWindows;
+    [SerializeField] Text StartText;
 
     public enum gameState
     {
@@ -25,7 +27,6 @@ public class GameManager : MonoBehaviour
 
     GameObject PlayerObject;
     [SerializeField]GameObject Enemies;
-    GameObject EnemyObject;
 
 
     [SerializeField] public GameObject commandwin;
@@ -49,12 +50,12 @@ public class GameManager : MonoBehaviour
     {
 
         PlayerObject = GameObject.FindGameObjectWithTag("Player");
-        EnemyObject = GameObject.FindGameObjectWithTag("Enemy");
     }
 
     // Update is called once per frame
     void Update()
     {
+        StartText.text = $"{turn} TURN START!";
 
         if(Enemies.GetComponent<EnemyManager>().Enemies.Count==0)
         {
@@ -78,17 +79,10 @@ public class GameManager : MonoBehaviour
         }
 
 
-
+        //敵デバッグウィンドウの表示
         if(Input.GetKeyDown(KeyCode.Alpha0))
         {
-            if (enemyDebugWindows.activeSelf)
-            {
-                enemyDebugWindows.SetActive(false);
-            }
-            else
-            {
-                enemyDebugWindows.SetActive(true);
-            }
+            enemyDebugWindows.SetActive(!enemyDebugWindows.activeSelf);
         }
     }
 
@@ -103,8 +97,8 @@ public class GameManager : MonoBehaviour
         State = gameState.Command;
         Enemies.GetComponent<EnemyManager>().pushCommandAllEnemies();
         BattleManager.Instance.step = 0;
-
-        Debug.Log($"---ターン{turn++}---");
+        turn++;
+        Debug.Log($"---ターン{turn}---");
 
     }
 

@@ -50,29 +50,36 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
             throw new ArgumentOutOfRangeException("“G‚Ì”‚ğ‚P`‚R‚ÌŠÔ‚Åİ’è‚µ‚Ä‚­‚¾‚³‚¢");
         }
 
-        GameObject enemy = Resources.Load(Const.CO.PATH.PREFAB + "Enemy/Samurai") as GameObject;
+        GameObject samuraiObj = Resources.Load(Const.CO.PATH.PREFAB + "Enemy/Samurai") as GameObject;
+        GameObject wizardObj = Resources.Load(Const.CO.PATH.PREFAB + "Enemy/Wizard") as GameObject;
 
         for (int i=0;i<num;i++)
         {
             int x, y;
+
+            GameObject enemy;
 
             switch(i)
             {
                 case 0:
                     x = CO.INIT_POS.ENEMY1.X;
                     y= CO.INIT_POS.ENEMY1.Y;
+                    enemy = samuraiObj;
                     break;
                 case 1:
                     x= CO.INIT_POS.ENEMY2.X;
                     y= CO.INIT_POS.ENEMY2.Y;
+                    enemy = wizardObj;
                     break;
                 case 2:
                     x=CO.INIT_POS.ENEMY3.X;
                     y= CO.INIT_POS.ENEMY3.Y;
+                    enemy = samuraiObj;
                     break;
                 default:
                     x = 0;
                     y = 0;
+                    enemy = samuraiObj;
                     break;
             }
 
