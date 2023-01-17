@@ -39,9 +39,14 @@ public class Object : MonoBehaviour
 
         if(HP<=0)
         {
-            Destroy(this.gameObject);
-            this.gameObject.DestroyfromMap();
+            Death();
         }
+    }
+
+    protected virtual void Death()
+    {
+        Destroy(this.gameObject);
+        this.gameObject.DestroyfromMap();
     }
 
     public void setHP(int HP)

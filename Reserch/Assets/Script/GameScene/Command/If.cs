@@ -6,29 +6,33 @@ using Const;
     
 public class If : Command
 {
-    public If(GameObject characterObj) : base(characterObj)
+    int InputIndex;
+    public If(GameObject characterObj,int index) : base(characterObj)
     {
         date = Resources.Load(CO.PATH.COMMAND_BACKBORNE + "If") as CommandDate;
+
+        InputIndex = index;
     }
 
     public override async UniTask excute()
     {
-        //自信の添え字を探す
-        int index = commandList.indexOf(this);
-        
+        string search = "Command" + (InputIndex + 1);
+
+        //自身のアイコンオブジェクトを探す
+        GameObject commandIcon = commandList.commandListUI.transform.Find(search).gameObject;
+        Conditional _conditional = commandIcon.transform.GetChild(0).gameObject.GetComponent<Conditional>();
+
         //ここで入力された条件が会っているかの判定
-        if(!(false))
+        if (!_conditional.checkConditonal())
         {
+            //falseの場合
             skip();
         }
-
-        //await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.O));
-
-        Command com = commandList.getFrom(index + 1);
+        Command com = commandList.getFrom(0);
+        commandList.removeAt(0);
         await com.excute();
-        commandList.removeAt(index + 1);
+        
 
-        //await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
     }
 
     void skip()
@@ -38,7 +42,8 @@ public class If : Command
 
         while(true)
         {
-            Command com = commandList.getFrom(1);
+            Command com = commandList.getFrom(0);
+
             if (com.GetType() == typeof(If))
             {
                 suz++;
@@ -48,14 +53,16 @@ public class If : Command
                 suz--;
             }
 
+
             if (suz == 0)
             {
                 break;
             }
             else
             {
-                commandList.removeAt(1);
+                commandList.removeAt(0);
             }
+
 
         }
     }

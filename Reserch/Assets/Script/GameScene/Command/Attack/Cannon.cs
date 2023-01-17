@@ -7,11 +7,12 @@ using Const;
 public class Cannon : Command
 {
     int Power = 30;
+    GameObject FireEffect;
 
     public Cannon(GameObject characterObj) : base(characterObj)
     {
         date = Resources.Load(CO.PATH.COMMAND_PLAYER + "Canon") as CommandDate;
-
+        FireEffect = Resources.Load(Const.CO.PATH.PREFAB + "Fire_mag") as GameObject;
     }
 
     public override async UniTask excute()
@@ -25,7 +26,7 @@ public class Cannon : Command
             GameObject AttackObj=map[i,y].getGameObjectOnFloor();
             if(AttackObj!=null)
             {
-                AttackObj.GetComponent<Object>().Damage(Power);
+                AttackObj.GetComponent<Object>().Damage(date.atk);
                 break;
             }
             else
@@ -35,7 +36,9 @@ public class Cannon : Command
         }
 
         //CharacterScript.finishMoveReqToManager();
-        await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
+        GameObject obj= Object.Instantiate(FireEffect, CharacterObject.transform.position, Quaternion.identity);
+        await UniTask.Delay((int)(0.8 * 1000));
+        GameObject.Destroy(obj);
     }
 
 }

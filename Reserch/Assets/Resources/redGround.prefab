@@ -124,6 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c604b935cbb724641809434d404b33a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapNo_x: 0
+  mapNo_y: 0
+  text: {fileID: 0}
   RedFloorSprite: {fileID: 21300000, guid: d557fd5c15a278d47bc9674fa323c2ca, type: 3}
   BlueFloorSprite: {fileID: 21300000, guid: 9b13cf79eb0a32048b32ae8d178a9dc0, type: 3}
   PlayerFloorPos: {x: -4, y: -1.4, z: 0}

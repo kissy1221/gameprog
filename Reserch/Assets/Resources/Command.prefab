@@ -1042,6 +1042,7 @@ GameObject:
   - component: {fileID: 8646831120283682773}
   - component: {fileID: 3032436190103728790}
   - component: {fileID: 8171401006239852541}
+  - component: {fileID: 9171834910492270410}
   m_Layer: 5
   m_Name: Dropdown (Legacy)
   m_TagString: Untagged
@@ -1069,8 +1070,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 106.3, y: 1}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 121.76422, y: 1}
+  m_SizeDelta: {x: 190.9284, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8646831120283682773
 CanvasRenderer:
@@ -1163,7 +1164,23 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: "\u524D\u65B9\u306B\u6575\u304C\u3044\u306A\u304B\u3063\u305F\u3089"
       m_Image: {fileID: 0}
+    - m_Text: "\u6700\u5F8C\u5217\u306B\u6575\u304C\u3044\u305F\u3089"
+      m_Image: {fileID: 0}
+    - m_Text: "\u6700\u524D\u5217\u306B\u6575\u304C\u3044\u305F\u3089"
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &9171834910492270410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8549289281938407131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fab0a0efbbfd7544907bff258e00378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

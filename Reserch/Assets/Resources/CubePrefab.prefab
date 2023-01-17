@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
-  TextObject: {fileID: 2289365617538886406}
+  HPText: {fileID: 2993521735993763584}
 --- !u!1 &9107675838453706462
 GameObject:
   m_ObjectHideFlags: 0

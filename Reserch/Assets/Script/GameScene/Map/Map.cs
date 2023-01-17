@@ -63,33 +63,71 @@ public class Map : SingletonMonoBehaviour<Map>
     {
         GameObject[] gameObjectMap = GameObject.FindGameObjectsWithTag("Floor");//Floorƒ^ƒO‚ð”z—ñ‚Æ‚µ‚ÄŽæ“¾
 
-        int i = 0, j = 0, k = 0, l = 0;
-
         foreach (GameObject g in gameObjectMap)
         {
             Transform t = g.GetComponent<Transform>();
             Vector3 Pos = t.transform.localPosition;
 
+            int insert_y=0;
+            int insert_x=0;
+
             switch (Pos.y)
             {
 
                 case 1.14f:
-                    map[i, 0] = g.GetComponent<Floor>();
-                    i++;
+                    insert_y = 0;
                     break;
                 case 0.38f:
-                    map[j, 1] = g.GetComponent<Floor>();
-                    j++;
+                    insert_y = 1;
                     break;
                 case -0.38f:
-                    map[k, 2] = g.GetComponent<Floor>();
-                    k++;
+                    insert_y = 2;
                     break;
                 case -1.14f:
-                    map[l, 3] = g.GetComponent<Floor>();
-                    l++;
+                    insert_y = 3;
                     break;
             }
+
+            if(g.GetComponent<Floor>().getColor()==Floor.floorColor.Red)
+            {
+                switch (Pos.x)
+                {
+                    case -1.95f:
+                        insert_x =0;
+                        break;
+                    case -0.65f:
+                        insert_x =1;
+                        break;
+                    case 0.65f:
+                        insert_x =2;
+                        break;
+                    case 1.95f:
+                        insert_x =3;
+                        break;
+                }
+            }
+            else
+            {
+                switch (Pos.x)
+                {
+                    case -1.95f:
+                        insert_x =4;
+                        break;
+                    case -0.65f:
+                        insert_x =5;
+                        break;
+                    case 0.65f:
+                        insert_x =6;
+                        break;
+                    case 1.95f:
+                        insert_x =7;
+                        break;
+                }
+            }
+
+            g.GetComponent<Floor>().mapNo_x = insert_x;
+            g.GetComponent<Floor>().mapNo_y = insert_y;
+            map[insert_x, insert_y] = g.GetComponent<Floor>();
 
         }
     }

@@ -13,13 +13,13 @@ public class End : Command
 
     public override async UniTask excute()
     {
-        int index = commandList.indexOf(this);
 
-        if(index+1<commandList.Count)
+        if(0<commandList.Count)
         {
-            Command com = commandList.getFrom(index + 1);
+            Command com = commandList.getFrom(0);
+            commandList.removeAt(0);
             await com.excute();
-            commandList.removeAt(index + 1);
+            
         }
 
     }

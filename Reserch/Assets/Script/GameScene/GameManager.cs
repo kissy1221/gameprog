@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]GameObject enemyDebugWindows;
     [SerializeField] Text StartText;
+    [SerializeField] Toggle windowToggle;
 
     public enum gameState
     {
@@ -97,11 +98,11 @@ public class GameManager : MonoBehaviour
 
 
         //コマンドウィンドウの表示可否
-        if(isRunning())
+        if(isRunning() || !windowToggle.isOn)
         {
             commandwin.SetActive(false);
         }
-        else if(State==gameState.Command)
+        else if(State==gameState.Command && windowToggle.isOn)
         {
             commandwin.SetActive(true);
         }
@@ -117,6 +118,8 @@ public class GameManager : MonoBehaviour
     public async void runAll()
     {
         State = gameState.Run;
+
+        //死ぬの終了されないタスク
         UniTask runPlayer=PlayerObject.GetComponent<Character>().run();
         UniTask runEnemies=Enemies.GetComponent<EnemyManager>().runAllEnemies();
 

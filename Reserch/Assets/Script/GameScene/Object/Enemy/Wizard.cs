@@ -5,6 +5,7 @@ using UnityEngine;
 public class Wizard : Enemy
 {
     // Start is called before the first frame update
+    [SerializeField]GameObject FireEffect;
     new void Start()
     {
         base.Start();
@@ -23,7 +24,7 @@ public class Wizard : Enemy
 
         for (int i = 0; i < CommandNum; i++)
         {
-            int RandomNum = Random.Range(1, 5);
+            int RandomNum = Random.Range(1, 6);
 
             switch (RandomNum)
             {
@@ -39,8 +40,12 @@ public class Wizard : Enemy
                 case 4:
                     commandList.Add(new Down(this.gameObject));
                     break;
+                case 5:
+                    commandList.Add(new Fire(this.gameObject));
+                    break;
             }
         }
 
     }
+
 }

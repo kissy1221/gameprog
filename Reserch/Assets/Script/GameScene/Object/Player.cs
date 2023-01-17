@@ -21,7 +21,7 @@ public class Player : Character
 
         if(Input.GetKeyDown(KeyCode.I))
         {
-            commandList.Add(new If(this.gameObject));
+            commandList.Add(new If(this.gameObject, commandList.Count));
         }
 
         if(Input.GetKeyDown(KeyCode.E))

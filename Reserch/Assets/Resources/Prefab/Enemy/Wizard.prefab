@@ -360,6 +360,7 @@ MonoBehaviour:
   HPText: {fileID: 1257489367573932638}
   beforePos: {x: 0, y: 0}
   commandStatus: 0
+  FireEffect: {fileID: 1363784577269114, guid: 83f5e574addfb424ebd95bbb8ff8b080, type: 3}
 --- !u!1 &1257489367573932635
 GameObject:
   m_ObjectHideFlags: 0

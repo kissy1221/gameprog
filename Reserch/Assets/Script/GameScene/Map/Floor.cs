@@ -7,6 +7,9 @@ public class Floor : MonoBehaviour
 {
     SpriteRenderer spRen;
 
+    public int mapNo_x;
+    public int mapNo_y;
+
     GameObject ObjectOnFloor=null;
     GameObject ObjectOnFloorSub = null;//同時に配置できるもの
 
@@ -31,6 +34,7 @@ public class Floor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //設定しているカラーによって表示変更
         if(color==floorColor.Red)
         {

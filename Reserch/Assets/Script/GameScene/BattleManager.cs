@@ -28,12 +28,6 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
         List.mChanged += () => testMethod();//コールバック関数登録
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     //全員からコマンドを受け取ったかの判定
     public bool checkReceiveCommand()
     {
@@ -100,7 +94,6 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
     {
         if (checkReceiveCommand())
         {
-            state = BattleManagerState.EXCUTE;
             step++;
             Debug.Log($"---ステップ{step}---");
             List<Command> sortList=Sort();
@@ -108,14 +101,15 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
 
             foreach(Command com in sortList)
             {
-                Debug.Log($"{com.getExcuteObject().name}=>{com.date.name}");
                 taskList.Add(com.excute());
             }
+            state = BattleManagerState.EXCUTE;
 
             await UniTask.WhenAll(taskList.ToArray());
             Debug.Log($"---ステップ{step}終了---");
             List.ClearWithoutCallback();
             state = BattleManagerState.WAIT;
+            Debug.Log("次ステップ");
 
 
         }

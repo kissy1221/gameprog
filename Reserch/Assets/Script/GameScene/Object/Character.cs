@@ -61,13 +61,15 @@ public class Character : Object
 
                 beforePos = this.gameObject.getMapPosition();//コマンド実行前にポジションの履歴を記録
 
+
                 sendCommandtoBattleManager();//コマンドをバトルマネージャーに渡す
                 await UniTask.WaitUntil(() => BattleManager.Instance.state == BattleManager.BattleManagerState.EXCUTE); //バトルマネージャーが実行するまで待機
-
+                
                 //次のコマンドがある場合
-                if(commandList.Count>0)
+                if (commandList.Count>0)
                 {
                     commandStatus = CommandState.WAIT; //待機
+                    Debug.Log($"{name}=>コマンドがあるので待機します");
                     await UniTask.WaitUntil(() => BattleManager.Instance.state==BattleManager.BattleManagerState.WAIT); //バトルマネージャーが実行終了するまで待機
                 }
                 
@@ -83,9 +85,16 @@ public class Character : Object
     public void sendCommandtoBattleManager()
     {
         Command com = commandList.getFrom(0);//先頭を参照
+        Debug.Log($"{name }=>{com.date.name}を渡します");
         commandList.removeHead();//先頭を外す
         BattleManager.Instance.List.Add(com);//渡す
         
+    }
+
+    protected override void Death()
+    {
+        base.Death();
+        commandList.clear();
     }
 
     //
