@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : Character
 {
+
+
+
     new private void Start()
     {
         base.Start();
@@ -13,6 +16,8 @@ public class Player : Character
     {
 
         base.Update();
+
+
 
         if(Input.GetKeyDown(KeyCode.I))
         {

@@ -16,6 +16,8 @@ public class Character : Object
 
     [HideInInspector] public Vector2Int beforePos; //以前のコマンドのときにいたポジション
 
+
+
     
 
     public enum CommandState

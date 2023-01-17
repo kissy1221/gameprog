@@ -7,6 +7,9 @@ using Const;
 
 public class GameManager : MonoBehaviour
 {
+    //é¿å±åãâ óp
+    public List<float> ProgrammingTimes = new List<float>();
+    public float ProgrammingTime { get; set; } = 0;
 
     int turn=1;
 
@@ -30,6 +33,17 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] public GameObject commandwin;
+    
+    [System.Serializable]
+    public class Result
+    {
+       public  GameObject window;
+        public Text ResultText;
+       public  Text TurnText;
+       public Text TimeText;
+    }
+
+    public Result m_Result;
 
 
     private void Awake()
@@ -37,7 +51,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -57,14 +71,28 @@ public class GameManager : MonoBehaviour
     {
         StartText.text = $"{turn} TURN START!";
 
-        if(Enemies.GetComponent<EnemyManager>().Enemies.Count==0)
+        if (State == gameState.Command)
+        {
+            ProgrammingTime += Time.deltaTime;
+        }
+
+        if (Enemies.GetComponent<EnemyManager>().Enemies.Count==0)
         {
             State = gameState.GameClear;
+            m_Result.ResultText.text = "èüóò";
+            m_Result.TurnText.text = ProgrammingTimes.Count.ToString();
+            m_Result.TimeText.text = calcAvg(ProgrammingTimes).ToString("0.00");
+            m_Result.window.SetActive(true);
+            
         }
 
         if(GameObject.FindWithTag("Player")==null)
         {
             State = gameState.GameOver;
+            m_Result.ResultText.text = "îsñk";
+            m_Result.TurnText.text = turn.ToString();
+            m_Result.TimeText.text = calcAvg(ProgrammingTimes).ToString("0.00");
+            m_Result.window.SetActive(true);
         }
 
 
@@ -122,6 +150,19 @@ public class GameManager : MonoBehaviour
         {
             State = gameState.Command;
         }
+    }
+
+    float calcAvg(List<float> data)
+    {
+        float sum=0;
+
+        for (int i = 0; i < data.Count; i++)
+        {
+            sum += data[i];
+        }
+
+        return sum / data.Count;
+
     }
 
 }

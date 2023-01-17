@@ -19,7 +19,7 @@ public class Wizard : Enemy
 
     public override void pushCommandListAtRondom()
     {
-        int CommandNum = Random.Range(2, 6);
+        int CommandNum = Random.Range(7, 10);
 
         for (int i = 0; i < CommandNum; i++)
         {

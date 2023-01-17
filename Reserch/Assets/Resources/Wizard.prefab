@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8fc159e5fb54d43b43c9d8b4147d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 1000
+  HP: 10
   HPText: {fileID: 0}
   beforePos: {x: 0, y: 0}
   commandStatus: 0

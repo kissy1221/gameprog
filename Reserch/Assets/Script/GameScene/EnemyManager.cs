@@ -13,6 +13,11 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
     [SerializeField] int EnemyNum;
     GameObject Player;
 
+    [SerializeField]int EnemyTotalHP;
+
+    bool isBlindMode;
+    int BlindNum = 0; //初期値として０を代入
+
 
 
     // Start is called before the first frame update
@@ -24,6 +29,15 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
             EnemyNum = PlayerPrefs.GetInt("EnemyNum");
         }
 
+        if(PlayerPrefs.HasKey("Blind"))
+        {
+            //ブラインドモードだったら
+            if(Convert.ToBoolean(PlayerPrefs.GetInt("Blind")))
+            {
+                BlindNum = PlayerPrefs.GetInt("BlindNum");
+            }
+        }
+
 
         Enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -31,6 +45,8 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
         addEnemy(EnemyNum);
 
         Enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();//敵状況更新
+
+        Debug.Log("暗黙人数=" + BlindNum);
     }
 
     // Update is called once per frame
@@ -82,9 +98,14 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
                     enemy = samuraiObj;
                     break;
             }
-
             GameObject enemycopy = Instantiate(enemy, Vector3.zero, Quaternion.identity, this.transform);
+            enemycopy.GetComponent<Enemy>().setHP(EnemyTotalHP / num); //セット
             enemycopy.name = $"Enemy{i + 1}";
+            if(BlindNum>0)
+            {
+                enemycopy.AddComponent<BlindEnemy>();
+                BlindNum--;
+            }
             Map.Instance.getFloor(x,y).putObject(enemycopy);
 
         }

@@ -67,6 +67,9 @@ public class moveButton : MonoBehaviour
 
     public void RunButtonOnClick()
     {
+        GameManager.instance.ProgrammingTimes.Add(GameManager.instance.ProgrammingTime);
+        GameManager.instance.ProgrammingTime = 0;
+
         GameManager.instance.switchRun(true);
         audioSource.PlayOneShot(RunSelectSound);
 
