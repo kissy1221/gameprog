@@ -47,7 +47,8 @@ public class WarpSword : Command
 
             await UniTask.Delay((int)(0.7 * 1000));
 
-            CharacterObject.GetComponent<Move>().moveAt(nowPos.x, nowPos.y);
+            if(CharacterObject!=null)
+                CharacterObject.GetComponent<Move>().moveAt(nowPos.x, nowPos.y);
 
             await UniTask.Delay((int)(0.3f * 1000));
 

@@ -6,14 +6,14 @@ public class Wizard : Enemy
 {
     // Start is called before the first frame update
     [SerializeField]GameObject FireEffect;
-    new void Start()
+    protected void Start()
     {
         base.Start();
         pushCommandListAtRondom();
     }
 
     // Update is called once per frame
-    new void Update()
+    protected void Update()
     {
         base.Update();
     }

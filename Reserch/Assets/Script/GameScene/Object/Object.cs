@@ -10,12 +10,13 @@ public class Object : MonoBehaviour
     [SerializeField]Text HPText;
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
+
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected virtual void Update()
     {
         HPText.text = HP.ToString();
     }

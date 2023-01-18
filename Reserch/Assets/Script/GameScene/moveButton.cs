@@ -104,8 +104,13 @@ public class moveButton : MonoBehaviour
         playerList.Add(new Cannon(playerObject));
     }
 
-    public void MineButtonOnClick()
+    public void BombButtonOnClick()
     {
-        playerList.Add(new Mine(playerObject));
+        playerList.Add(new Bomb(playerObject));
+    }
+
+    public void windButtonOnClikc()
+    {
+        playerList.Add(new Wind(playerObject));
     }
 }

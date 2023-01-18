@@ -68,6 +68,7 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
 
         GameObject samuraiObj = Resources.Load(Const.CO.PATH.PREFAB + "Enemy/Samurai") as GameObject;
         GameObject wizardObj = Resources.Load(Const.CO.PATH.PREFAB + "Enemy/Wizard") as GameObject;
+        GameObject WarriorObj= Resources.Load(Const.CO.PATH.PREFAB + "Enemy/Warrior") as GameObject;
 
         for (int i=0;i<num;i++)
         {
@@ -90,16 +91,17 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
                 case 2:
                     x=CO.INIT_POS.ENEMY3.X;
                     y= CO.INIT_POS.ENEMY3.Y;
-                    enemy = samuraiObj;
+                    enemy = WarriorObj;
                     break;
                 default:
                     x = 0;
                     y = 0;
-                    enemy = samuraiObj;
+                    enemy = WarriorObj;
                     break;
             }
             GameObject enemycopy = Instantiate(enemy, Vector3.zero, Quaternion.identity, this.transform);
-            enemycopy.GetComponent<Enemy>().setHP(EnemyTotalHP / num); //セット
+            Enemy enemyScript = enemycopy.GetComponent<Enemy>();
+            enemyScript.setHP(EnemyTotalHP / num); //HPセット
             enemycopy.name = $"Enemy{i + 1}";
             if(BlindNum>0)
             {

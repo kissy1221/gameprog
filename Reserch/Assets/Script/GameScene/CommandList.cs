@@ -17,17 +17,43 @@ public class CommandList : MonoBehaviour
     void Start()
     {
         
+        
         if (this.commandListUI == null)
         {
+            Debug.Log($"{name}=>CommandListUI生成します");
             GameObject horizontalList = Resources.Load("Prefab/UI/EnemyCommandIcon") as GameObject;
             GameObject enemyCommandListView = GameObject.Find("EnemyCommandListView");
             commandListUI=Instantiate(horizontalList, Vector3.zero, Quaternion.identity, enemyCommandListView.transform);
         }
         
+        
 
         //リストが更新されたときに呼び出すコールバック関数の登録
         List.mChanged += () => updateCommandListUI(); //UIに表示する関数を登録する
 
+    }
+
+    private void Update()
+    {
+        if(this.tag=="Enemy")
+        {
+            updateCommandListUI();
+        }
+            
+    }
+
+    bool checkUInotNull()
+    {
+        foreach(Transform t in commandListUI.transform)
+        {
+            if(t.name!="FaceIcon")
+            {
+                if (t.GetComponent<Image>().sprite != null)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     public void printListOnCosole()
@@ -103,13 +129,16 @@ public class CommandList : MonoBehaviour
         foreach (Transform child in commandListUI.transform)
         {
             child.gameObject.GetComponent<Image>().sprite = null;
-            child.GetChild(0).gameObject.SetActive(false);
+            if(child.name!="FaceIcon")
+                child.GetChild(0).gameObject.SetActive(false);
         }
 
-            foreach (Command command in List)
+        foreach (Command command in List)
+        {
+            Image nullImageHead = null; //CommandImageが表示されていない先頭画像
+            foreach (Transform child in commandListUI.transform)
             {
-                Image nullImageHead = null; //CommandImageが表示されていない先頭画像
-                foreach (Transform child in commandListUI.transform)
+                if (child.name != "FaceIcon")
                 {
                     if (child.gameObject.GetComponent<Image>().sprite == null)
                     {
@@ -118,14 +147,18 @@ public class CommandList : MonoBehaviour
                     }
                 }
 
-            if(command.GetType()==typeof(If))
+            }
+
+            if (command.GetType() == typeof(If))
             {
                 nullImageHead.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             }
 
             nullImageHead.sprite = command.date.sprite;
 
-            }
+        }
+
+
     }
 
     public int indexOf(Command com)

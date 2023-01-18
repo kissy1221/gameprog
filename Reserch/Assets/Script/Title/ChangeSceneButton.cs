@@ -22,4 +22,13 @@ public class ChangeSceneButton : MonoBehaviour
         OptionMenu.SetActive(true);
         OptionMenu.GetComponent<OptionManager>().reflectOptionData();
     }    
+
+    public void onClickExit()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+        #else
+            Application.Quit();//ゲームプレイ終了
+        #endif
+    }
 }

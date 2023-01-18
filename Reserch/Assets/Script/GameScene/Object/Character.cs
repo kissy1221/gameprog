@@ -31,14 +31,14 @@ public class Character : Object
     public CommandState commandStatus;
 
 
-    new protected void Start()
+    protected override void Start()
     {
         base.Start();
 
         commandList = GetComponent<CommandList>();
     }
 
-    new protected void Update()
+    protected override void Update()
     {
         base.Update();
 
@@ -69,7 +69,7 @@ public class Character : Object
                 if (commandList.Count>0)
                 {
                     commandStatus = CommandState.WAIT; //待機
-                    Debug.Log($"{name}=>コマンドがあるので待機します");
+                    //Debug.Log($"{name}=>コマンドがあるので待機します");
                     await UniTask.WaitUntil(() => BattleManager.Instance.state==BattleManager.BattleManagerState.WAIT); //バトルマネージャーが実行終了するまで待機
                 }
                 
@@ -78,6 +78,7 @@ public class Character : Object
 
         //コマンドが終了したことを記載
         commandStatus = CommandState.FINISH;
+        Debug.Log($"{name}=>コマンド終了！");
         beforePos = this.gameObject.getMapPosition();
 
     }

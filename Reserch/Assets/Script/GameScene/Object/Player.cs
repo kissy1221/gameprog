@@ -37,17 +37,11 @@ public class Player : Character
         {
             status.Add(ConditionDB.Conditions[ConditionID.Poison]);
         }
-        if(Input.GetKeyDown(KeyCode.K))
+        if(Input.GetKeyDown(KeyCode.B))
         {
-            string str="";
-
-            foreach(Condition cond in status)
-            {
-                str += cond.Name + ",";
-            }
-
-            Debug.Log(str);
+            commandList.Add(new Bomb(this.gameObject));
         }
+
 
 
     }

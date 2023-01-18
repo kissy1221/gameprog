@@ -1,29 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 
 public class Enemy : Character
 {
-
     Animator anim;
-    Player PlayerClass;
-    Player a;
+
+    [SerializeField]EnemyData Data;
+
+    public EnemyData getData()
+    {
+        return Data;
+    }
 
     // Start is called before the first frame update
-    new void Start()
+    protected override void Start()
     {
         base.Start();
-        
 
         anim = transform.Find("EnemyObject").gameObject.GetComponent<Animator>();
+
+        
     }
 
     // Update is called once per frame
-    new void Update()
+    protected override void Update()
     {
         base.Update();
-        
+
+        commandList.commandListUI.transform.Find("FaceIcon").gameObject.GetComponent<Image>().sprite = Data.Icon;
+
+
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            Damage(100);
+        }
+
     }
 
     //ランダムでリストにコマンドを入れる

@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]GameObject enemyDebugWindows;
     [SerializeField] Text StartText;
     [SerializeField] Toggle windowToggle;
+    GameObject PlayerObject;
+    [SerializeField] GameObject Enemies;
+    [SerializeField] public GameObject commandwin;
 
     public enum gameState
     {
@@ -26,14 +29,9 @@ public class GameManager : MonoBehaviour
     }
 
     public gameState State=gameState.Command;
-
     public static GameManager instance = null;
 
-    GameObject PlayerObject;
-    [SerializeField]GameObject Enemies;
 
-
-    [SerializeField] public GameObject commandwin;
     
     [System.Serializable]
     public class Result
@@ -70,6 +68,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         StartText.text = $"{turn} TURN START!";
 
         if (State == gameState.Command)
@@ -113,6 +112,8 @@ public class GameManager : MonoBehaviour
         {
             enemyDebugWindows.SetActive(!enemyDebugWindows.activeSelf);
         }
+
+        //Debug.Log("全員終了フラグ:" + checkAllCharacterFinish());
     }
 
     public async void runAll()
@@ -123,7 +124,8 @@ public class GameManager : MonoBehaviour
         UniTask runPlayer=PlayerObject.GetComponent<Character>().run();
         UniTask runEnemies=Enemies.GetComponent<EnemyManager>().runAllEnemies();
 
-        await UniTask.WhenAll(runPlayer, runEnemies);
+        await UniTask.WaitUntil(() => checkAllCharacterFinish());
+        //await UniTask.WhenAll(runPlayer, runEnemies);
         
         State = gameState.Command;
         Enemies.GetComponent<EnemyManager>().pushCommandAllEnemies();
@@ -166,6 +168,36 @@ public class GameManager : MonoBehaviour
 
         return sum / data.Count;
 
+    }
+
+    bool checkAllCharacterFinish()
+    {
+        bool playerFlag = false;
+        bool enemiesFlag = false; //
+        //プレイヤーの確認
+        if (PlayerObject?.GetComponent<Player>().commandStatus == Character.CommandState.FINISH)
+            playerFlag = true;
+        //敵の確認
+        int n=0;
+        foreach(Transform enemy in Enemies.transform)
+        {
+            Enemy enemyScript = enemy.gameObject.GetComponent<Enemy>();
+            if(enemyScript.commandStatus==Character.CommandState.FINISH)
+            {
+                n++;
+            }
+        }
+
+        if(Enemies.transform.childCount<=n)
+        {
+            enemiesFlag = true;
+        }
+
+        if(playerFlag && enemiesFlag)
+        {
+            return true;
+        }
+        return false;
     }
 
 }

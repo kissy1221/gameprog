@@ -19,7 +19,7 @@ public class Wind : Command
         foreach(GameObject Enemy in Enemies)
         {
             Move moveScript = Enemy.GetComponent<Move>();
-            if(MoveSciprt.canMove(new Vector2Int(1, 0)))
+            if(moveScript.canMove(new Vector2Int(1, 0)))
             {
                 moveScript.right();
                 Enemy.GetComponent<Character>().State.setState(CharacterState.State.MOVE);

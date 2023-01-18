@@ -293,6 +293,7 @@ MonoBehaviour:
   HPText: {fileID: 7469530317932961353}
   beforePos: {x: 0, y: 0}
   commandStatus: 0
+  Data: {fileID: 11400000, guid: 4aca70f43272510409f8c230a73da3b3, type: 2}
 --- !u!1 &7469530317932961356
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,8 +609,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.0025, y: 0.0808}
-  m_SizeDelta: {x: 81.1257, y: 116.284}
+  m_AnchoredPosition: {x: 0.0025, y: 0.1008}
+  m_SizeDelta: {x: 81.1257, y: 119.0553}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7469530318583790619
 Canvas:

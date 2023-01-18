@@ -15,7 +15,7 @@ public class Swap : Command
 
     public override async UniTask excute()
     {
-        commandList.swap(1, 2);
+        commandList.swap(0, 1);
         await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
     }
 

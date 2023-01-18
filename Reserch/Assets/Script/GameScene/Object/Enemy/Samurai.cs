@@ -5,14 +5,14 @@ using UnityEngine;
 public class Samurai : Enemy
 {
     // Start is called before the first frame update
-    new void Start()
+    protected override void Start()
     {
         base.Start();
         pushCommandListAtRondom();
     }
 
     // Update is called once per frame
-    new void Update()
+    protected override void Update()
     {
         base.Update();
     }
