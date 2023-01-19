@@ -113,4 +113,14 @@ public class moveButton : MonoBehaviour
     {
         playerList.Add(new Wind(playerObject));
     }
+
+    public void IFButton()
+    {
+        playerList.Add(new If(playerObject, playerList.Count));
+    }
+
+    public void EndButton()
+    {
+        playerList.Add(new End(playerObject));
+    }
 }

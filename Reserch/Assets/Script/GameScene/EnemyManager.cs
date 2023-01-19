@@ -46,7 +46,7 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
 
         Enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();//敵状況更新
 
-        Debug.Log("暗黙人数=" + BlindNum);
+        //Debug.Log("暗黙人数=" + BlindNum);
     }
 
     // Update is called once per frame

@@ -78,7 +78,7 @@ public class Character : Object
 
         //コマンドが終了したことを記載
         commandStatus = CommandState.FINISH;
-        Debug.Log($"{name}=>コマンド終了！");
+        //Debug.Log($"{name}=>コマンド終了！");
         beforePos = this.gameObject.getMapPosition();
 
     }
@@ -86,7 +86,7 @@ public class Character : Object
     public void sendCommandtoBattleManager()
     {
         Command com = commandList.getFrom(0);//先頭を参照
-        Debug.Log($"{name }=>{com.date.name}を渡します");
+        //Debug.Log($"{name }=>{com.date.name}を渡します");
         commandList.removeHead();//先頭を外す
         BattleManager.Instance.List.Add(com);//渡す
         
@@ -94,6 +94,7 @@ public class Character : Object
 
     protected override void Death()
     {
+        //Debug.Log(this.gameObject.name + "がやられた!");
         base.Death();
         commandList.clear();
     }

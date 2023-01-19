@@ -9,7 +9,8 @@ namespace Const
         public const float COMMAND_WAIT_TIME = 0.35f;//１つのコマンド時間
         public const int MAX_COMMAND_LIST_SIZE = 9;//コマンドの最高
 
-        public const int maxCost=40;
+        public const int MAX_COST=25;
+        public const int DRAW_TURN = 15;
 
         public static class INIT_POS
         {

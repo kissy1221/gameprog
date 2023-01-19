@@ -17,7 +17,7 @@ public class CostText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        costText.text = getSumCost() + "/" + Const.CO.maxCost;
+        costText.text = getSumCost() + "/" + Const.CO.MAX_COST;
     }
     
     int getSumCost()

@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
         Run,    //Run中
         Command, //コマンド選択中
         GameClear,//ゲームクリアした
-        GameOver//ゲームオーバーになった
+        GameOver,//ゲームオーバーになった
+        Draw
     }
 
     public gameState State=gameState.Command;
@@ -90,6 +91,15 @@ public class GameManager : MonoBehaviour
         {
             State = gameState.GameOver;
             m_Result.ResultText.text = "敗北";
+            m_Result.TurnText.text = turn.ToString();
+            m_Result.TimeText.text = calcAvg(ProgrammingTimes).ToString("0.00");
+            m_Result.window.SetActive(true);
+        }
+
+        if(turn>=Const.CO.DRAW_TURN)
+        {
+            State = gameState.Draw;
+            m_Result.ResultText.text = "引き分け";
             m_Result.TurnText.text = turn.ToString();
             m_Result.TimeText.text = calcAvg(ProgrammingTimes).ToString("0.00");
             m_Result.window.SetActive(true);

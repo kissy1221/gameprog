@@ -8,12 +8,13 @@ public class Sword : Command
 {
 
     int Power = 100;
+    GameObject Effect;
 
     public Sword(GameObject characterObj) : base(characterObj)
     {
 
         date = Resources.Load(CO.PATH.COMMAND_PLAYER + "Sword") as CommandDate;
-
+        Effect = Resources.Load(CO.PATH.PREFAB + "HitEffect_B") as GameObject;
     }
 
     public override async UniTask excute()
@@ -32,8 +33,17 @@ public class Sword : Command
             Debug.Log("オブジェクトがありません");
         }
 
+        float effect_x=map[x,y].PlayerFloorPos.x;
+        float effect_y= map[x, y].PlayerFloorPos.y;
+        Vector3 vector = new Vector3(effect_x, effect_y);
+
+        GameObject effectCopy = Object.Instantiate(Effect, vector, Quaternion.identity);
+        
+
         //CharacterScript.finishMoveReqToManager();
-        await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
+        await UniTask.Delay((int)(0.8 * 1000));
+
+        GameObject.Destroy(effectCopy);
 
     }
 }

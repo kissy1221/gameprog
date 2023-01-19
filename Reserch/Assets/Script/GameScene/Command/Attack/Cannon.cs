@@ -31,7 +31,7 @@ public class Cannon : Command
             }
             else
             {
-                Debug.Log("オブジェクトがありません");
+                //Debug.Log("オブジェクトがありません");
             }
         }
 

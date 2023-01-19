@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2324bfbf21c1114c8e2668568ac0820, type: 3}
   m_Name: Bomb
   m_EditorClassIdentifier: 
-  commandName: "\u7206\u5F3E"
+  commandName: "\u30DC\u30E0"
   description: "3\u30DE\u30B9\u5148\u306B\u7206\u5F3E\u3092\u6295\u3052\u308B"
   type: 0
   user: 0
   atk: 80
-  cost: 0
+  cost: 5
   sprite: {fileID: 21300000, guid: 82f5e068b06e9f147922f49a1729dc19, type: 3}
   obj: {fileID: 0}

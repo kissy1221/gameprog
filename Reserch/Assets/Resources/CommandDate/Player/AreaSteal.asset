@@ -17,6 +17,6 @@ MonoBehaviour:
   type: 2
   user: 2
   atk: 0
-  cost: 5
-  sprite: {fileID: 21300000, guid: 0a474f0dae18547459806ffd54a724ec, type: 3}
+  cost: 22
+  sprite: {fileID: 21300000, guid: 411be39378e25c14088e448183668b78, type: 3}
   obj: {fileID: 0}

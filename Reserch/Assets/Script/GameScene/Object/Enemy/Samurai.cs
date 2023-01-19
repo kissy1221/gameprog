@@ -15,6 +15,11 @@ public class Samurai : Enemy
     protected override void Update()
     {
         base.Update();
+
+        if(Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            Damage(100);
+        }
     }
 
     public override void pushCommandListAtRondom()

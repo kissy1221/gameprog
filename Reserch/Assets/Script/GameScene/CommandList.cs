@@ -10,6 +10,7 @@ public class CommandList : MonoBehaviour
     private SelectableList<Command> List=new SelectableList<Command>();
 
     [SerializeField] public GameObject commandListUI; //コマンドリストの表示先UI
+    [SerializeField] Text CostText;
 
     public int Count { get { return List.Count; } }
 
@@ -20,7 +21,7 @@ public class CommandList : MonoBehaviour
         
         if (this.commandListUI == null)
         {
-            Debug.Log($"{name}=>CommandListUI生成します");
+            //Debug.Log($"{name}=>CommandListUI生成します");
             GameObject horizontalList = Resources.Load("Prefab/UI/EnemyCommandIcon") as GameObject;
             GameObject enemyCommandListView = GameObject.Find("EnemyCommandListView");
             commandListUI=Instantiate(horizontalList, Vector3.zero, Quaternion.identity, enemyCommandListView.transform);
@@ -39,7 +40,23 @@ public class CommandList : MonoBehaviour
         {
             updateCommandListUI();
         }
+        else
+        {
+            CostText.text = $"{calcCostSum().ToString()}/{Const.CO.MAX_COST.ToString()}";
+        }
+
             
+    }
+
+    int calcCostSum()
+    {
+        int sum=0;
+        foreach(Command com in List)
+        {
+            sum += com.date.cost;
+        }
+
+        return sum;
     }
 
     bool checkUInotNull()
@@ -69,6 +86,11 @@ public class CommandList : MonoBehaviour
 
     public void Add(Command com)
     {
+        if(tag=="Player" && Const.CO.MAX_COST < calcCostSum()+com.date.cost)
+        {
+            return;
+        }
+
         if (Count < Const.CO.MAX_COMMAND_LIST_SIZE)
         {
             List.Add(com);

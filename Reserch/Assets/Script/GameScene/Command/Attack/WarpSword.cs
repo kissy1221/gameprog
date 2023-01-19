@@ -53,6 +53,10 @@ public class WarpSword : Command
             await UniTask.Delay((int)(0.3f * 1000));
 
         }
+        else
+        {
+            await UniTask.Delay((int)(CO.COMMAND_WAIT_TIME * 1000));
+        }
             
     }
 }

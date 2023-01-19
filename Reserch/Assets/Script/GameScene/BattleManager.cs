@@ -101,9 +101,12 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager>
 
             foreach(Command com in sortList)
             {
-                taskList.Add(com.excute());
+                Debug.Log($"{com.getExcuteObject()}が実行");
+                if(com.getExcuteObject()!=null)
+                    taskList.Add(com.excute());
             }
             state = BattleManagerState.EXCUTE;
+
 
             await UniTask.WhenAll(taskList.ToArray());
             Debug.Log($"---ステップ{step}終了---");
